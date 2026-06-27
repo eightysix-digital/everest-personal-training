@@ -447,7 +447,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   background-color: var(--cloud);
   background-image:
     linear-gradient(to top left, rgba(243,245,246,0) 0%, rgba(243,245,246,0) 24%, rgba(243,245,246,.9) 50%, rgba(243,245,246,1) 62%),
-    url('/assets/img/placeholder-horizontal.jpg');
+    url('/assets/img/placeholder-vertical.jpg');
   background-position: center, center right;
   background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
@@ -457,7 +457,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   .how-bg {
     background-image:
       linear-gradient(to top, rgba(243,245,246,.45) 0%, rgba(243,245,246,.97) 55%, rgba(243,245,246,1) 78%),
-      url('/assets/img/placeholder-horizontal.jpg');
+      url('/assets/img/placeholder-vertical.jpg');
   }
 }
 
