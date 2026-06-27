@@ -206,8 +206,8 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   align-items: flex-end; gap: 24px; flex-wrap: wrap; }
 .footer-note p { font-size: 12px; color: var(--grey-muted); margin: 0; max-width: 640px; line-height: 1.6; }
 .footer-credit { font-size: 12px; color: var(--grey-muted); text-align: right; }
-.footer-credit a { color: var(--teal-accent); }
-.footer-credit a:hover { color: #fff; }
+.footer-credit a { color: var(--teal-accent); transition: color .12s ease; }
+.footer-credit a:hover { color: #E46A2C; }
 @media (max-width: 560px) { .footer-credit { text-align: left; } }
 
 /* responsive */
