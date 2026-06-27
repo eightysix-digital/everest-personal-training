@@ -142,7 +142,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .pathway.is-feature p, .pathway.is-feature h3 { color: var(--teal-darkest); }
 .pathway-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--teal-deep);
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; }
-.pathway.is-youth .pathway-icon { background: var(--teal-accent); color: var(--teal-darkest); }
+.pathway.is-youth .pathway-icon { background: var(--teal-deep); color: #fff; }
 .pathway.is-feature .pathway-icon { background: var(--teal-darkest); color: var(--teal-accent); }
 .pathway h3 { font-size: 15px; margin: 12px 0 3px; }
 .pathway p { font-size: 13px; color: var(--slate); margin: 0; }
@@ -186,7 +186,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .orgs-copy .eyebrow-2 { font-size: 12px; letter-spacing: 1px; color: var(--teal-deep); font-weight: 500; }
 .orgs-copy h2 { font-size: 24px; margin: 10px 0; }
 .orgs-copy p { color: var(--slate); font-size: 15px; margin: 0; }
-.orgs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; min-width: 260px; }
+.orgs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; min-width: 260px; flex: 1; }
 .org-pill { background: #fff; border-radius: 14px; padding: 24px 22px; font-size: 15px; font-weight: 500; color: var(--slate); }
 .org-pill i { color: var(--teal-deep); font-size: 30px; display: block; margin-bottom: 12px; }
 
