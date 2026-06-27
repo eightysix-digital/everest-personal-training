@@ -202,7 +202,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .footer-col h3 { font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
   color: var(--teal-accent); margin: 0 0 4px; font-weight: 500; }
 .footer-col a, .footer-col .footer-meta { font-size: 14px; }
-.footer-meta { color: var(--grey-muted); }
+.footer-meta { color: var(--ink-on-dark); }
 .footer-bottom { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
   padding-top: 20px; padding-bottom: 20px; border-top: 1px solid rgba(255,255,255,.08); font-size: 13px; }
 .footer-legal { display: flex; gap: 18px; }
