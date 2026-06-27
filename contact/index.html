@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; book a call | Everest Personal Training</title>
+  <meta name="description" content="Get in touch with Everest. Enquire as an individual, an organisation, a referral or a partnership, and we will point you to the right next step." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="/contact/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Contact & book a call | Everest Personal Training" />
+  <meta property="og:description" content="Tell us your goal and we will direct you to the right program, coach or partnership." />
+  <meta property="og:image" content="/assets/img/og-default.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <span class="hero-ring r1" aria-hidden="true"></span>
+      <span class="hero-ring r2" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="eyebrow">Contact</span>
+        <h1>Tell us your goal. We will point you the right way.</h1>
+        <p>Whether you are starting out, chasing performance, or representing an organisation, we will direct you to the right program, coach or partnership pathway.</p>
+      </div>
+    </section>
+
+    <div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Contact</nav></div>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="contact-grid">
+          <form id="contact-form" novalidate>
+            <div class="form-field">
+              <label for="type">I am enquiring as</label>
+              <select id="type" name="type">
+                <option value="individual">An individual</option>
+                <option value="performance">An athlete (performance)</option>
+                <option value="organisation">An organisation</option>
+                <option value="referral">A referral</option>
+                <option value="partnership">A potential partner</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="form-field" id="org-field" hidden>
+              <label for="org">Organisation</label>
+              <input id="org" name="organisation" type="text" autocomplete="organization" />
+            </div>
+            <div class="form-field">
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+            <button class="btn btn-deep" type="submit">Send enquiry <i class="ti ti-send" aria-hidden="true"></i></button>
+            <p id="form-status" role="status" style="margin-top:14px;font-size:14px"></p>
+          </form>
+
+          <aside class="contact-aside">
+            <h3>Prefer to talk?</h3>
+            <p>Email us at <a href="mailto:hello@everestpt.co.nz">hello@everestpt.co.nz</a> and we will get back to you.</p>
+            <p>Based in Christchurch, New Zealand. We deliver online across the country and in person locally.</p>
+            <p style="margin-top:18px;font-size:13px;color:var(--slate)">For organisational and health-sector enquiries, choose "An organisation" and we will respond with relevant capability information.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="/js/layout.js" defer></script>
+  <script src="/js/contact.js" defer></script>
+</body>
+</html>

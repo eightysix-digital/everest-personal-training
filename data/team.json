@@ -1,0 +1,41 @@
+{
+  "note": "Placeholder profiles. Replace with real coach details, qualifications and photos. Set photo to an image path under /assets/img/ when available.",
+  "team": [
+    {
+      "name": "Jared",
+      "role": "Founder & Head Coach",
+      "specialties": "Strength, human performance, program design",
+      "bestFor": "People who want structure, accountability and long-term capability",
+      "philosophy": "Make training personalised, practical and sustainable for real life.",
+      "human": "Founded Everest to make capability accessible to everyone.",
+      "quals": ["Personal Training", "Strength & Conditioning"],
+      "photo": "",
+      "bookingUrl": "/contact/?type=individual",
+      "status": "active"
+    },
+    {
+      "name": "Coach name",
+      "role": "Personal Trainer",
+      "specialties": "General health, beginners, confidence building",
+      "bestFor": "New gym users finding their feet",
+      "philosophy": "Meet people where they are and build from there.",
+      "human": "A short, human detail goes here.",
+      "quals": ["Personal Training"],
+      "photo": "",
+      "bookingUrl": "/contact/?type=individual",
+      "status": "active"
+    },
+    {
+      "name": "Coach name",
+      "role": "Youth & Performance Coach",
+      "specialties": "Youth development, athletic performance",
+      "bestFor": "Young people and developing athletes",
+      "philosophy": "Build confidence and capability through movement.",
+      "human": "A short, human detail goes here.",
+      "quals": ["Youth Coaching", "Strength & Conditioning"],
+      "photo": "",
+      "bookingUrl": "/contact/?type=individual",
+      "status": "active"
+    }
+  ]
+}

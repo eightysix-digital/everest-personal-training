@@ -17,16 +17,43 @@ deep-link out to Stripe; premium/proposal offers route to the contact page.
 ## Project structure
 
 ```
-index.html            Home page
-css/styles.css         Brand styles (palette + components)
-js/main.js             Renders the program deck + impact counters from data/
-data/programs.json     Product catalogue (name, price, Stripe checkout URL, status...)
+index.html             Home page
+programs/              Programs catalogue (filters + program finder quiz)
+coaching/              Personalised coaching
+performance/           Everest Elite performance
+empower/               EMPOWER youth development
+organisations/         Workforce wellness + preventative human performance (#preventative)
+impact/                Impact pillars, evidence framework, case studies
+about/                 Origin story and values
+team/                  Coach profiles (from data/team.json)
+contact/               Segmented enquiry form (?type= preselects)
+legal/                 Privacy, terms, health disclaimer, cookies (#anchors)
+resources/             Insights hub (placeholder, phase 2)
+
+css/styles.css         Brand styles (palette + shared page components)
+js/layout.js           Shared header, footer, sticky CTA, mobile nav (injected on every page)
+js/main.js             Home/impact: program deck + impact counters from data/
+js/programs.js         Programs page: catalogue rendering, filtering, program finder
+js/team.js             Team page: renders coach profiles
+js/contact.js          Contact form: type preselect + submit (endpoint or mailto fallback)
+data/programs.json     Product catalogue (name, price, Stripe checkout URL, filters, status)
 data/impact.json       Impact metrics (kept hidden until display:true + sources recorded)
+data/team.json         Coach profiles
 assets/img             Images (use WebP/AVIF where possible)
 assets/video           Hero/brand video
 vercel.json            cleanUrls + trailingSlash + staging noindex header
 robots.txt             Staging: blocks crawlers
 ```
+
+Header and footer are defined once in `js/layout.js` and injected into the
+`#site-header` / `#site-footer` placeholders on every page, so navigation and footer
+content are edited in a single place.
+
+### Contact form
+
+`js/contact.js` posts to `FORM_ENDPOINT` (set it to a Formspree/Basin/Netlify endpoint).
+Until that is set, it falls back to opening a pre-filled email to `hello@everestpt.co.nz`,
+so the form is never a dead end. Update the email/endpoint there.
 
 ## Brand
 

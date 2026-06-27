@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programs &amp; packages | Everest Personal Training</title>
+  <meta name="description" content="App-based and personalised training programs for strength, running, muscle building and general health. Filter by goal, level and support, or take the 60-second program finder." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="/programs/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Programs & packages | Everest Personal Training" />
+  <meta property="og:description" content="App-based and personalised training programs. Find your best-fit in 60 seconds." />
+  <meta property="og:image" content="/assets/img/og-default.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="page-hero">
+      <span class="hero-ring r1" aria-hidden="true"></span>
+      <span class="hero-ring r2" aria-hidden="true"></span>
+      <div class="wrap">
+        <span class="eyebrow">Programs &amp; packages</span>
+        <h1>Structured training, without the guesswork.</h1>
+        <p>From affordable app-based plans to premium personalised coaching. Filter by what matters to you, or let the program finder recommend a best-fit in 60 seconds.</p>
+      </div>
+    </section>
+
+    <div class="wrap"><nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Programs</nav></div>
+
+    <section class="section" style="padding-top:8px" id="quiz">
+      <div class="wrap">
+        <div class="intro">
+          <h2>Find my program</h2>
+          <p>Answer four quick questions and we will point you to the right starting place.</p>
+        </div>
+        <div class="quiz" id="finder">
+          <div class="quiz-step" data-key="goal">
+            <p>1. What is your main goal?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-value="strength">Build strength</button>
+              <button class="quiz-opt" data-value="general health">General health</button>
+              <button class="quiz-opt" data-value="running">Running</button>
+              <button class="quiz-opt" data-value="sport performance">Sport performance</button>
+              <button class="quiz-opt" data-value="confidence">Confidence</button>
+            </div>
+          </div>
+          <div class="quiz-step" data-key="level">
+            <p>2. How experienced are you?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-value="beginner">New to training</button>
+              <button class="quiz-opt" data-value="intermediate">Some experience</button>
+              <button class="quiz-opt" data-value="experienced">Experienced</button>
+            </div>
+          </div>
+          <div class="quiz-step" data-key="support">
+            <p>3. How much support do you want?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-value="self-guided">Self-guided app</button>
+              <button class="quiz-opt" data-value="coached">Coached accountability</button>
+              <button class="quiz-opt" data-value="premium">Premium personalised</button>
+            </div>
+          </div>
+          <div class="quiz-step" data-key="audience">
+            <p>4. Who is this for?</p>
+            <div class="quiz-options">
+              <button class="quiz-opt" data-value="adult">Me (adult)</button>
+              <button class="quiz-opt" data-value="athlete">An athlete</button>
+              <button class="quiz-opt" data-value="youth">A young person</button>
+              <button class="quiz-opt" data-value="organisation">An organisation</button>
+            </div>
+          </div>
+          <div class="quiz-result" id="finder-result" aria-live="polite">
+            <h3 id="finder-result-name">Your recommended program</h3>
+            <p id="finder-result-desc"></p>
+            <a class="btn btn-deep" id="finder-result-cta" href="#catalogue">See the program</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cloud">
+      <div class="wrap">
+        <div class="intro">
+          <h2>Browse all programs</h2>
+          <p>Filter the full catalogue to narrow down your options.</p>
+        </div>
+        <div class="filters" id="filters">
+          <select id="f-goal" aria-label="Filter by goal"><option value="">Any goal</option><option value="strength">Strength</option><option value="general health">General health</option><option value="running">Running</option><option value="sport performance">Sport performance</option><option value="confidence">Confidence</option></select>
+          <select id="f-level" aria-label="Filter by experience"><option value="">Any level</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="experienced">Experienced</option></select>
+          <select id="f-support" aria-label="Filter by support"><option value="">Any support</option><option value="self-guided">Self-guided</option><option value="coached">Coached</option><option value="premium">Premium</option></select>
+          <select id="f-audience" aria-label="Filter by audience"><option value="">Any audience</option><option value="adult">Adult</option><option value="athlete">Athlete</option><option value="youth">Youth</option><option value="organisation">Organisation</option></select>
+        </div>
+        <div class="catalogue" id="catalogue" aria-live="polite"></div>
+        <p id="catalogue-empty" style="display:none;color:var(--slate);margin-top:16px">No programs match those filters. <button class="quiz-opt" id="reset-filters" style="margin-left:8px">Clear filters</button></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="intro">
+          <h2>Self-guided, coached or premium?</h2>
+          <p>A quick comparison of how much support comes with each tier.</p>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="compare">
+            <thead><tr><th>What you get</th><th>Self-guided</th><th class="col-feature">Coached</th><th>Premium personalised</th></tr></thead>
+            <tbody>
+              <tr><td>App-delivered programming</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
+              <tr><td>Progression and structure</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
+              <tr><td>Accountability check-ins</td><td>—</td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
+              <tr><td>Personalised to you</td><td>—</td><td>Partial</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
+              <tr><td>Testing and tailored progression</td><td>—</td><td>—</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section final cta-band">
+      <div class="wrap">
+        <h2>Still not sure?</h2>
+        <p>Tell us your goal and we will direct you to the right program, coach or pathway.</p>
+        <a class="btn btn-accent" href="#quiz">Use the program finder <i class="ti ti-arrow-up" aria-hidden="true"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="sticky-cta"></div>
+
+  <script src="/js/layout.js" defer></script>
+  <script src="/js/programs.js" defer></script>
+</body>
+</html>
