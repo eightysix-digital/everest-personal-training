@@ -93,7 +93,7 @@
         '</div>' +
         '<div class="wrap footer-note">' +
           '<p>Everest provides fitness coaching and human performance services. This is not clinical healthcare. We work alongside health professionals and refer where appropriate.</p>' +
-          '<span class="footer-credit">Another website designed and built by <a href="https://eightysix.digital/web-design-christchurch/" target="_blank" rel="noopener">EightySix Digital</a></span>' +
+          '<span class="footer-credit">Another website designed and built by <a href="https://eightysix.digital/web-design/web-design-christchurch/" target="_blank" rel="noopener">EightySix Digital</a></span>' +
         '</div>' +
       '</footer>';
   }
