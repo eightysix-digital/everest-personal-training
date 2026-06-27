@@ -441,6 +441,27 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
+/* section with image fading from bottom-right into the cloud background */
+.how-bg {
+  position: relative;
+  background-color: var(--cloud);
+  background-image:
+    linear-gradient(to top left, rgba(243,245,246,0) 0%, rgba(243,245,246,.45) 34%, rgba(243,245,246,.92) 60%, rgba(243,245,246,1) 78%),
+    url('/assets/img/placeholder-horizontal.jpg');
+  background-position: center, bottom right;
+  background-size: cover, 52% auto;
+  background-repeat: no-repeat, no-repeat;
+}
+.how-bg .wrap { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  .how-bg { background-size: cover, 120% auto; }
+  .how-bg {
+    background-image:
+      linear-gradient(to top, rgba(243,245,246,.6) 0%, rgba(243,245,246,.96) 55%, rgba(243,245,246,1) 80%),
+      url('/assets/img/placeholder-horizontal.jpg');
+  }
+}
+
 /* steps (how it works) */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .step { background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; padding: 22px;
