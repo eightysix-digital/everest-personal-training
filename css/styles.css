@@ -181,9 +181,9 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .orgs-copy .eyebrow-2 { font-size: 12px; letter-spacing: 1px; color: var(--teal-deep); font-weight: 500; }
 .orgs-copy h2 { font-size: 24px; margin: 10px 0; }
 .orgs-copy p { color: var(--slate); font-size: 15px; margin: 0; }
-.orgs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-width: 260px; }
-.org-pill { background: #fff; border-radius: 12px; padding: 14px; font-size: 13px; color: var(--slate); }
-.org-pill i { color: var(--teal-deep); font-size: 20px; display: block; margin-bottom: 6px; }
+.orgs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; min-width: 260px; }
+.org-pill { background: #fff; border-radius: 14px; padding: 24px 22px; font-size: 15px; font-weight: 500; color: var(--slate); }
+.org-pill i { color: var(--teal-deep); font-size: 30px; display: block; margin-bottom: 12px; }
 
 /* final cta */
 .final { background: var(--black); color: #fff; text-align: center; }
