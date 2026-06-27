@@ -111,6 +111,51 @@
     stickyHost.outerHTML = '<div class="sticky-cta"><a class="btn btn-deep" href="/contact/">Book a call</a></div>';
   }
 
+  /* structured data: LocalBusiness + WebSite (every page) + BreadcrumbList */
+  function injectSchema() {
+    var origin = location.origin;
+    var graph = [
+      {
+        "@type": ["Organization", "LocalBusiness"],
+        "@id": origin + "/#business",
+        "name": "Everest Personal Training",
+        "description": "Personal training, fitness and human performance coaching in Christchurch and across Canterbury, New Zealand. Online, in-person and hybrid coaching for individuals, athletes, young people and organisations.",
+        "url": origin + "/",
+        "email": "hello@everestpt.co.nz",
+        "areaServed": [
+          { "@type": "City", "name": "Christchurch" },
+          { "@type": "AdministrativeArea", "name": "Canterbury" }
+        ],
+        "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
+      },
+      {
+        "@type": "WebSite",
+        "@id": origin + "/#website",
+        "url": origin + "/",
+        "name": "Everest Personal Training",
+        "publisher": { "@id": origin + "/#business" }
+      }
+    ];
+
+    var parts = location.pathname.split('/').filter(Boolean);
+    if (parts.length) {
+      var items = [{ "@type": "ListItem", "position": 1, "name": "Home", "item": origin + "/" }];
+      var acc = '';
+      parts.forEach(function (seg, i) {
+        acc += '/' + seg;
+        var name = seg.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); });
+        items.push({ "@type": "ListItem", "position": i + 2, "name": name, "item": origin + acc + '/' });
+      });
+      graph.push({ "@type": "BreadcrumbList", "itemListElement": items });
+    }
+
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify({ "@context": "https://schema.org", "@graph": graph });
+    document.head.appendChild(s);
+  }
+  injectSchema();
+
   /* mobile nav toggle */
   var header = document.querySelector('.site-header');
   var toggle = header && header.querySelector('.nav-toggle');
