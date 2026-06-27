@@ -392,13 +392,27 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .case[open] summary { margin-bottom: 14px; }
 .case .case-meta { font-size: 13px; color: var(--teal-deep); margin-top: 4px; }
 
+/* evidence hierarchy (impact page) */
+.evidence-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.evidence-tier { display: flex; gap: 14px; align-items: flex-start;
+  background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 14px; padding: 18px 20px; }
+.evidence-tier .rank { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--mist); color: var(--teal-deep); border: 2px solid var(--teal-accent);
+  display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 14px; }
+.evidence-tier h3 { font-size: 16px; margin: 5px 0 5px; }
+.evidence-tier p { font-size: 14px; color: var(--slate); margin: 0; line-height: 1.55; }
+.evidence-callout { display: flex; gap: 14px; align-items: flex-start;
+  background: var(--mist); border: 1px solid var(--mist-line); border-radius: 14px; padding: 20px; margin-top: 16px; }
+.evidence-callout i { color: var(--teal-deep); font-size: 24px; flex: 0 0 auto; }
+.evidence-callout p { margin: 0; font-size: 14.5px; color: var(--teal-darkest); line-height: 1.6; }
+@media (max-width: 720px) { .evidence-grid { grid-template-columns: 1fr; } }
+
 /* card hover effects (service pages) */
-.feature, .prog-card, .coach {
+.feature, .prog-card, .coach, .evidence-tier {
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-.feature:hover, .prog-card:hover, .coach:hover {
+.feature:hover, .prog-card:hover, .coach:hover, .evidence-tier:hover {
   transform: translateY(-4px); box-shadow: 0 16px 34px rgba(17,17,17,.10); }
-.feature:hover { border-color: var(--teal-accent); }
-.coach:hover { border-color: var(--teal-accent); }
+.feature:hover, .coach:hover, .evidence-tier:hover { border-color: var(--teal-accent); }
 
 /* story timeline (about page) */
 .story { position: relative; max-width: 720px; margin-top: 8px; }
