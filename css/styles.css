@@ -28,7 +28,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
 body {
   margin: 0;
   font-family: var(--font);
@@ -57,12 +57,21 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
 .btn-outline { background: transparent; color: var(--teal-deep); border-color: var(--teal-deep); }
 
-/* header */
+/* header - floating glassy pill */
 .site-header {
-  position: sticky; top: 0; z-index: 50;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 14px 24px; background: rgba(255,255,255,.92);
-  backdrop-filter: blur(8px); border-bottom: 1px solid rgba(0,0,0,.08);
+  position: fixed; top: 14px; left: 0; right: 0; z-index: 50;
+  width: calc(100% - 32px); max-width: 1040px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 9px 9px 9px 22px;
+  background: rgba(255,255,255,.62);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 999px;
+  box-shadow: 0 10px 34px rgba(17,17,17,.12);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header { background: rgba(255,255,255,.95); }
 }
 .logo { display: flex; align-items: center; gap: 9px; font-weight: 500; letter-spacing: .5px; }
 .logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--teal-deep);
@@ -75,7 +84,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* hero */
 .hero { position: relative; background: var(--black); color: #fff; overflow: hidden; }
-.hero .wrap { padding-top: 72px; padding-bottom: 72px; position: relative; z-index: 2; }
+.hero .wrap { padding-top: 110px; padding-bottom: 72px; position: relative; z-index: 2; }
 .hero-ring { position: absolute; border: 1.5px solid rgba(22,184,179,.18); border-radius: 50%; z-index: 1; }
 .hero-ring.r1 { width: 460px; height: 460px; right: -80px; top: -80px; }
 .hero-ring.r2 { width: 260px; height: 260px; right: 60px; top: 90px; border-color: rgba(22,184,179,.28); }
@@ -189,11 +198,13 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* responsive */
 @media (max-width: 920px) {
-  .nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0;
-    background: var(--white); border-bottom: 1px solid rgba(0,0,0,.08);
-    padding: 8px 0; display: none; }
+  .nav { position: absolute; top: calc(100% + 10px); left: 0; right: 0; flex-direction: column; gap: 0;
+    background: rgba(255,255,255,.92); backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(0,0,0,.08); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 12px 34px rgba(17,17,17,.14); padding: 6px 0; display: none; }
   .site-header.nav-open .nav { display: flex; }
-  .nav a { padding: 12px 24px; font-size: 15px; }
+  .nav a { padding: 12px 22px; font-size: 15px; }
   .nav-toggle { display: block; }
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
   .pathways { grid-template-columns: 1fr 1fr; }
@@ -228,7 +239,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* page hero (compact, for inner pages) */
 .page-hero { background: var(--black); color: #fff; position: relative; overflow: hidden; }
-.page-hero .wrap { padding-top: 64px; padding-bottom: 64px; position: relative; z-index: 2; }
+.page-hero .wrap { padding-top: 104px; padding-bottom: 64px; position: relative; z-index: 2; }
 .page-hero .eyebrow { margin-bottom: 16px; }
 .page-hero h1 { font-size: clamp(30px, 4.5vw, 44px); max-width: 720px; }
 .page-hero p { color: var(--ink-on-dark); font-size: 17px; max-width: 600px; margin: 16px 0 0; }
