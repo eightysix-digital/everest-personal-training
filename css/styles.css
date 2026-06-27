@@ -88,7 +88,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* hero */
 .hero { position: relative; background: var(--black); color: #fff; overflow: hidden; }
-.hero .wrap { padding-top: 110px; padding-bottom: 72px; position: relative; z-index: 2; }
+.hero .wrap { padding-top: 132px; padding-bottom: 104px; position: relative; z-index: 2; }
 .hero-ring { position: absolute; border: 1.5px solid rgba(22,184,179,.18); border-radius: 50%; z-index: 1; }
 .hero-ring.r1 { width: 460px; height: 460px; right: -80px; top: -80px; }
 .hero-ring.r2 { width: 260px; height: 260px; right: 60px; top: 90px; border-color: rgba(22,184,179,.28); }
@@ -256,7 +256,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* page hero (compact, for inner pages) */
 .page-hero { background: var(--black); color: #fff; position: relative; overflow: hidden; }
-.page-hero .wrap { padding-top: 104px; padding-bottom: 64px; position: relative; z-index: 2; }
+.page-hero .wrap { padding-top: 124px; padding-bottom: 92px; position: relative; z-index: 2; }
 .page-hero .eyebrow { margin-bottom: 16px; }
 .page-hero h1 { font-size: clamp(30px, 4.5vw, 44px); max-width: 720px; }
 .page-hero p { color: var(--ink-on-dark); font-size: 17px; max-width: 600px; margin: 16px 0 0; }
