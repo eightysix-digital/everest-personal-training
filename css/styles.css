@@ -48,14 +48,19 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .btn {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 15px; font-weight: 500; padding: 13px 24px;
-  border-radius: var(--radius-pill); border: 1px solid transparent;
-  cursor: pointer; transition: transform .12s ease, opacity .12s ease;
+  border-radius: var(--radius-pill); border: 1px solid transparent; cursor: pointer;
+  transition: transform .14s ease, background-color .15s ease, color .15s ease, box-shadow .15s ease, border-color .15s ease, opacity .12s ease;
 }
+.btn:hover { transform: translateY(-2px); }
 .btn:active { transform: scale(.98); }
 .btn-accent { background: var(--teal-accent); color: var(--teal-darkest); }
+.btn-accent:hover { background: #13ada8; box-shadow: 0 8px 20px rgba(22,184,179,.4); }
 .btn-deep { background: var(--teal-deep); color: #fff; }
+.btn-deep:hover { background: #0a6f6d; box-shadow: 0 8px 20px rgba(11,124,122,.32); }
 .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
+.btn-ghost:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.7); }
 .btn-outline { background: transparent; color: var(--teal-deep); border-color: var(--teal-deep); }
+.btn-outline:hover { background: var(--teal-deep); color: #fff; }
 
 /* header - floating glassy pill */
 .site-header {
@@ -386,6 +391,14 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .case summary::-webkit-details-marker { display: none; }
 .case[open] summary { margin-bottom: 14px; }
 .case .case-meta { font-size: 13px; color: var(--teal-deep); margin-top: 4px; }
+
+/* card hover effects (service pages) */
+.feature, .prog-card, .coach {
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.feature:hover, .prog-card:hover, .coach:hover {
+  transform: translateY(-4px); box-shadow: 0 16px 34px rgba(17,17,17,.10); }
+.feature:hover { border-color: var(--teal-accent); }
+.coach:hover { border-color: var(--teal-accent); }
 
 /* story timeline (about page) */
 .story { position: relative; max-width: 720px; margin-top: 8px; }
