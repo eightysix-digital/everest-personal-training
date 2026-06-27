@@ -446,18 +446,17 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   position: relative;
   background-color: var(--cloud);
   background-image:
-    linear-gradient(to top left, rgba(243,245,246,0) 0%, rgba(243,245,246,.45) 34%, rgba(243,245,246,.92) 60%, rgba(243,245,246,1) 78%),
+    linear-gradient(to top left, rgba(243,245,246,0) 0%, rgba(243,245,246,0) 24%, rgba(243,245,246,.9) 50%, rgba(243,245,246,1) 62%),
     url('/assets/img/placeholder-horizontal.jpg');
-  background-position: center, bottom right;
-  background-size: cover, 52% auto;
+  background-position: center, center right;
+  background-size: cover, cover;
   background-repeat: no-repeat, no-repeat;
 }
 .how-bg .wrap { position: relative; z-index: 1; }
 @media (max-width: 760px) {
-  .how-bg { background-size: cover, 120% auto; }
   .how-bg {
     background-image:
-      linear-gradient(to top, rgba(243,245,246,.6) 0%, rgba(243,245,246,.96) 55%, rgba(243,245,246,1) 80%),
+      linear-gradient(to top, rgba(243,245,246,.45) 0%, rgba(243,245,246,.97) 55%, rgba(243,245,246,1) 78%),
       url('/assets/img/placeholder-horizontal.jpg');
   }
 }
