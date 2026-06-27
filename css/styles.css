@@ -84,7 +84,8 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .header-call { padding: 10px 20px; font-size: 13.5px;
   box-shadow: 0 4px 16px rgba(22,184,179,.45); }
-.header-call:hover { box-shadow: 0 7px 20px rgba(22,184,179,.6); transform: translateY(-1px); }
+.header-call:hover { box-shadow: 0 7px 20px rgba(22,184,179,.6); transform: translateY(-1px);
+  background: var(--teal-deep); color: #fff; }
 .nav-toggle { display: none; background: none; border: 0; font-size: 24px; color: var(--black); }
 
 /* hero */
@@ -263,9 +264,12 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .page-hero p { color: var(--ink-on-dark); font-size: 17px; max-width: 600px; margin: 16px 0 0; }
 .page-hero .hero-ring { z-index: 1; }
 
-/* breadcrumb */
-.crumbs { font-size: 13px; color: var(--slate); padding: 14px 0; }
+/* breadcrumb - pill style echoing the hero eyebrow */
+.crumbs { display: inline-flex; align-items: center; gap: 8px; font-size: 13px;
+  margin: 20px 0; padding: 8px 16px; border-radius: 22px;
+  border: 1px solid var(--mist-line); background: var(--mist); color: var(--slate); }
 .crumbs a { color: var(--teal-deep); }
+.crumbs a:hover { color: var(--teal-darkest); }
 .crumbs span { color: var(--slate); }
 
 /* generic prose */
