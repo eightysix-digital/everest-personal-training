@@ -93,6 +93,16 @@ Then open the printed URL. (Opening `index.html` directly via `file://` will fai
   must have a `source`, `dateRange` and `method` recorded, then set `display: true`. The whole
   impact section stays hidden until at least one metric is verified.
 
+## Sitemap & llms.txt
+
+`tools/generate.js` scans every page and writes `sitemap.xml` and `llms.txt` (page titles +
+descriptions). It runs automatically on every Vercel deploy (via `buildCommand` in
+`vercel.json`), so both files always reflect the current site. They are git-ignored because
+they are build artefacts. To regenerate locally: `node tools/generate.js`.
+
+Set the `SITE_URL` environment variable in Vercel to the production domain when it goes live
+(defaults to the staging `*.vercel.app` URL). Also update the `Sitemap:` line in `robots.txt`.
+
 ## Deployment (Vercel)
 
 1. Import this repo into Vercel (no framework preset; it is a static site).
