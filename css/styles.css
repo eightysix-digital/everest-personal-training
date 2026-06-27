@@ -269,13 +269,13 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .page-hero p { color: var(--ink-on-dark); font-size: 17px; max-width: 600px; margin: 16px 0 0; }
 .page-hero .hero-ring { z-index: 1; }
 
-/* breadcrumb - pill style echoing the hero eyebrow */
+/* breadcrumb - sits in the hero as the eyebrow pill */
 .crumbs { display: inline-flex; align-items: center; gap: 8px; font-size: 13px;
-  margin: 20px 0; padding: 8px 16px; border-radius: 22px;
-  border: 1px solid var(--mist-line); background: var(--mist); color: var(--slate); }
-.crumbs a { color: var(--teal-deep); }
-.crumbs a:hover { color: var(--teal-darkest); }
-.crumbs span { color: var(--slate); }
+  margin: 0 0 18px; padding: 6px 14px; border-radius: 22px;
+  border: 1px solid rgba(22,184,179,.5); background: transparent; color: var(--ink-on-dark); }
+.crumbs a { color: var(--teal-accent); }
+.crumbs a:hover { color: #fff; }
+.crumbs span { color: var(--ink-on-dark); }
 
 /* generic prose */
 .prose { max-width: 760px; }
