@@ -81,6 +81,9 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-deep); }
 .nav .is-brand { color: var(--teal-deep); }
 .header-cta { display: flex; align-items: center; gap: 12px; }
+.header-call { padding: 10px 20px; font-size: 13.5px;
+  box-shadow: 0 4px 16px rgba(22,184,179,.45); }
+.header-call:hover { box-shadow: 0 7px 20px rgba(22,184,179,.6); transform: translateY(-1px); }
 .nav-toggle { display: none; background: none; border: 0; font-size: 24px; color: var(--black); }
 
 /* hero */

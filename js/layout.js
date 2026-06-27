@@ -33,7 +33,7 @@
         '<a class="logo" href="/"><span class="logo-mark"><i class="ti ti-mountain" aria-hidden="true"></i></span><span>EVEREST</span></a>' +
         '<nav class="nav" aria-label="Primary">' + links + '</nav>' +
         '<div class="header-cta">' +
-          '<a class="btn btn-deep" style="padding:9px 18px;font-size:13px" href="/contact/">Book a call</a>' +
+          '<a class="btn btn-accent header-call" href="/contact/">Book a call</a>' +
           '<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><i class="ti ti-menu-2" aria-hidden="true"></i></button>' +
         '</div>' +
       '</header>';
