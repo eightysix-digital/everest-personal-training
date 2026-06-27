@@ -416,6 +416,10 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .split-body .eyebrow-2 { font-size: 12px; letter-spacing: 1px; color: var(--teal-deep); font-weight: 500; }
 .split-body h2 { font-size: 28px; margin: 8px 0 0; }
 .split-body p { color: var(--slate); font-size: 16px; line-height: 1.75; margin: 14px 0 0; }
+.check-list { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 10px; }
+.check-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #2c2f31; line-height: 1.5; }
+.check-list li i { color: var(--teal-deep); font-size: 20px; flex: 0 0 auto; margin-top: 1px; }
+
 .split.text-sticky { align-items: start; }
 .split.text-sticky .split-body { position: sticky; top: 104px; }
 @media (max-width: 820px) {
