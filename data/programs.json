@@ -1,0 +1,69 @@
+{
+  "featured": ["everest365", "everest365-premium", "run-strong", "everest-elite"],
+  "programs": [
+    {
+      "slug": "everest365",
+      "name": "EVEREST365",
+      "label": "App-based · all levels",
+      "headline": "Affordable app-based programs with no guesswork. Multiple levels and goals.",
+      "price": "$10",
+      "billing": "/week",
+      "theme": "dark",
+      "cta": "Start on Stripe",
+      "checkoutUrl": "",
+      "audience": "adult",
+      "goal": "general health",
+      "level": "beginner",
+      "delivery": "app",
+      "status": "active"
+    },
+    {
+      "slug": "everest365-premium",
+      "name": "EVEREST365 Premium",
+      "label": "Personalised · coached",
+      "headline": "Personalised programming, accountability and higher-touch coaching.",
+      "price": "$15",
+      "billing": "/week",
+      "theme": "teal",
+      "cta": "Start on Stripe",
+      "checkoutUrl": "",
+      "audience": "adult",
+      "goal": "general health",
+      "level": "intermediate",
+      "delivery": "online",
+      "status": "active"
+    },
+    {
+      "slug": "run-strong",
+      "name": "Run Strong",
+      "label": "Strength + running",
+      "headline": "Strength and running support for 5km, 10km, half and full marathon goals.",
+      "price": "$10",
+      "billing": "/week",
+      "theme": "accent",
+      "cta": "Start on Stripe",
+      "checkoutUrl": "",
+      "audience": "adult",
+      "goal": "running",
+      "level": "intermediate",
+      "delivery": "app",
+      "status": "active"
+    },
+    {
+      "slug": "everest-elite",
+      "name": "Everest Elite",
+      "label": "Premium · proposal",
+      "headline": "Sport-specific strength and conditioning, testing and progression.",
+      "price": "By proposal",
+      "billing": "",
+      "theme": "mist",
+      "cta": "Enquire",
+      "checkoutUrl": "/contact/",
+      "audience": "athlete",
+      "goal": "sport performance",
+      "level": "experienced",
+      "delivery": "hybrid",
+      "status": "active"
+    }
+  ]
+}

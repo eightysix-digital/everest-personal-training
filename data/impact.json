@@ -1,0 +1,9 @@
+{
+  "note": "Do not publish unverified figures. Each metric needs a source, date range and calculation method recorded before display:true.",
+  "metrics": [
+    { "label": "people coached", "value": 0, "suffix": "+", "source": "", "dateRange": "", "method": "", "display": false },
+    { "label": "programs delivered", "value": 0, "suffix": "+", "source": "", "dateRange": "", "method": "", "display": false },
+    { "label": "youth engaged", "value": 0, "suffix": "+", "source": "", "dateRange": "", "method": "", "display": false },
+    { "label": "adherence rate", "value": 0, "suffix": "%", "source": "", "dateRange": "", "method": "", "display": false }
+  ]
+}
