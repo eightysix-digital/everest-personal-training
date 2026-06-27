@@ -299,6 +299,16 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 /* feature grid */
 .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .feature-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+
+/* angled split: white content left, image on the right of a diagonal */
+.train-split { position: relative; overflow: hidden; }
+.train-split > .wrap { position: relative; z-index: 1; }
+.train-split .intro, .train-split .tab-btns, .train-split .tab-panel { max-width: 560px; }
+.train-media { position: absolute; inset: 0; z-index: 0;
+  background-image: url('/assets/img/placeholder-horizontal.jpg');
+  background-size: cover; background-position: center right;
+  clip-path: polygon(70% 0, 100% 0, 100% 100%, 56% 100%); }
+@media (max-width: 900px) { .train-media { display: none; } }
 .feature { background: #fff; border: 1px solid rgba(0,0,0,.08); border-radius: 16px; padding: 22px; }
 .bg-cloud .feature, .bg-mist .feature { background: #fff; }
 .feature-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--mist);
