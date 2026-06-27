@@ -113,8 +113,16 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .section-head h2 { font-size: 24px; }
 .section-head p { color: var(--slate); margin: 6px 0 0; font-size: 15px; }
 .pathways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px; }
-.pathway { border-radius: 16px; padding: 20px; background: var(--mist); }
+.pathway { border-radius: 16px; padding: 20px; background: var(--mist);
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease; }
+.pathway:hover, .pathway:focus-visible {
+  transform: translateY(-4px); box-shadow: 0 14px 30px rgba(17,17,17,.10);
+  background-color: #d6efec; outline: none; }
+.pathway:hover .pathway-icon { background: var(--teal-darkest); }
 .pathway.is-feature { background: var(--teal-accent); }
+.pathway.is-feature:hover, .pathway.is-feature:focus-visible { background-color: var(--teal-deep); }
+.pathway.is-feature:hover h3, .pathway.is-feature:hover p { color: #fff; }
+.pathway.is-feature:hover .pathway-icon { background: var(--teal-darkest); color: var(--teal-accent); }
 .pathway.is-feature p, .pathway.is-feature h3 { color: var(--teal-darkest); }
 .pathway-icon { width: 40px; height: 40px; border-radius: 11px; background: var(--teal-deep);
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; }
