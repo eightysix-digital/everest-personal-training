@@ -28,6 +28,22 @@ vercel.json            cleanUrls + trailingSlash + staging noindex header
 robots.txt             Staging: blocks crawlers
 ```
 
+## Brand
+
+Defined as CSS custom properties in `css/styles.css` (`:root`).
+
+**Palette (from the brief)** — Everest Black `#111111`, White `#FFFFFF`, Deep Teal `#0B7C7A`,
+Accent Teal `#16B8B3`, Mist `#E8F6F5`, Slate Grey `#5F666B`, Cloud Grey `#F3F5F6`.
+
+**Supporting tints (brand extension)** — functional in-family shades the headline palette omits,
+used for legible text/borders on dark and teal surfaces: `--black-deep #0a0a0a`,
+`--teal-darkest #04342C` (text on accent-teal, passes WCAG AA), `--mist-line #9fe1de`,
+`--ink-on-dark #cfd4d6`, `--teal-on-dark #cdeceb`, `--grey-muted #7d8488`. These can be
+retired in favour of low-opacity white if Jared wants strict palette-only adherence.
+
+**Type** — Inter (weights 400/500 only). Sentence case for headings; all-caps reserved for small
+labels and navigation. No condensed fonts, italics, gradients or neon, per the brief.
+
 ## Local preview
 
 Serve the folder with any static server, for example:
