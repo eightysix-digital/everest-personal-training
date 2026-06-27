@@ -156,6 +156,14 @@
   }
   injectSchema();
 
+  /* FAQ accordion: close others when one opens (site-wide) */
+  var faqs = document.querySelectorAll('.faq-item');
+  faqs.forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      if (item.open) faqs.forEach(function (o) { if (o !== item) o.open = false; });
+    });
+  });
+
   /* mobile nav toggle */
   var header = document.querySelector('.site-header');
   var toggle = header && header.querySelector('.nav-toggle');

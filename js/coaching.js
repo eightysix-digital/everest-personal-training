@@ -24,13 +24,4 @@
     });
   }
 
-  /* FAQ: close others when one opens */
-  var faqs = document.querySelectorAll('.faq-item');
-  faqs.forEach(function (item) {
-    item.addEventListener('toggle', function () {
-      if (item.open) {
-        faqs.forEach(function (other) { if (other !== item) other.open = false; });
-      }
-    });
-  });
 })();
