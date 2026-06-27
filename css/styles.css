@@ -86,6 +86,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .nav a { color: var(--black); transition: color .12s ease; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-deep); }
 .nav .is-brand { color: var(--teal-deep); }
+.nav-cta { display: none; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .header-call { padding: 10px 20px; font-size: 13.5px;
   box-shadow: 0 4px 16px rgba(22,184,179,.45); }
@@ -229,6 +230,9 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
     box-shadow: 0 12px 34px rgba(17,17,17,.14); padding: 6px 0; display: none; }
   .site-header.nav-open .nav { display: flex; }
   .nav a { padding: 12px 22px; font-size: 15px; }
+  .nav-cta { display: block; margin: 10px 22px 12px; padding: 13px 18px; text-align: center;
+    background: var(--teal-accent); color: var(--teal-darkest); font-weight: 500;
+    border-radius: var(--radius-pill); }
   .header-call { display: none; }
   .nav-toggle { display: block; }
   .footer-top { grid-template-columns: 1fr; gap: 32px; }

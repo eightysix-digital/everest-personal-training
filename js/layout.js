@@ -31,7 +31,9 @@
     return '' +
       '<header class="site-header">' +
         '<a class="logo" href="/"><span class="logo-mark"><i class="ti ti-mountain" aria-hidden="true"></i></span><span>EVEREST</span></a>' +
-        '<nav class="nav" aria-label="Primary">' + links + '</nav>' +
+        '<nav class="nav" aria-label="Primary">' + links +
+          '<a class="nav-cta" href="/contact/">Book a call</a>' +
+        '</nav>' +
         '<div class="header-cta">' +
           '<a class="btn btn-accent header-call" href="/contact/">Book a call</a>' +
           '<button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><i class="ti ti-menu-2" aria-hidden="true"></i></button>' +
