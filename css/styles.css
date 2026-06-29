@@ -85,7 +85,6 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; color: var(--black); }
 .nav a { color: var(--black); transition: color .12s ease; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-deep); }
-.nav .is-brand { color: var(--teal-deep); }
 .nav-cta { display: none; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .header-call { padding: 10px 20px; font-size: 13.5px;
