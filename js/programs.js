@@ -67,22 +67,55 @@
 
   function val(id) { var e = document.getElementById(id); return e ? e.value : ''; }
 
-  /* ---- Program finder ---- */
+  /* ---- Program finder: interactive step wizard ---- */
   var answers = {};
+  var fsteps = [], fcurr = 0;
+  var prefersReduced = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   function wireFinder() {
     var finder = document.getElementById('finder');
     if (!finder) return;
-    finder.querySelectorAll('.quiz-step').forEach(function (step) {
+    fsteps = [].slice.call(finder.querySelectorAll('.fstep'));
+    fsteps.forEach(function (step) {
       var key = step.getAttribute('data-key');
-      step.querySelectorAll('.quiz-opt').forEach(function (btn) {
+      step.querySelectorAll('.fopt').forEach(function (btn) {
         btn.addEventListener('click', function () {
-          step.querySelectorAll('.quiz-opt').forEach(function (b) { b.classList.remove('selected'); });
+          step.querySelectorAll('.fopt').forEach(function (b) { b.classList.remove('selected'); });
           btn.classList.add('selected');
           answers[key] = btn.getAttribute('data-value');
-          maybeRecommend();
+          window.setTimeout(function () {
+            if (fcurr < fsteps.length - 1) goToStep(fcurr + 1);
+            else finishFinder();
+          }, 240);
         });
       });
     });
+    var back = document.getElementById('finder-back');
+    if (back) back.addEventListener('click', function () { if (fcurr > 0) goToStep(fcurr - 1); });
+    var restart = document.getElementById('finder-restart');
+    if (restart) restart.addEventListener('click', resetFinder);
+    updateFinder();
+  }
+
+  function goToStep(i) {
+    var res = document.getElementById('finder-result');
+    if (res) res.classList.remove('show');
+    var stage = document.getElementById('finder-stage');
+    if (stage) stage.hidden = false;
+    if (fsteps[fcurr]) fsteps[fcurr].classList.remove('is-active');
+    fcurr = i;
+    if (fsteps[fcurr]) fsteps[fcurr].classList.add('is-active');
+    updateFinder();
+  }
+
+  function updateFinder() {
+    var bar = document.getElementById('finder-bar');
+    var count = document.getElementById('finder-count');
+    var back = document.getElementById('finder-back');
+    if (bar) bar.style.width = (((fcurr + 1) / fsteps.length) * 100) + '%';
+    if (count) count.textContent = 'Question ' + (fcurr + 1) + ' of ' + fsteps.length;
+    if (back) back.hidden = fcurr === 0;
   }
 
   function score(p) {
@@ -94,23 +127,52 @@
     return s;
   }
 
-  function maybeRecommend() {
-    if (Object.keys(answers).length < 4) return;
+  function finishFinder() {
     var best = null, bestScore = -1;
     activePrograms().forEach(function (p) {
       var sc = score(p);
       if (sc > bestScore) { bestScore = sc; best = p; }
     });
     if (!best) return;
-    var box = document.getElementById('finder-result');
+
+    var stage = document.getElementById('finder-stage');
+    if (stage) stage.hidden = true;
+    var bar = document.getElementById('finder-bar'); if (bar) bar.style.width = '100%';
+    var count = document.getElementById('finder-count'); if (count) count.textContent = 'Your match';
+    var back = document.getElementById('finder-back'); if (back) back.hidden = true;
+
     document.getElementById('finder-result-name').textContent = best.name;
     document.getElementById('finder-result-desc').textContent = best.headline;
+    var why = document.getElementById('finder-result-why');
+    if (why) {
+      var reasons = [];
+      if (answers.goal) reasons.push('Matches your goal: ' + cap(answers.goal));
+      if (answers.level) reasons.push(cap(answers.level) + ' level programming');
+      if (answers.support) reasons.push(cap(answers.support) + ' support');
+      if (answers.audience) reasons.push('Built for: ' + cap(answers.audience));
+      why.innerHTML = reasons.map(function (r) {
+        return '<li><i class="ti ti-check" aria-hidden="true"></i>' + esc(r) + '</li>';
+      }).join('');
+    }
     var cta = document.getElementById('finder-result-cta');
     var href = best.checkoutUrl || '/contact/';
     cta.setAttribute('href', href);
     if (/^https?:\/\//.test(href)) { cta.setAttribute('target', '_blank'); cta.setAttribute('rel', 'noopener'); }
-    cta.textContent = best.cta;
+    cta.innerHTML = esc(best.cta) + ' <i class="ti ti-arrow-right" aria-hidden="true"></i>';
+
+    var box = document.getElementById('finder-result');
     box.classList.add('show');
+    box.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'nearest' });
+  }
+
+  function resetFinder() {
+    answers = {};
+    fsteps.forEach(function (s) {
+      s.querySelectorAll('.fopt').forEach(function (b) { b.classList.remove('selected'); });
+    });
+    var box = document.getElementById('finder-result'); if (box) box.classList.remove('show');
+    var stage = document.getElementById('finder-stage'); if (stage) stage.hidden = false;
+    goToStep(0);
   }
 
   /* ---- init ---- */

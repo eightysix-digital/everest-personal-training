@@ -63,52 +63,79 @@
     </section>
 
 
-    <section class="section" id="quiz">
-      <div class="wrap">
-        <div class="intro">
-          <h2>Find my program</h2>
-          <p>Answer four quick questions and we will point you to the right starting place.</p>
+    <section class="section finder-band" id="quiz">
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 300" preserveAspectRatio="none">
+          <polyline class="trail" points="0,250 300,210 620,230 900,130 1160,150 1400,60" />
+          <circle class="node" cx="620" cy="230" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="900" cy="130" r="7" style="animation-delay:1.4s" />
+        </svg>
+      </div>
+      <div class="rail">
+        <div class="finder-head">
+          <span class="finder-eyebrow"><i class="ti ti-wand" aria-hidden="true"></i> Program finder</span>
+          <h2>Find your best-fit in 60 seconds</h2>
         </div>
-        <div class="quiz" id="finder">
-          <div class="quiz-step" data-key="goal">
-            <p>1. What is your main goal?</p>
-            <div class="quiz-options">
-              <button class="quiz-opt" data-value="strength">Build strength</button>
-              <button class="quiz-opt" data-value="general health">General health</button>
-              <button class="quiz-opt" data-value="running">Running</button>
-              <button class="quiz-opt" data-value="sport performance">Sport performance</button>
-              <button class="quiz-opt" data-value="confidence">Confidence</button>
+
+        <div class="finder" id="finder">
+          <div class="finder-progress"><span class="finder-bar" id="finder-bar"></span></div>
+          <div class="finder-meta">
+            <span id="finder-count">Question 1 of 4</span>
+            <button class="finder-back" id="finder-back" type="button" hidden><i class="ti ti-arrow-left" aria-hidden="true"></i> Back</button>
+          </div>
+
+          <div class="finder-stage" id="finder-stage">
+            <div class="fstep is-active" data-key="goal">
+              <p class="fq">What is your main goal?</p>
+              <div class="foptions">
+                <button class="fopt" data-value="strength"><i class="ti ti-barbell" aria-hidden="true"></i><span>Build strength</span></button>
+                <button class="fopt" data-value="general health"><i class="ti ti-heartbeat" aria-hidden="true"></i><span>General health</span></button>
+                <button class="fopt" data-value="running"><i class="ti ti-run" aria-hidden="true"></i><span>Running</span></button>
+                <button class="fopt" data-value="sport performance"><i class="ti ti-trophy" aria-hidden="true"></i><span>Sport performance</span></button>
+                <button class="fopt" data-value="confidence"><i class="ti ti-mood-smile" aria-hidden="true"></i><span>Confidence</span></button>
+              </div>
+            </div>
+            <div class="fstep" data-key="level">
+              <p class="fq">How experienced are you?</p>
+              <div class="foptions">
+                <button class="fopt" data-value="beginner"><i class="ti ti-seeding" aria-hidden="true"></i><span>New to training</span></button>
+                <button class="fopt" data-value="intermediate"><i class="ti ti-flame" aria-hidden="true"></i><span>Some experience</span></button>
+                <button class="fopt" data-value="experienced"><i class="ti ti-mountain" aria-hidden="true"></i><span>Experienced</span></button>
+              </div>
+            </div>
+            <div class="fstep" data-key="support">
+              <p class="fq">How much support do you want?</p>
+              <div class="foptions">
+                <button class="fopt" data-value="self-guided"><i class="ti ti-device-mobile" aria-hidden="true"></i><span>Self-guided app</span></button>
+                <button class="fopt" data-value="coached"><i class="ti ti-user-check" aria-hidden="true"></i><span>Coached accountability</span></button>
+                <button class="fopt" data-value="premium"><i class="ti ti-diamond" aria-hidden="true"></i><span>Premium personalised</span></button>
+              </div>
+            </div>
+            <div class="fstep" data-key="audience">
+              <p class="fq">Who is this for?</p>
+              <div class="foptions">
+                <button class="fopt" data-value="adult"><i class="ti ti-user" aria-hidden="true"></i><span>Me (adult)</span></button>
+                <button class="fopt" data-value="athlete"><i class="ti ti-run" aria-hidden="true"></i><span>An athlete</span></button>
+                <button class="fopt" data-value="youth"><i class="ti ti-school" aria-hidden="true"></i><span>A young person</span></button>
+                <button class="fopt" data-value="organisation"><i class="ti ti-building-community" aria-hidden="true"></i><span>An organisation</span></button>
+              </div>
             </div>
           </div>
-          <div class="quiz-step" data-key="level">
-            <p>2. How experienced are you?</p>
-            <div class="quiz-options">
-              <button class="quiz-opt" data-value="beginner">New to training</button>
-              <button class="quiz-opt" data-value="intermediate">Some experience</button>
-              <button class="quiz-opt" data-value="experienced">Experienced</button>
+
+          <div class="finder-result" id="finder-result" aria-live="polite">
+            <div class="result-head"><i class="ti ti-sparkles" aria-hidden="true"></i> Your best-fit program</div>
+            <div class="result-card">
+              <div class="result-media" id="result-media" aria-hidden="true"></div>
+              <div class="result-body">
+                <h3 id="finder-result-name"></h3>
+                <p id="finder-result-desc"></p>
+                <ul class="result-why" id="finder-result-why"></ul>
+                <div class="result-actions">
+                  <a class="btn btn-deep" id="finder-result-cta" href="#catalogue">See the program</a>
+                  <button class="finder-restart" id="finder-restart" type="button">Start over</button>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="quiz-step" data-key="support">
-            <p>3. How much support do you want?</p>
-            <div class="quiz-options">
-              <button class="quiz-opt" data-value="self-guided">Self-guided app</button>
-              <button class="quiz-opt" data-value="coached">Coached accountability</button>
-              <button class="quiz-opt" data-value="premium">Premium personalised</button>
-            </div>
-          </div>
-          <div class="quiz-step" data-key="audience">
-            <p>4. Who is this for?</p>
-            <div class="quiz-options">
-              <button class="quiz-opt" data-value="adult">Me (adult)</button>
-              <button class="quiz-opt" data-value="athlete">An athlete</button>
-              <button class="quiz-opt" data-value="youth">A young person</button>
-              <button class="quiz-opt" data-value="organisation">An organisation</button>
-            </div>
-          </div>
-          <div class="quiz-result" id="finder-result" aria-live="polite">
-            <h3 id="finder-result-name">Your recommended program</h3>
-            <p id="finder-result-desc"></p>
-            <a class="btn btn-deep" id="finder-result-cta" href="#catalogue">See the program</a>
           </div>
         </div>
       </div>
