@@ -13,7 +13,7 @@
   <meta property="og:image" content="/assets/img/og-default.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
@@ -21,28 +21,50 @@
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <span class="hero-ring r1" aria-hidden="true"></span>
-      <span class="hero-ring r2" aria-hidden="true"></span>
-      <div class="wrap">
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Team</nav>
         <h1>The coaches behind Everest.</h1>
-        <p>Qualified, experienced and genuinely invested in the people they coach, from first-time gym users to athletes and young people.</p>
+        <p class="sub">Qualified, experienced and genuinely invested in the people they coach, from first-time gym users to athletes and young people.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/?type=individual">Book a call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
       </div>
     </section>
-
 
     <section class="section">
       <div class="wrap">
-        <div class="team-grid" id="team-grid"></div>
+        <div class="team-grid r-stagger" id="team-grid"></div>
       </div>
     </section>
 
-    <section class="section final cta-band">
+    <section class="img-band parallax reveal" style="background-image:linear-gradient(rgba(4,52,44,.72),rgba(17,17,17,.82)),url('/assets/img/placeholder-horizontal.jpg')">
       <div class="wrap">
-        <h2>Want to train with us?</h2>
-        <p>Book a call and we will match you with the right coach for your goals.</p>
+        <span class="eyebrow">The right fit</span>
+        <h2>We'll match you with the right coach.</h2>
+        <p>Not sure who to train with? Tell us your goals and we'll pair you with the coach best suited to them, in Christchurch or online across Canterbury.</p>
         <a class="btn btn-accent" href="/contact/?type=individual">Book a call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
+        <h2>Want to train with us?</h2>
+        <p>Book a call and we'll match you with the right coach for your goals.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/?type=individual">Book a call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/programs/">Browse programs</a>
+        </div>
       </div>
     </section>
   </main>

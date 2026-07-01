@@ -368,11 +368,15 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .quiz-result p { font-size: 14px; color: var(--slate); margin: 0 0 14px; }
 
 /* team grid */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.coach { border: 1px solid rgba(0,0,0,.1); border-radius: 16px; overflow: hidden; background: #fff; }
-.coach-photo { aspect-ratio: 4/3; background: var(--mist); display: flex; align-items: center;
-  justify-content: center; color: var(--teal-deep); font-size: 40px; }
-.coach-body { padding: 18px; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.coach { border: 1px solid rgba(0,0,0,.05); border-radius: 18px; overflow: hidden; background: #fff;
+  box-shadow: 0 12px 30px rgba(17,17,17,.05); }
+.coach-photo { aspect-ratio: 4/5; object-fit: cover; width: 100%;
+  background: linear-gradient(160deg, var(--teal-deep), var(--teal-darkest));
+  display: flex; align-items: center; justify-content: center; color: #fff;
+  font-family: var(--display); font-weight: 700; font-size: 46px; letter-spacing: 1px; }
+.coach-body { padding: 22px; }
+.coach-body h3 { font-family: var(--display); }
 .coach-body h3 { font-size: 17px; margin: 0 0 2px; }
 .coach-role { font-size: 13px; color: var(--teal-deep); margin: 0 0 10px; }
 .coach-body p { font-size: 13.5px; color: var(--slate); margin: 0 0 6px; line-height: 1.6; }
