@@ -14,7 +14,7 @@
   <meta property="og:image" content="/assets/img/og-default.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
   <script type="application/ld+json">
@@ -44,14 +44,21 @@
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <span class="hero-ring r1" aria-hidden="true"></span>
-      <span class="hero-ring r2" aria-hidden="true"></span>
-      <div class="wrap">
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Coaching</nav>
-        <h1>Personal training and performance coaching in Christchurch.</h1>
-        <p>Expert, personalised coaching for strength, fitness and performance, built around your goals, your body and your life. Train in person across Christchurch, online anywhere in Canterbury, or both.</p>
-        <div class="hero-actions" style="margin-top:24px">
+        <h1>Coaching that adapts to you.</h1>
+        <p class="sub">Expert, personalised coaching for strength, fitness and performance, built around your goals, your body and your life. In person across Christchurch, online anywhere in Canterbury, or both.</p>
+        <div class="cine-actions">
           <a class="btn btn-accent" href="/contact/?type=individual">Book a free discovery call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
           <a class="btn btn-ghost" href="#how">How it works</a>
         </div>
@@ -134,26 +141,48 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="intro">
+    <section class="tiers">
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 300" preserveAspectRatio="none">
+          <polyline class="trail" points="0,250 320,215 640,235 940,120 1160,150 1400,70" />
+          <circle class="node" cx="640" cy="235" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="940" cy="120" r="7" style="animation-delay:1.4s" />
+        </svg>
+      </div>
+      <div class="rail">
+        <div class="t-head">
+          <span class="eyebrow-3">App or coaching</span>
           <h2>Standard programs or premium coaching?</h2>
-          <p>App programs are a great, affordable start. Coaching adds the personalisation and accountability that accelerate results.</p>
+          <p>App programs are a great, affordable start. Personalised coaching adds the tailoring and accountability that accelerate results.</p>
         </div>
-        <div style="overflow-x:auto">
-          <table class="compare">
-            <thead><tr><th></th><th>EVEREST365 app</th><th class="col-feature">Personalised coaching</th></tr></thead>
-            <tbody>
-              <tr><td>Structured programming</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Built specifically around you</td><td>—</td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Accountability and check-ins</td><td>—</td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Technique feedback</td><td>—</td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>In-person sessions in Christchurch</td><td>—</td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Best for</td><td>Self-motivated, on a budget</td><td class="col-feature">Faster, guided progress</td></tr>
-            </tbody>
-          </table>
+        <div class="tier-grid cols-2">
+          <article class="tier">
+            <h3>EVEREST365 app</h3>
+            <p class="tier-sub">Structured, affordable app training you run yourself. Best for self-motivated trainers on a budget.</p>
+            <ul class="tier-list">
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Structured programming</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Built specifically around you</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Accountability and check-ins</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Technique feedback</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> In-person sessions in Christchurch</li>
+            </ul>
+            <a class="btn btn-ghost" href="/programs/">Browse app programs <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="tier is-popular">
+            <span class="tier-badge">Recommended</span>
+            <h3>Personalised coaching</h3>
+            <p class="tier-sub">Built specifically around you, with a coach in your corner. Best for faster, guided progress.</p>
+            <ul class="tier-list">
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Structured programming</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Built specifically around you</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Accountability and check-ins</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Technique feedback</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> In-person sessions in Christchurch</li>
+            </ul>
+            <a class="btn btn-accent" href="/contact/?type=individual">Book a discovery call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
         </div>
-        <div style="margin-top:22px"><a class="btn btn-deep" href="/programs/">Browse app programs <i class="ti ti-arrow-right" aria-hidden="true"></i></a></div>
       </div>
     </section>
 
@@ -196,21 +225,32 @@
 
     <section class="section bg-mist">
       <div class="wrap">
-        <div class="intro">
-          <h2>Coaching questions, answered</h2>
+        <div class="faq-split">
+          <div class="faq-aside">
+            <span class="eyebrow-3">FAQs</span>
+            <h2>Coaching questions, answered</h2>
+            <p>Everything you need to know about training with a coach. Still unsure if it's the right fit? A quick call will tell you.</p>
+            <a class="btn btn-deep" href="/contact/?type=individual">Book a discovery call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item"><summary>Do you offer personal training in Christchurch? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We offer in-person personal training and coaching across Christchurch, plus online coaching for clients anywhere in Canterbury and wider New Zealand.</p></details>
+            <details class="faq-item"><summary>Can I do online coaching if I am outside Christchurch? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Absolutely. Our online coaching delivers your programming, accountability and feedback through an app, so you can train anywhere in New Zealand.</p></details>
+            <details class="faq-item"><summary>What is the difference between an app program and personalised coaching? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>App programs give you structured training to follow yourself. Personalised coaching is built specifically around you, with regular check-ins, technique feedback and a coach who adjusts the plan as you progress.</p></details>
+            <details class="faq-item"><summary>Do you coach beginners as well as athletes? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We coach everyone from first-time gym users building confidence through to experienced athletes chasing performance goals.</p></details>
+          </div>
         </div>
-        <details class="faq-item"><summary>Do you offer personal training in Christchurch? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We offer in-person personal training and coaching across Christchurch, plus online coaching for clients anywhere in Canterbury and wider New Zealand.</p></details>
-        <details class="faq-item"><summary>Can I do online coaching if I am outside Christchurch? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Absolutely. Our online coaching delivers your programming, accountability and feedback through an app, so you can train anywhere in New Zealand.</p></details>
-        <details class="faq-item"><summary>What is the difference between an app program and personalised coaching? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>App programs give you structured training to follow yourself. Personalised coaching is built specifically around you, with regular check-ins, technique feedback and a coach who adjusts the plan as you progress.</p></details>
-        <details class="faq-item"><summary>Do you coach beginners as well as athletes? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We coach everyone from first-time gym users building confidence through to experienced athletes chasing performance goals.</p></details>
       </div>
     </section>
 
-    <section class="section final cta-band">
-      <div class="wrap">
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
         <h2>Ready for coaching that fits you?</h2>
-        <p>Book a free discovery call and we will work out whether personalised coaching is the right next step.</p>
-        <a class="btn btn-accent" href="/contact/?type=individual">Book a free discovery call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <p>Book a free discovery call and we'll work out whether personalised coaching is the right next step.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/?type=individual">Book a free discovery call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/programs/">Browse programs</a>
+        </div>
       </div>
     </section>
   </main>
