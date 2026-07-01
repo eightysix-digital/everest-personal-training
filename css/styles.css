@@ -25,6 +25,7 @@
   --radius-pill: 30px;
   --maxw: 1140px;
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -541,4 +542,167 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 }
 @media (max-width: 560px) {
   .feature-grid, .catalogue, .team-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   HOMEPAGE REDESIGN v2 — full-bleed, image-led, cinematic
+   Refs: Exos (authority + scale), SpaceX / Boring Co (restraint),
+   The Body Coach (accessibility), Lift Club (character).
+   Principle: every major block is full width; imagery carries the
+   brand, copy provides proof and direction. Content sits on a wide
+   rail; backgrounds and images bleed edge to edge.
+   ============================================================ */
+
+/* display type: heavier, tighter, more presence than Inter body */
+h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
+
+/* wide content rail inside full-bleed sections */
+.rail { max-width: 1280px; margin: 0 auto; padding: 0 40px; width: 100%; }
+@media (max-width: 700px) { .rail { padding: 0 22px; } }
+
+/* ascent-line brand device — a teal path that climbs left→right */
+.ascent { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.ascent svg { position: absolute; left: -2%; bottom: 0; width: 104%; height: 100%; }
+.ascent .trail { fill: none; stroke: var(--teal-accent); stroke-width: 2; opacity: .5;
+  stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: ascend 2.4s ease forwards; }
+.ascent .node { fill: var(--teal-accent); opacity: 0; animation: nodeIn .5s ease forwards; }
+@keyframes ascend { to { stroke-dashoffset: 0; } }
+@keyframes nodeIn { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .ascent .trail { animation: none; stroke-dashoffset: 0; }
+  .ascent .node { animation: none; opacity: 1; }
+}
+
+/* --- 1. Cinematic full-screen hero --- */
+.cine-hero { position: relative; min-height: 94vh; display: flex; align-items: flex-end;
+  color: #fff; background: #0a0a0a; overflow: hidden; }
+.cine-hero .cine-bg { position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(180deg, rgba(10,10,10,.30) 0%, rgba(10,10,10,.10) 34%, rgba(10,10,10,.72) 78%, rgba(10,10,10,.94) 100%),
+    linear-gradient(90deg, rgba(4,52,44,.55) 0%, rgba(10,10,10,0) 60%),
+    url('/assets/img/placeholder-horizontal.jpg');
+  background-size: cover; background-position: center; transform: scale(1.06);
+  animation: kenburns 18s ease-out forwards; }
+@keyframes kenburns { to { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .cine-hero .cine-bg { animation: none; transform: none; } }
+.cine-hero .rail { position: relative; z-index: 2; padding-top: 150px; padding-bottom: 8vh; }
+.cine-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font);
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-accent);
+  margin-bottom: 22px; }
+.cine-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--teal-accent); }
+.cine-hero h1 { font-size: clamp(44px, 8.5vw, 116px); line-height: .94; font-weight: 700;
+  letter-spacing: -0.02em; text-transform: uppercase; max-width: 15ch; }
+.cine-hero .sub { font-family: var(--font); font-size: clamp(16px, 1.8vw, 21px);
+  color: #e4e8ea; max-width: 620px; margin: 24px 0 34px; line-height: 1.5; }
+.cine-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.cine-actions .btn { padding: 15px 30px; font-size: 15.5px; }
+.scroll-cue { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); z-index: 2;
+  color: rgba(255,255,255,.6); font-size: 22px; animation: bob 2s ease-in-out infinite; }
+@keyframes bob { 0%,100% { transform: translate(-50%,0); } 50% { transform: translate(-50%,7px); } }
+@media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
+
+/* --- 2. Statement band (dark, minimal, high restraint) --- */
+.statement { position: relative; background: var(--black); color: #fff; overflow: hidden;
+  padding: clamp(80px, 14vh, 150px) 0; }
+.statement .rail { position: relative; z-index: 2; }
+.statement h2 { font-size: clamp(28px, 4.6vw, 60px); line-height: 1.04; font-weight: 600;
+  text-transform: uppercase; max-width: 20ch; }
+.statement h2 .muted { color: #4a5560; }
+.statement h2 .lit { color: var(--teal-accent); }
+.statement .say { font-family: var(--font); text-transform: none; font-size: clamp(16px, 1.7vw, 19px);
+  color: var(--ink-on-dark); max-width: 620px; margin: 26px 0 0; line-height: 1.6; font-weight: 400; }
+
+/* --- 3. Division campaign panels (full-bleed, alternating) --- */
+.division { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 82vh; }
+.division .media { position: relative; min-height: 56vh; background-size: cover; background-position: center; }
+.division .media::after { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,10,.10), rgba(10,10,10,.34)); }
+.division .body { display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(48px, 8vh, 104px) clamp(32px, 6vw, 96px); color: #fff; background: var(--black); }
+.division .idx { font-family: var(--font); font-size: 13px; letter-spacing: 3px; color: var(--teal-accent);
+  text-transform: uppercase; margin-bottom: 20px; }
+.division h2 { font-size: clamp(30px, 4vw, 54px); line-height: 1.02; font-weight: 700;
+  text-transform: uppercase; }
+.division .tag { display: block; background: none; border-radius: 0; padding: 0;
+  font-family: var(--font); font-size: clamp(16px, 1.6vw, 20px); color: #dfe4e6;
+  margin: 16px 0 26px; max-width: 42ch; line-height: 1.5; }
+.division .go { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start;
+  font-family: var(--font); font-weight: 600; font-size: 15px; color: #fff;
+  padding-bottom: 5px; border-bottom: 2px solid var(--teal-accent); transition: gap .16s ease, color .16s ease; }
+.division .go:hover { gap: 16px; color: var(--teal-accent); }
+.division:nth-child(even) .media { order: 2; }        /* alternate image side */
+.division.theme-teal .body { background: var(--teal-darkest); }
+.division.theme-mist .body { background: #14201c; }
+
+/* --- 4. Impact band (full-bleed, big numbers over imagery) --- */
+.impact-band { position: relative; color: #fff; overflow: hidden;
+  padding: clamp(80px, 13vh, 140px) 0; background: var(--black); }
+.impact-band .impact-bg { position: absolute; inset: 0; z-index: 0;
+  background-image: linear-gradient(180deg, rgba(10,10,10,.86), rgba(4,52,44,.9)), url('/assets/img/placeholder-horizontal.jpg');
+  background-size: cover; background-position: center; }
+.impact-band .rail { position: relative; z-index: 2; }
+.impact-band .ib-head { display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; margin-bottom: 52px; }
+.impact-band .ib-head h2 { font-size: clamp(28px, 3.6vw, 46px); font-weight: 700; text-transform: uppercase;
+  max-width: 16ch; line-height: 1.02; }
+.impact-band .ib-head p { font-family: var(--font); color: var(--ink-on-dark); font-size: 15px; max-width: 34ch; margin: 0; }
+.impact-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.impact-stats .metric { border-top: 1px solid rgba(255,255,255,.16); padding-top: 22px; }
+.impact-stats .num { font-family: var(--display); font-size: clamp(44px, 6vw, 80px); font-weight: 700;
+  line-height: 1; color: #fff; letter-spacing: -0.02em; }
+.impact-stats .cap { font-family: var(--font); font-size: 14px; color: var(--teal-on-dark);
+  text-transform: uppercase; letter-spacing: 1px; margin-top: 12px; }
+.impact-note { font-family: var(--font); font-size: 12px; color: var(--grey-muted); margin-top: 34px; }
+@media (max-width: 820px) { .impact-stats { grid-template-columns: 1fr 1fr; gap: 30px 20px; } }
+@media (max-width: 460px) { .impact-stats { grid-template-columns: 1fr; } }
+
+/* --- 5. Product sales (clean, direct, image-led cards) --- */
+.products { background: var(--cloud); padding: clamp(72px, 11vh, 120px) 0; }
+.products .p-head { display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
+.products .p-head h2 { font-size: clamp(28px, 3.6vw, 46px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.02; max-width: 18ch; }
+.products .p-head p { font-family: var(--font); color: var(--slate); font-size: 15px; max-width: 34ch; margin: 6px 0 0; }
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.product { display: flex; flex-direction: column; background: #fff; border-radius: 18px;
+  overflow: hidden; box-shadow: 0 18px 40px rgba(17,17,17,.08);
+  transition: transform .18s ease, box-shadow .18s ease; }
+.product:hover { transform: translateY(-6px); box-shadow: 0 26px 54px rgba(17,17,17,.14); }
+.product .pic { position: relative; aspect-ratio: 5/4; background-size: cover; background-position: center; }
+.product .pic .plabel { position: absolute; left: 14px; top: 14px; font-family: var(--font);
+  font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;
+  background: rgba(10,10,10,.72); color: #fff; padding: 6px 11px; border-radius: 20px; backdrop-filter: blur(4px); }
+.product .pbody { display: flex; flex-direction: column; flex: 1; padding: 22px; }
+.product h3 { font-size: 21px; font-weight: 600; margin: 0 0 8px; }
+.product .pdesc { font-family: var(--font); font-size: 14px; color: var(--slate); line-height: 1.55; margin: 0 0 16px; }
+.product .pmeta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+.product .pmeta span { font-family: var(--font); font-size: 11.5px; color: var(--slate);
+  background: var(--cloud); padding: 4px 10px; border-radius: 14px; }
+.product .pfoot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.product .pprice { font-family: var(--display); font-size: 26px; font-weight: 700; }
+.product .pprice small { font-family: var(--font); font-size: 12px; font-weight: 400; color: var(--slate); }
+.product .pprice.tbd { font-size: 17px; font-weight: 600; }
+.product .btn { padding: 11px 18px; font-size: 13.5px; }
+@media (max-width: 1040px) { .product-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .product-grid { grid-template-columns: 1fr; } }
+
+/* --- 6. Full-bleed closer --- */
+.closer { position: relative; color: #fff; overflow: hidden; text-align: center;
+  min-height: 66vh; display: flex; align-items: center; }
+.closer .closer-bg { position: absolute; inset: 0; z-index: 0;
+  background-image: linear-gradient(180deg, rgba(10,10,10,.72), rgba(4,52,44,.86)), url('/assets/img/placeholder-vertical.jpg');
+  background-size: cover; background-position: center 30%; }
+.closer .rail { position: relative; z-index: 2; }
+.closer h2 { font-size: clamp(32px, 5.4vw, 68px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.0; max-width: 18ch; margin: 0 auto; }
+.closer p { font-family: var(--font); color: #e4e8ea; font-size: clamp(16px, 1.6vw, 19px);
+  max-width: 560px; margin: 22px auto 32px; line-height: 1.55; }
+.closer .cine-actions { justify-content: center; }
+
+/* full-bleed responsive: stack division panels */
+@media (max-width: 860px) {
+  .division { grid-template-columns: 1fr; min-height: 0; }
+  .division .media { min-height: 46vh; order: 0 !important; }
+  .division:nth-child(even) .media { order: 0; }
+  .division .body { padding: 52px 26px; }
 }

@@ -10,43 +10,51 @@
   var prefersReduced = window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- Featured program deck ---- */
+  /* ---- Featured product cards (image-led, direct) ---- */
+  var PROG_IMG = ['/assets/img/placeholder-horizontal.jpg', '/assets/img/placeholder-vertical.jpg'];
+  var DELIVERY = { gym: 'In gym', home: 'At home', mixed: 'App based', online: 'Online' };
+
   function renderPrograms(data) {
-    var deck = document.getElementById('program-deck');
-    if (!deck || !data || !data.programs) return;
+    var grid = document.getElementById('product-grid');
+    if (!grid || !data || !data.programs) return;
     var bySlug = {};
     data.programs.forEach(function (p) { bySlug[p.slug] = p; });
     var order = (data.featured && data.featured.length) ? data.featured
       : data.programs.map(function (p) { return p.slug; });
 
-    deck.innerHTML = order.map(function (slug) {
+    grid.innerHTML = order.map(function (slug, i) {
       var p = bySlug[slug];
       if (!p || p.status !== 'active') return '';
       var href = p.checkoutUrl || '/programs/';
       var external = /^https?:\/\//.test(href);
-      var ctaIcon = external ? 'ti-external-link' : (p.cta === 'Enquire' ? 'ti-arrow-right' : 'ti-arrow-right');
-      var priceHtml = p.billing
-        ? p.price + '<small>' + p.billing + '</small>'
-        : '<span style="font-size:19px">' + p.price + '</span>';
-      var btnClass = (p.theme === 'dark') ? 'btn-accent'
-        : (p.theme === 'teal') ? 'btn-accent'
-        : (p.theme === 'accent') ? 'btn-deep' : 'btn-deep';
+      var priced = !!p.billing;
+      var priceHtml = priced
+        ? '<div class="pprice">' + esc(p.price) + '<small>' + esc(p.billing) + '</small></div>'
+        : '<div class="pprice tbd">' + esc(p.price) + '</div>';
+      var meta = [cap(p.level), DELIVERY[p.location] || 'Flexible', cap(p.support)]
+        .filter(Boolean)
+        .map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('');
       return '' +
-        '<article class="deck-card theme-' + p.theme + '">' +
-          '<div>' +
-            '<span class="label">' + esc(p.label) + '</span>' +
-            '<h3>' + esc(p.name) + '</h3>' +
-            '<p class="desc">' + esc(p.headline) + '</p>' +
+        '<article class="product">' +
+          '<div class="pic" style="background-image:url(\'' + PROG_IMG[i % PROG_IMG.length] + '\')">' +
+            '<span class="plabel">' + esc(p.label) + '</span>' +
           '</div>' +
-          '<div class="deck-foot">' +
-            '<div class="price">' + priceHtml + '</div>' +
-            '<a class="btn ' + btnClass + '" style="padding:11px 18px;font-size:13px" href="' + href + '"' +
-              (external ? ' target="_blank" rel="noopener"' : '') + '>' +
-              esc(p.cta) + ' <i class="ti ' + ctaIcon + '" aria-hidden="true"></i></a>' +
+          '<div class="pbody">' +
+            '<h3>' + esc(p.name) + '</h3>' +
+            '<p class="pdesc">' + esc(p.headline) + '</p>' +
+            '<div class="pmeta">' + meta + '</div>' +
+            '<div class="pfoot">' +
+              priceHtml +
+              '<a class="btn ' + (priced ? 'btn-deep' : 'btn-outline') + '" href="' + href + '"' +
+                (external ? ' target="_blank" rel="noopener"' : '') + '>' +
+                esc(p.cta) + ' <i class="ti ' + (external ? 'ti-external-link' : 'ti-arrow-right') + '" aria-hidden="true"></i></a>' +
+            '</div>' +
           '</div>' +
         '</article>';
     }).join('');
   }
+
+  function cap(s) { s = String(s || ''); return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
 
   /* ---- Impact counters (only verified metrics with display:true) ---- */
   function renderImpact(data) {
@@ -61,6 +69,8 @@
         (m.suffix || '') + '">0</div><div class="cap">' + esc(m.label) + '</div></div>';
     }).join('');
     section.hidden = false;
+    var note = document.getElementById('impact-note');
+    if (note && visible.some(function (m) { return m.placeholder; })) note.hidden = false;
     observeCounters(grid);
   }
 

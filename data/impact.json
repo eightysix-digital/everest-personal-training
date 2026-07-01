@@ -1,9 +1,9 @@
 {
-  "note": "Do not publish unverified figures. Each metric needs a source, date range and calculation method recorded before display:true.",
+  "note": "Do not publish unverified figures on the LIVE site. Each metric needs a source, date range and calculation method recorded before display:true. The values below are marked placeholder:true purely so the homepage layout can be reviewed on staging; replace with verified figures and remove the placeholder flag before launch.",
   "metrics": [
-    { "label": "people coached", "value": 0, "suffix": "+", "source": "", "dateRange": "", "method": "", "display": false },
-    { "label": "programs delivered", "value": 0, "suffix": "+", "source": "", "dateRange": "", "method": "", "display": false },
-    { "label": "youth engaged", "value": 0, "suffix": "+", "source": "", "dateRange": "", "method": "", "display": false },
-    { "label": "adherence rate", "value": 0, "suffix": "%", "source": "", "dateRange": "", "method": "", "display": false }
+    { "label": "people supported", "value": 500, "suffix": "+", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true },
+    { "label": "programs delivered", "value": 60, "suffix": "+", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true },
+    { "label": "young people engaged", "value": 300, "suffix": "+", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true },
+    { "label": "community & org partners", "value": 12, "suffix": "", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true }
   ]
 }
