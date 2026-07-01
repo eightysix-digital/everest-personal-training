@@ -618,7 +618,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 }
 
 /* --- 1. Cinematic full-screen hero --- */
-.cine-hero { position: relative; height: var(--hero-h); display: flex; align-items: flex-end;
+.cine-hero { position: relative; min-height: var(--hero-h); display: flex; align-items: flex-end;
   color: #fff; background: #0a0a0a; overflow: hidden; }
 .cine-hero .cine-bg { position: absolute; inset: 0; z-index: 0;
   background-image:
@@ -765,7 +765,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 }
 
 /* --- Inner-page cinematic subhero (full-bleed image, matches home hero size) --- */
-.subhero { position: relative; height: var(--hero-h); display: flex; align-items: flex-end;
+.subhero { position: relative; min-height: var(--hero-h); display: flex; align-items: flex-end;
   color: #fff; background: #0a0a0a; overflow: hidden; }
 .subhero .rail { position: relative; z-index: 2; padding-top: 150px; padding-bottom: 8vh; }
 .subhero .crumbs { color: var(--ink-on-dark); }
@@ -1042,11 +1042,6 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .fcard .go-link:hover { gap: 12px; }
 @media (max-width: 900px) { .fgrid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
 
-/* mobile: let the hero grow to fit content on short screens (no clipping),
-   while keeping the shared fixed height on tablet/desktop */
-@media (max-width: 640px) {
-  .cine-hero, .subhero { height: auto; min-height: var(--hero-h); }
-}
 
 /* ============================================================
    Blog (posts + archive cards)
