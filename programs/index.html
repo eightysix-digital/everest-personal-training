@@ -13,7 +13,7 @@
   <meta property="og:image" content="/assets/img/og-default.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
   <script type="application/ld+json">
@@ -41,13 +41,24 @@
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <span class="hero-ring r1" aria-hidden="true"></span>
-      <span class="hero-ring r2" aria-hidden="true"></span>
-      <div class="wrap">
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Programs</nav>
-        <h1>Structured training, without the guesswork.</h1>
-        <p>From affordable app-based plans to premium personalised coaching. Filter by what matters to you, or let the program finder recommend a best-fit in 60 seconds.</p>
+        <h1>Structured training. No guesswork.</h1>
+        <p class="sub">From five-dollar-a-week app plans to premium personalised coaching. Filter by what matters to you, or let the program finder recommend a best-fit in 60 seconds.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="#quiz">Find my program <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="#catalogue">Browse all</a>
+        </div>
       </div>
     </section>
 
@@ -115,7 +126,7 @@
           <select id="f-support" aria-label="Filter by support"><option value="">Any support</option><option value="self-guided">Self-guided</option><option value="coached">Coached</option><option value="premium">Premium</option></select>
           <select id="f-audience" aria-label="Filter by audience"><option value="">Any audience</option><option value="adult">Adult</option><option value="athlete">Athlete</option><option value="youth">Youth</option><option value="organisation">Organisation</option></select>
         </div>
-        <div class="catalogue" id="catalogue" aria-live="polite"></div>
+        <div class="product-grid" id="catalogue" aria-live="polite"></div>
         <p id="catalogue-empty" style="display:none;color:var(--slate);margin-top:16px">No programs match those filters. <button class="quiz-opt" id="reset-filters" style="margin-left:8px">Clear filters</button></p>
       </div>
     </section>
@@ -151,11 +162,15 @@
       </div>
     </section>
 
-    <section class="section final cta-band">
-      <div class="wrap">
-        <h2>Still not sure?</h2>
-        <p>Tell us your goal and we will direct you to the right program, coach or pathway.</p>
-        <a class="btn btn-accent" href="#quiz">Use the program finder <i class="ti ti-arrow-up" aria-hidden="true"></i></a>
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
+        <h2>Still not sure where to start?</h2>
+        <p>Tell us your goal and we'll direct you to the right program, coach or pathway in 60 seconds.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="#quiz">Use the program finder <i class="ti ti-arrow-up" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/contact/">Book a call</a>
+        </div>
       </div>
     </section>
   </main>

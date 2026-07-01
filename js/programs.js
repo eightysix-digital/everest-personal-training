@@ -10,26 +10,35 @@
     });
   }
 
-  function cardHTML(p) {
+  var PROG_IMG = ['/assets/img/placeholder-horizontal.jpg', '/assets/img/placeholder-vertical.jpg'];
+  var DELIVERY = { gym: 'In gym', home: 'At home', mixed: 'App based', online: 'Online' };
+  function cap(s) { s = String(s || ''); return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+  function cardHTML(p, i) {
     var href = p.checkoutUrl || '/contact/';
     var external = /^https?:\/\//.test(href);
-    var priceHtml = p.billing
-      ? '<span class="price">' + esc(p.price) + '<small>' + esc(p.billing) + '</small></span>'
-      : '<span class="price" style="font-size:18px">' + esc(p.price) + '</span>';
-    var tags = [p.goal, p.level, p.support].filter(Boolean).map(function (t) {
-      return '<span class="tag">' + esc(t) + '</span>';
-    }).join('');
+    var priced = !!p.billing;
+    var priceHtml = priced
+      ? '<div class="pprice">' + esc(p.price) + '<small>' + esc(p.billing) + '</small></div>'
+      : '<div class="pprice tbd">' + esc(p.price) + '</div>';
+    var meta = [cap(p.goal), cap(p.level), DELIVERY[p.location] || 'Flexible', cap(p.support)]
+      .filter(Boolean)
+      .map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('');
     return '' +
-      '<article class="prog-card' + (p.best ? ' is-best' : '') + '">' +
-        (p.best ? '<span class="prog-badge">Best value</span>' : '') +
-        '<span class="label">' + esc(p.label) + '</span>' +
-        '<h3>' + esc(p.name) + '</h3>' +
-        '<p class="desc">' + esc(p.headline) + '</p>' +
-        '<div class="prog-meta">' + tags + '</div>' +
-        '<div class="prog-foot">' + priceHtml +
-          '<a class="btn btn-deep" style="padding:10px 16px;font-size:13px" href="' + href + '"' +
-            (external ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.cta) +
-            ' <i class="ti ti-' + (external ? 'external-link' : 'arrow-right') + '" aria-hidden="true"></i></a>' +
+      '<article class="product' + (p.best ? ' is-best' : '') + '">' +
+        '<div class="pic" style="background-image:url(\'' + PROG_IMG[i % PROG_IMG.length] + '\')">' +
+          (p.best ? '<span class="pbadge">Best value</span>' : '') +
+          '<span class="plabel">' + esc(p.label) + '</span>' +
+        '</div>' +
+        '<div class="pbody">' +
+          '<h3>' + esc(p.name) + '</h3>' +
+          '<p class="pdesc">' + esc(p.headline) + '</p>' +
+          '<div class="pmeta">' + meta + '</div>' +
+          '<div class="pfoot">' + priceHtml +
+            '<a class="btn ' + (priced ? 'btn-deep' : 'btn-outline') + '" href="' + href + '"' +
+              (external ? ' target="_blank" rel="noopener"' : '') + '>' + esc(p.cta) +
+              ' <i class="ti ti-' + (external ? 'external-link' : 'arrow-right') + '" aria-hidden="true"></i></a>' +
+          '</div>' +
         '</div>' +
       '</article>';
   }
