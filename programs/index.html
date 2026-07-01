@@ -158,34 +158,80 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="intro">
+    <section class="tiers">
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 300" preserveAspectRatio="none">
+          <polyline class="trail" points="0,250 320,215 640,235 940,120 1160,150 1400,70" />
+          <circle class="node" cx="640" cy="235" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="940" cy="120" r="7" style="animation-delay:1.4s" />
+        </svg>
+      </div>
+      <div class="rail">
+        <div class="t-head">
+          <span class="eyebrow-3">Levels of support</span>
           <h2>Self-guided, coached or premium?</h2>
-          <p>A quick comparison of how much support comes with each tier.</p>
+          <p>Every program is built on structured, progressive training. The difference is how much support and personalisation comes with it.</p>
         </div>
-        <div style="overflow-x:auto">
-          <table class="compare">
-            <thead><tr><th>What you get</th><th>Self-guided</th><th class="col-feature">Coached</th><th>Premium personalised</th></tr></thead>
-            <tbody>
-              <tr><td>App-delivered programming</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Progression and structure</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Accountability check-ins</td><td>—</td><td class="col-feature yes"><i class="ti ti-check" aria-hidden="true"></i></td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Personalised to you</td><td>—</td><td>Partial</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-              <tr><td>Testing and tailored progression</td><td>—</td><td>—</td><td class="yes"><i class="ti ti-check" aria-hidden="true"></i></td></tr>
-            </tbody>
-          </table>
+        <div class="tier-grid">
+          <article class="tier">
+            <h3>Self-guided</h3>
+            <p class="tier-sub">Structured app programming you run yourself, at your own pace.</p>
+            <ul class="tier-list">
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> App-delivered programming</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Progression and structure</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Accountability check-ins</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Personalised to you</li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Testing and tailored progression</li>
+            </ul>
+            <a class="btn btn-ghost" href="#catalogue">Browse app plans <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="tier is-popular">
+            <span class="tier-badge">Most popular</span>
+            <h3>Coached</h3>
+            <p class="tier-sub">App programming plus real accountability and regular check-ins.</p>
+            <ul class="tier-list">
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> App-delivered programming</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Progression and structure</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Accountability check-ins</li>
+              <li class="partial"><i class="ti ti-adjustments-horizontal" aria-hidden="true"></i> Personalised to you <span class="pill">Partial</span></li>
+              <li class="off"><i class="ti ti-minus" aria-hidden="true"></i> Testing and tailored progression</li>
+            </ul>
+            <a class="btn btn-accent" href="#catalogue">See coached options <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
+
+          <article class="tier">
+            <h3>Premium personalised</h3>
+            <p class="tier-sub">Fully bespoke coaching with testing and tailored progression.</p>
+            <ul class="tier-list">
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> App-delivered programming</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Progression and structure</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Accountability check-ins</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Personalised to you</li>
+              <li class="on"><i class="ti ti-check" aria-hidden="true"></i> Testing and tailored progression</li>
+            </ul>
+            <a class="btn btn-ghost" href="/contact/?type=performance">Enquire <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section bg-mist">
       <div class="wrap">
-        <div class="intro"><h2>Program questions, answered</h2></div>
-        <details class="faq-item"><summary>How do payments work? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Programs are paid through our secure payment provider. You sign up online and get instant access to your training in the app.</p></details>
-        <details class="faq-item"><summary>Do I need a gym? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>It depends on the program. Some are gym-based, others can be done at home or with minimal equipment. Use the program finder or filters to match your setup.</p></details>
-        <details class="faq-item"><summary>Are the programs suitable for beginners? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We have programs for every level, from complete beginners through to experienced lifters and athletes.</p></details>
-        <details class="faq-item"><summary>Can I cancel a subscription program? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. Subscription programs can be cancelled in line with the terms shown at checkout. Get in touch if you need a hand.</p></details>
+        <div class="faq-split">
+          <div class="faq-aside">
+            <span class="eyebrow-3">FAQs</span>
+            <h2>Program questions, answered</h2>
+            <p>Everything you need to know before you start. Still unsure which program fits? We're happy to point you in the right direction.</p>
+            <a class="btn btn-deep" href="/contact/">Ask us anything <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item"><summary>How do payments work? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Programs are paid through our secure payment provider. You sign up online and get instant access to your training in the app.</p></details>
+            <details class="faq-item"><summary>Do I need a gym? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>It depends on the program. Some are gym-based, others can be done at home or with minimal equipment. Use the program finder or filters to match your setup.</p></details>
+            <details class="faq-item"><summary>Are the programs suitable for beginners? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We have programs for every level, from complete beginners through to experienced lifters and athletes.</p></details>
+            <details class="faq-item"><summary>Can I cancel a subscription program? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. Subscription programs can be cancelled in line with the terms shown at checkout. Get in touch if you need a hand.</p></details>
+          </div>
+        </div>
       </div>
     </section>
 
