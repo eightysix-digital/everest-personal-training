@@ -392,10 +392,17 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
   outline: 2px solid var(--teal-accent); outline-offset: 1px; border-color: transparent; }
 .form-field textarea { min-height: 120px; resize: vertical; }
-.contact-aside { background: var(--mist); border-radius: 16px; padding: 24px; }
-.contact-aside h3 { font-size: 17px; margin: 0 0 12px; }
-.contact-aside p { font-size: 14px; color: var(--slate); margin: 0 0 10px; }
-.contact-aside a { color: var(--teal-deep); }
+.contact-form { background: #fff; border: 1px solid rgba(0,0,0,.05); border-radius: 18px;
+  padding: 30px; box-shadow: 0 12px 30px rgba(17,17,17,.05); }
+.contact-aside { background: var(--teal-darkest); color: #fff; border-radius: 18px; padding: 30px; align-self: start; }
+.contact-aside h3 { font-family: var(--display); font-size: 19px; font-weight: 600; margin: 0 0 18px; }
+.contact-aside p { font-size: 14px; color: var(--teal-on-dark); margin: 0 0 10px; }
+.contact-aside a { color: var(--teal-accent); }
+.contact-methods { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+.contact-method { display: flex; gap: 13px; align-items: flex-start; }
+.contact-method i { color: var(--teal-accent); font-size: 22px; flex: 0 0 auto; margin-top: 2px; }
+.contact-method span { font-family: var(--font); font-size: 14px; color: #fff; line-height: 1.55; }
+.contact-method .sub { color: var(--teal-on-dark); }
 
 /* stat band */
 .stat-band { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
