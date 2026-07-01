@@ -13,7 +13,7 @@
   <meta property="og:image" content="/assets/img/og-default.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
 </head>
@@ -21,21 +21,35 @@
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <span class="hero-ring r1" aria-hidden="true"></span>
-      <span class="hero-ring r2" aria-hidden="true"></span>
-      <div class="wrap">
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Impact</nav>
-        <h1>Real outcomes, told honestly.</h1>
-        <p>We combine human stories with defensible data. Every public figure is backed by a recorded source, date range and calculation method, so what you see here you can trust.</p>
+        <h1>Proof, not promises.</h1>
+        <p class="sub">We combine human stories with defensible data. Every public figure is backed by a recorded source, date range and calculation method, so what you see here you can trust.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/">Talk to us about outcomes <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
       </div>
     </section>
 
-
-    <section class="section impact" id="impact" hidden>
-      <div class="wrap">
-        <p class="eyebrow-2">MEASURED IMPACT</p>
-        <div class="impact-grid stat-band" id="impact-grid"></div>
+    <section class="impact-band" id="impact">
+      <div class="impact-bg" aria-hidden="true"></div>
+      <div class="rail">
+        <div class="ib-head">
+          <h2>Real people. Real progress.</h2>
+          <p>Everest's authority comes from human transformation and visible community work, measured over time.</p>
+        </div>
+        <div class="impact-stats" id="impact-grid"></div>
+        <p class="impact-note" id="impact-note" hidden>Indicative figures shown for layout. Each metric is verified against a source, date range and method before publication.</p>
       </div>
     </section>
 
@@ -45,13 +59,13 @@
           <h2>The impact we work towards</h2>
           <p>Outcomes that go well beyond weight on a scale.</p>
         </div>
-        <div class="feature-grid">
-          <div class="feature"><span class="feature-icon"><i class="ti ti-heart" aria-hidden="true"></i></span><h3>Health and confidence</h3><p>Individuals feeling stronger, more capable and more confident in daily life.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-barbell" aria-hidden="true"></i></span><h3>Strength and function</h3><p>Measurable gains in strength, movement and physical capability.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-school" aria-hidden="true"></i></span><h3>Youth development</h3><p>Young people building confidence, movement skills and positive pathways.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></span><h3>Workforce wellbeing</h3><p>Healthier, more engaged and more capable teams.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-users-group" aria-hidden="true"></i></span><h3>Community participation</h3><p>More people active, connected and taking part in their communities.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-refresh" aria-hidden="true"></i></span><h3>Behaviour change</h3><p>Education and habits that support long-term adherence, not short-term results.</p></div>
+        <div class="feature-grid r-stagger">
+          <div class="feature reveal"><span class="feature-icon"><i class="ti ti-heart" aria-hidden="true"></i></span><h3>Health and confidence</h3><p>Individuals feeling stronger, more capable and more confident in daily life.</p></div>
+          <div class="feature reveal"><span class="feature-icon"><i class="ti ti-barbell" aria-hidden="true"></i></span><h3>Strength and function</h3><p>Measurable gains in strength, movement and physical capability.</p></div>
+          <div class="feature reveal"><span class="feature-icon"><i class="ti ti-school" aria-hidden="true"></i></span><h3>Youth development</h3><p>Young people building confidence, movement skills and positive pathways.</p></div>
+          <div class="feature reveal"><span class="feature-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></span><h3>Workforce wellbeing</h3><p>Healthier, more engaged and more capable teams.</p></div>
+          <div class="feature reveal"><span class="feature-icon"><i class="ti ti-users-group" aria-hidden="true"></i></span><h3>Community participation</h3><p>More people active, connected and taking part in their communities.</p></div>
+          <div class="feature reveal"><span class="feature-icon"><i class="ti ti-refresh" aria-hidden="true"></i></span><h3>Behaviour change</h3><p>Education and habits that support long-term adherence, not short-term results.</p></div>
         </div>
       </div>
     </section>
@@ -79,13 +93,35 @@
       <div class="wrap">
         <div class="intro">
           <h2>Case studies</h2>
-          <p>Defined starting points, what we delivered, and the measured outcome.</p>
+          <p>Each follows one clear format: the challenge, what we delivered, and the measured outcome, shared with consent.</p>
         </div>
-        <details class="case">
-          <summary>Case studies are being prepared <i class="ti ti-chevron-down" aria-hidden="true"></i></summary>
-          <p class="case-meta">Coming soon</p>
-          <p style="color:var(--slate);font-size:14px;margin-top:8px">We are finalising our first detailed case studies with full participant consent. Each will follow a clear format: the challenge, who the program served, what Everest delivered, the level of support, the measured outcome, a participant or partner voice, and what happened next.</p>
-        </details>
+        <div class="fgrid r-stagger">
+          <article class="fcard reveal">
+            <div class="fpic" style="background-image:url('/assets/img/placeholder-horizontal.jpg')"><span class="fchip">Individual</span></div>
+            <div class="fbody">
+              <h3>Strength &amp; confidence</h3>
+              <p>Detailed case study in preparation: the starting point, the coaching we delivered, and the measured change in strength and confidence.</p>
+              <span class="go-link" style="color:var(--slate)">In preparation <i class="ti ti-clock" aria-hidden="true"></i></span>
+            </div>
+          </article>
+          <article class="fcard reveal">
+            <div class="fpic" style="background-image:url('/assets/img/placeholder-vertical.jpg')"><span class="fchip">Youth</span></div>
+            <div class="fbody">
+              <h3>EMPOWER outcomes</h3>
+              <p>Detailed case study in preparation: a youth program's reach, participation and the development outcomes for the young people involved.</p>
+              <span class="go-link" style="color:var(--slate)">In preparation <i class="ti ti-clock" aria-hidden="true"></i></span>
+            </div>
+          </article>
+          <article class="fcard reveal">
+            <div class="fpic" style="background-image:url('/assets/img/placeholder-horizontal.jpg')"><span class="fchip">Workforce</span></div>
+            <div class="fbody">
+              <h3>Workforce program</h3>
+              <p>Detailed case study in preparation: an organisational pilot, its engagement and participation, and the outcomes reported to the partner.</p>
+              <span class="go-link" style="color:var(--slate)">In preparation <i class="ti ti-clock" aria-hidden="true"></i></span>
+            </div>
+          </article>
+        </div>
+        <p style="font-size:13px;color:var(--slate);margin-top:18px">We are finalising our first detailed case studies with full participant consent. Each will cover the challenge, who the program served, what Everest delivered, the level of support, the measured outcome and a participant or partner voice.</p>
       </div>
     </section>
 
@@ -95,28 +131,28 @@
           <h2>How we handle evidence</h2>
           <p>Credibility matters more than big numbers. We hold ourselves to a clear evidence hierarchy, strongest evidence first, and never publish unverified or inflated figures.</p>
         </div>
-        <div class="evidence-grid">
-          <div class="evidence-tier">
+        <div class="evidence-grid r-stagger">
+          <div class="evidence-tier reveal">
             <span class="rank">1</span>
             <div><h3>Verified quantitative outcomes</h3><p>Participation, adherence, retention, strength and movement change, program completion and validated survey results.</p></div>
           </div>
-          <div class="evidence-tier">
+          <div class="evidence-tier reveal">
             <span class="rank">2</span>
             <div><h3>Case studies</h3><p>A defined starting point, intervention, duration and measured outcome.</p></div>
           </div>
-          <div class="evidence-tier">
+          <div class="evidence-tier reveal">
             <span class="rank">3</span>
             <div><h3>Testimonials</h3><p>Shared with full permission and appropriate context.</p></div>
           </div>
-          <div class="evidence-tier">
+          <div class="evidence-tier reveal">
             <span class="rank">4</span>
             <div><h3>Partner feedback</h3><p>Feedback from partners and repeat engagements.</p></div>
           </div>
-          <div class="evidence-tier">
+          <div class="evidence-tier reveal">
             <span class="rank">5</span>
             <div><h3>Program methodology</h3><p>Program descriptions and delivery methodology.</p></div>
           </div>
-          <div class="evidence-tier">
+          <div class="evidence-tier reveal">
             <span class="rank">6</span>
             <div><h3>Community &amp; media</h3><p>Community images, media coverage and milestone records.</p></div>
           </div>
@@ -128,11 +164,15 @@
       </div>
     </section>
 
-    <section class="section final cta-band">
-      <div class="wrap">
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
         <h2>Want to see what we could deliver for you?</h2>
         <p>Whether you are an individual or an organisation, we are happy to talk through realistic outcomes.</p>
-        <a class="btn btn-accent" href="/contact/">Get in touch <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/">Get in touch <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/organisations/">For organisations</a>
+        </div>
       </div>
     </section>
   </main>
