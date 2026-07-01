@@ -13,7 +13,7 @@
   <meta property="og:image" content="/assets/img/og-default.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
   <script type="application/ld+json">
@@ -41,49 +41,97 @@
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <span class="hero-ring r1" aria-hidden="true"></span>
-      <span class="hero-ring r2" aria-hidden="true"></span>
-      <div class="wrap">
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> EMPOWER</nav>
-        <h1>Confidence, strength and movement for young people.</h1>
-        <p>Age-appropriate coaching that helps young people build physical capability, confidence and positive habits, delivered safely by qualified coaches.</p>
-        <div class="hero-actions" style="margin-top:24px">
+        <h1>Stronger young people. Greater confidence.</h1>
+        <p class="sub">Age-appropriate coaching that helps young people build physical capability, confidence and positive habits, delivered safely by qualified coaches across Christchurch and Canterbury.</p>
+        <div class="cine-actions">
           <a class="btn btn-accent" href="/contact/?type=individual">Enquire about EMPOWER <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="#formats">Ways to take part</a>
         </div>
       </div>
     </section>
-
 
     <section class="section">
       <div class="wrap">
-        <div class="intro">
-          <h2>What EMPOWER develops</h2>
-          <p>More than fitness. EMPOWER supports the whole young person.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature"><span class="feature-icon"><i class="ti ti-mood-smile" aria-hidden="true"></i></span><h3>Confidence</h3><p>Young people gain belief in what their bodies can do, on and off the field.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-stretching" aria-hidden="true"></i></span><h3>Movement and strength</h3><p>Foundational movement skills and age-appropriate strength built the right way.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-friends" aria-hidden="true"></i></span><h3>Positive pathways</h3><p>Healthy habits, connection and a constructive outlet for energy.</p></div>
+        <div class="split reveal">
+          <div class="split-media tall"><img src="/assets/img/placeholder-vertical.jpg" alt="A young person training with an Everest coach" loading="lazy" width="1000" height="1333" /></div>
+          <div class="split-body">
+            <span class="eyebrow-2">WHAT EMPOWER BUILDS</span>
+            <h2>More than fitness</h2>
+            <p>EMPOWER supports the whole young person, on and off the field, so the benefits reach well beyond the gym.</p>
+            <ul class="check-list">
+              <li><i class="ti ti-mood-smile" aria-hidden="true"></i> Confidence and belief in what their body can do</li>
+              <li><i class="ti ti-stretching" aria-hidden="true"></i> Foundational movement skills and age-appropriate strength</li>
+              <li><i class="ti ti-friends" aria-hidden="true"></i> Healthy habits, connection and a positive outlet for energy</li>
+            </ul>
+            <div style="margin-top:24px"><a class="btn btn-deep" href="/contact/?type=individual">Enquire about EMPOWER <i class="ti ti-arrow-right" aria-hidden="true"></i></a></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section bg-mist">
+    <section class="assurance">
+      <div class="rail">
+        <div class="a-head">
+          <span class="eyebrow-3">Safe &amp; safeguarded</span>
+          <h2>Parents and schools can trust how we deliver</h2>
+          <p>We know families, schools and community partners need confidence in youth programs. Safeguarding isn't a policy on a shelf, it's built into every session.</p>
+        </div>
+        <div class="assurance-list r-stagger">
+          <div class="assurance-item reveal"><i class="ti ti-shield-check" aria-hidden="true"></i><div><h3>Safeguarding built in</h3><p>Youth-protection practices and appropriate boundaries in every session.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-certificate" aria-hidden="true"></i><div><h3>Qualified coaches</h3><p>Delivered by coaches with relevant qualifications and real experience with young people.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-heart-handshake" aria-hidden="true"></i><div><h3>A supportive environment</h3><p>Encouraging, inclusive sessions where young people feel safe to try, fail and grow.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bg-cloud" id="formats">
       <div class="wrap">
         <div class="intro">
-          <h2>Safe, qualified and safeguarded</h2>
-          <p>We know parents, schools and community partners need confidence in how youth programs are delivered.</p>
+          <h2>Ways to take part</h2>
+          <p>Flexible formats for individuals, schools and clubs across Christchurch and Canterbury.</p>
         </div>
-        <div class="feature-grid">
-          <div class="feature"><span class="feature-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span><h3>Safeguarding practices</h3><p>Youth-protection practices and appropriate boundaries are built into every session.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-certificate" aria-hidden="true"></i></span><h3>Qualified coaches</h3><p>Delivered by coaches with relevant qualifications and experience working with young people.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-calendar" aria-hidden="true"></i></span><h3>Flexible formats</h3><p>Term programs, holiday camps and tailored options for schools and clubs.</p></div>
+        <div class="fgrid r-stagger">
+          <article class="fcard reveal">
+            <div class="fpic" style="background-image:url('/assets/img/placeholder-horizontal.jpg')"><span class="fchip">Term programs</span></div>
+            <div class="fbody">
+              <h3>Weekly term programs</h3>
+              <p>Ongoing, age-appropriate coaching through the school term, building movement, strength and confidence week to week.</p>
+              <a class="go-link" href="/contact/?type=individual">Enquire <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="fcard reveal">
+            <div class="fpic" style="background-image:url('/assets/img/placeholder-vertical.jpg')"><span class="fchip">Holiday camps</span></div>
+            <div class="fbody">
+              <h3>School holiday camps</h3>
+              <p>Active, positive holiday sessions that keep young people moving, connected and engaged during the breaks.</p>
+              <a class="go-link" href="/contact/?type=individual">Enquire <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+          <article class="fcard reveal">
+            <div class="fpic" style="background-image:url('/assets/img/placeholder-horizontal.jpg')"><span class="fchip">Schools &amp; clubs</span></div>
+            <div class="fbody">
+              <h3>Schools &amp; clubs</h3>
+              <p>Tailored programs delivered at your own venue, built around your group, timetable and goals across Canterbury.</p>
+              <a class="go-link" href="/contact/?type=organisation">Start the conversation <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="img-band parallax reveal" style="background-image:linear-gradient(rgba(4,52,44,.72),rgba(17,17,17,.82)),url('/assets/img/placeholder-horizontal.jpg')">
+    <section class="img-band parallax reveal" style="background-image:linear-gradient(rgba(4,52,44,.66),rgba(17,17,17,.78)),url('/assets/img/placeholder-horizontal.jpg')">
       <div class="wrap">
         <span class="eyebrow">EMPOWER youth</span>
         <h2>Confidence that lasts well beyond the gym.</h2>
@@ -92,34 +140,34 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section bg-mist">
       <div class="wrap">
-        <div class="intro">
-          <h2>Youth fitness across Christchurch and Canterbury</h2>
-          <p>Building confident, capable young people throughout the region.</p>
-        </div>
-        <div class="prose">
-          <p>EMPOWER delivers youth fitness and athletic development across Christchurch and Canterbury, helping young people build movement skills, strength and confidence in a safe, supportive environment. We run term programs and holiday camps, and partner with schools and clubs to deliver age-appropriate coaching at their own venues.</p>
-          <p>Every session is led by qualified coaches with safeguarding built in, so families, schools and community organisations can have confidence in how programs are delivered.</p>
+        <div class="faq-split">
+          <div class="faq-aside">
+            <span class="eyebrow-3">FAQs</span>
+            <h2>EMPOWER questions, answered</h2>
+            <p>The essentials for parents, schools and clubs. Anything else, just ask and we'll help you find the right fit.</p>
+            <a class="btn btn-deep" href="/contact/?type=organisation">Start the conversation <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item"><summary>What ages is EMPOWER for? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>EMPOWER is designed for young people, with age-appropriate coaching tailored to each group. Get in touch and we will confirm the right fit for your child or group.</p></details>
+            <details class="faq-item"><summary>Where are EMPOWER sessions held? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Sessions run in Christchurch and across Canterbury, including options for schools and community organisations at their own venues.</p></details>
+            <details class="faq-item"><summary>Are your coaches qualified and safeguarded? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. EMPOWER is delivered by qualified coaches with youth-protection practices and appropriate boundaries built into every session.</p></details>
+            <details class="faq-item"><summary>Do you work with schools and clubs? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We offer term programs, holiday camps and tailored options for schools, clubs and community organisations across Canterbury.</p></details>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section bg-cloud">
-      <div class="wrap">
-        <div class="intro"><h2>EMPOWER questions, answered</h2></div>
-        <details class="faq-item"><summary>What ages is EMPOWER for? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>EMPOWER is designed for young people, with age-appropriate coaching tailored to each group. Get in touch and we will confirm the right fit for your child or group.</p></details>
-        <details class="faq-item"><summary>Where are EMPOWER sessions held? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Sessions run in Christchurch and across Canterbury, including options for schools and community organisations at their own venues.</p></details>
-        <details class="faq-item"><summary>Are your coaches qualified and safeguarded? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. EMPOWER is delivered by qualified coaches with youth-protection practices and appropriate boundaries built into every session.</p></details>
-        <details class="faq-item"><summary>Do you work with schools and clubs? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We offer term programs, holiday camps and tailored options for schools, clubs and community organisations across Canterbury.</p></details>
-      </div>
-    </section>
-
-    <section class="section final cta-band">
-      <div class="wrap">
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
         <h2>Bring EMPOWER to your young people</h2>
         <p>For families, schools and community organisations. Get in touch to talk about format, pricing and timing.</p>
-        <a class="btn btn-accent" href="/contact/?type=organisation">Start the conversation <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/?type=organisation">Start the conversation <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/organisations/">For organisations</a>
+        </div>
       </div>
     </section>
   </main>
