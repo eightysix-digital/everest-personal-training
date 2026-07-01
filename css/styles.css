@@ -1041,3 +1041,9 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   font-family: var(--font); font-weight: 600; font-size: 14px; color: var(--teal-deep); transition: gap .16s ease; }
 .fcard .go-link:hover { gap: 12px; }
 @media (max-width: 900px) { .fgrid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+
+/* mobile: let the hero grow to fit content on short screens (no clipping),
+   while keeping the shared fixed height on tablet/desktop */
+@media (max-width: 640px) {
+  .cine-hero, .subhero { height: auto; min-height: var(--hero-h); }
+}
