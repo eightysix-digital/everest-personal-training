@@ -689,6 +689,10 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .product .btn { padding: 11px 18px; font-size: 13.5px; }
 @media (max-width: 1040px) { .product-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .product-grid { grid-template-columns: 1fr; } }
+/* programs catalogue: 3 across (id outranks the base grid, so scope each step) */
+#catalogue { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 900px) { #catalogue { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { #catalogue { grid-template-columns: 1fr; } }
 
 /* --- 6. Full-bleed closer --- */
 .closer { position: relative; color: #fff; overflow: hidden; text-align: center;
