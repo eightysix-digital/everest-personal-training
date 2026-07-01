@@ -848,3 +848,39 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .bg-mist .faq-item { border-color: rgba(11,124,122,.16); }
 .faq-item[open] { border-color: var(--teal-accent); box-shadow: 0 12px 30px rgba(17,17,17,.07); }
 @media (max-width: 820px) { .faq-split { grid-template-columns: 1fr; gap: 26px; } .faq-aside { position: static; } }
+
+/* ============================================================
+   Section motion & interactions (reusable across pages)
+   ============================================================ */
+/* staggered scroll-reveal: container .r-stagger, children .reveal */
+.r-stagger > .reveal:nth-child(2) { transition-delay: .07s; }
+.r-stagger > .reveal:nth-child(3) { transition-delay: .14s; }
+.r-stagger > .reveal:nth-child(4) { transition-delay: .21s; }
+.r-stagger > .reveal:nth-child(5) { transition-delay: .28s; }
+.r-stagger > .reveal:nth-child(6) { transition-delay: .35s; }
+
+/* feature card: growing top accent bar + animated icon tile */
+.feature { position: relative; overflow: hidden; }
+.feature::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 3px;
+  background: linear-gradient(90deg, var(--teal-deep), var(--teal-accent));
+  transform: scaleX(0); transform-origin: left; transition: transform .28s ease; }
+.feature:hover::before { transform: scaleX(1); }
+.feature-icon { transition: background-color .2s ease, color .2s ease, transform .2s ease; }
+.feature:hover .feature-icon { background: var(--teal-deep); color: #fff; transform: rotate(-6deg) scale(1.06); }
+
+/* steps: giant ghost number watermark + glowing node on hover */
+.step { position: relative; overflow: hidden; }
+.step::after { content: attr(data-n); position: absolute; right: 12px; bottom: -18px;
+  font-family: var(--display); font-weight: 700; font-size: 96px; line-height: 1;
+  color: rgba(11,124,122,.06); pointer-events: none; }
+.step-num { transition: transform .2s ease, box-shadow .2s ease; }
+.step:hover .step-num { transform: scale(1.12);
+  box-shadow: 0 0 0 6px rgba(22,184,179,.16), 0 8px 22px rgba(11,124,122,.4); }
+
+/* testimonial quote-mark flourish on hover */
+.testimonial > i { transition: transform .2s ease; }
+.testimonial:hover > i { transform: scale(1.18) rotate(-6deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .r-stagger > .reveal { transition-delay: 0s !important; }
+}
