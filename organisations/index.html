@@ -13,7 +13,7 @@
   <meta property="og:image" content="/assets/img/og-default.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
   <link rel="stylesheet" href="/css/styles.css" />
   <script type="application/ld+json">
@@ -41,64 +41,109 @@
   <div id="site-header"></div>
 
   <main>
-    <section class="page-hero">
-      <span class="hero-ring r1" aria-hidden="true"></span>
-      <span class="hero-ring r2" aria-hidden="true"></span>
-      <div class="wrap">
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Organisations</nav>
-        <h1>We design and deliver human performance at scale.</h1>
-        <p>Workforce wellness, youth initiatives and preventative human performance programs for employers, councils, emergency services, insurers, ACC and health-sector partners. Governed, measurable and built to grow.</p>
-        <div class="hero-actions" style="margin-top:24px">
+        <h1>Human performance, at scale.</h1>
+        <p class="sub">Workforce wellness and preventative human performance programs for employers, councils, emergency services, insurers, ACC and health-sector partners. Governed, measurable and built to grow.</p>
+        <div class="cine-actions">
           <a class="btn btn-accent" href="/contact/?type=organisation">Book a strategy call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
-          <a class="btn btn-ghost" href="/impact/">See our impact</a>
+          <a class="btn btn-ghost" href="#engage">How we engage</a>
         </div>
       </div>
     </section>
 
+    <section class="trust">
+      <div class="wrap">
+        <span class="label">WE DESIGN AND DELIVER FOR</span>
+        <ul>
+          <li><i class="ti ti-building-community" aria-hidden="true"></i> Councils</li>
+          <li><i class="ti ti-flame" aria-hidden="true"></i> Emergency services</li>
+          <li><i class="ti ti-briefcase" aria-hidden="true"></i> Workforce</li>
+          <li><i class="ti ti-heart-handshake" aria-hidden="true"></i> Health partners</li>
+          <li><i class="ti ti-shield-heart" aria-hidden="true"></i> ACC &amp; insurers</li>
+        </ul>
+      </div>
+    </section>
 
     <section class="section">
       <div class="wrap">
-        <div class="intro">
-          <h2>Workforce performance and wellbeing</h2>
-          <p>Practical programs that reduce barriers to participation, lift engagement and produce outcomes you can report on.</p>
-        </div>
-        <div class="feature-grid">
-          <div class="feature"><span class="feature-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></span><h3>Custom workforce programs</h3><p>Designed around your people, sites and shift patterns, not an off-the-shelf package.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-flame" aria-hidden="true"></i></span><h3>Frontline and emergency services</h3><p>Physical capability and resilience support for demanding, safety-critical roles.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-report-analytics" aria-hidden="true"></i></span><h3>Engagement and reporting</h3><p>Participation, engagement and outcome reporting that stands up to scrutiny.</p></div>
+        <div class="split reveal">
+          <div class="split-media"><img src="/assets/img/placeholder-horizontal.jpg" alt="A workforce training session on site" loading="lazy" width="1600" height="1200" /></div>
+          <div class="split-body">
+            <span class="eyebrow-2">WORKFORCE PERFORMANCE</span>
+            <h2>Programs built around your people</h2>
+            <p>Practical programs that reduce barriers to participation, lift engagement and produce outcomes you can report on, designed around your sites, shifts and objectives rather than an off-the-shelf package.</p>
+            <ul class="check-list">
+              <li><i class="ti ti-check" aria-hidden="true"></i> Custom workforce programs around your people and shift patterns</li>
+              <li><i class="ti ti-check" aria-hidden="true"></i> Frontline and emergency-services capability and resilience</li>
+              <li><i class="ti ti-check" aria-hidden="true"></i> Participation, engagement and outcome reporting that stands up to scrutiny</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section bg-cloud" id="preventative">
       <div class="wrap">
-        <div class="intro">
-          <h2>Preventative human performance</h2>
-          <p>A long-term, evidence-led approach connecting screening, training, coaching, data and community delivery to build capability across the lifespan.</p>
+        <div class="split reverse reveal">
+          <div class="split-media"><img src="/assets/img/placeholder-vertical.jpg" alt="Assessment and measurement in a preventative performance program" loading="lazy" width="1200" height="1500" /></div>
+          <div class="split-body">
+            <span class="eyebrow-2">PREVENTATIVE HUMAN PERFORMANCE</span>
+            <h2>A long-term, evidence-led approach</h2>
+            <p>Connecting screening, training, coaching, data and community delivery to build capability across the lifespan, with clear boundaries and defensible measurement throughout.</p>
+            <ul class="check-list">
+              <li><i class="ti ti-check" aria-hidden="true"></i> Screening and referral with clear pathways to health professionals</li>
+              <li><i class="ti ti-check" aria-hidden="true"></i> Defensible data on participation, adherence and capability change</li>
+              <li><i class="ti ti-check" aria-hidden="true"></i> Behaviour change for sustainable habits, not short-term fixes</li>
+              <li><i class="ti ti-check" aria-hidden="true"></i> Delivery that scales from a single-site pilot to multi-location</li>
+            </ul>
+            <p style="font-size:13px;color:var(--slate);margin-top:18px">Everest provides preventative human performance services and works alongside health professionals. This is fitness coaching, not clinical healthcare, and we do not make medical claims beyond our scope.</p>
+          </div>
         </div>
-        <div class="feature-grid">
-          <div class="feature"><span class="feature-icon"><i class="ti ti-clipboard-check" aria-hidden="true"></i></span><h3>Screening and referral</h3><p>Appropriate screening with clear referral boundaries and pathways to health professionals.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-chart-dots" aria-hidden="true"></i></span><h3>Data and measurement</h3><p>Defensible measurement of participation, adherence and capability change over time.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-refresh" aria-hidden="true"></i></span><h3>Behaviour change</h3><p>Support for sustainable habits and long-term adherence, not short-term fixes.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-arrows-maximize" aria-hidden="true"></i></span><h3>Scalable delivery</h3><p>Models that scale from a single site or pilot to a multi-location program.</p></div>
-        </div>
-        <p style="font-size:13px;color:var(--slate);margin-top:18px;max-width:680px">Everest provides preventative human performance services and works alongside health professionals. This is fitness coaching, not clinical healthcare, and we do not make medical claims beyond our scope.</p>
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="engage">
       <div class="wrap">
         <div class="intro">
-          <h2>Built for institutional confidence</h2>
-          <p>Decision-makers need to know a partner is safe, measurable, scalable and professionally governed. We make that easy to assess.</p>
+          <h2>How we engage</h2>
+          <p>A clear path from first conversation to a governed, reportable program you can scale.</p>
         </div>
-        <div class="feature-grid">
-          <div class="feature"><span class="feature-icon"><i class="ti ti-certificate" aria-hidden="true"></i></span><h3>Qualified and insured</h3><p>Qualifications, registrations and insurance documented and available on request.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span><h3>Health, safety &amp; safeguarding</h3><p>A clear safety approach and youth-protection practices across all delivery settings.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-lock" aria-hidden="true"></i></span><h3>Privacy and data handling</h3><p>Transparent data-handling principles aligned with New Zealand privacy expectations.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-stethoscope" aria-hidden="true"></i></span><h3>Clear clinical boundaries</h3><p>A defined distinction between fitness coaching and clinical care, with referral where required.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-presentation" aria-hidden="true"></i></span><h3>Evaluation capability</h3><p>Program evaluation and reporting designed for funding and governance conversations.</p></div>
-          <div class="feature"><span class="feature-icon"><i class="ti ti-building-community" aria-hidden="true"></i></span><h3>Delivery experience</h3><p>Experience across community, workforce and youth settings.</p></div>
+        <div class="steps cols-5 r-stagger">
+          <div class="step reveal" data-n="01"><span class="step-num">1</span><h3>Discovery</h3><p>We understand your people, objectives, constraints and what success looks like.</p></div>
+          <div class="step reveal" data-n="02"><span class="step-num">2</span><h3>Pilot design</h3><p>A tailored pilot with defined scope, measures and a reporting framework.</p></div>
+          <div class="step reveal" data-n="03"><span class="step-num">3</span><h3>Delivery</h3><p>Coached delivery on site or online, governed and safeguarded throughout.</p></div>
+          <div class="step reveal" data-n="04"><span class="step-num">4</span><h3>Reporting</h3><p>Participation, engagement and outcome reporting for your board or funders.</p></div>
+          <div class="step reveal" data-n="05"><span class="step-num">5</span><h3>Scale</h3><p>Refine and extend from a single site to a multi-location program.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="assurance wide">
+      <div class="rail">
+        <div class="a-head">
+          <span class="eyebrow-3">Governance &amp; capability</span>
+          <h2>Built for institutional confidence</h2>
+          <p>Decision-makers need to know a partner is safe, measurable, scalable and professionally governed. We make that easy to assess, and can provide a capability statement on request.</p>
+          <a class="btn btn-accent" href="/contact/?type=organisation">Request our capability statement <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div class="assurance-list cols-2 r-stagger">
+          <div class="assurance-item reveal"><i class="ti ti-certificate" aria-hidden="true"></i><div><h3>Qualified and insured</h3><p>Qualifications, registrations and insurance documented and available on request.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-shield-check" aria-hidden="true"></i><div><h3>Health, safety &amp; safeguarding</h3><p>A clear safety approach and youth-protection practices across all settings.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-lock" aria-hidden="true"></i><div><h3>Privacy and data handling</h3><p>Transparent data-handling aligned with New Zealand privacy expectations.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-stethoscope" aria-hidden="true"></i><div><h3>Clear clinical boundaries</h3><p>A defined distinction between fitness coaching and clinical care, with referral.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-presentation" aria-hidden="true"></i><div><h3>Evaluation capability</h3><p>Program evaluation and reporting designed for funding and governance.</p></div></div>
+          <div class="assurance-item reveal"><i class="ti ti-building-community" aria-hidden="true"></i><div><h3>Delivery experience</h3><p>Experience across community, workforce and youth settings.</p></div></div>
         </div>
       </div>
     </section>
@@ -112,35 +157,34 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap">
-        <div class="intro">
-          <h2>Workplace wellness across Christchurch and Canterbury</h2>
-          <p>Local delivery for employers and organisations throughout the region.</p>
-        </div>
-        <div class="prose">
-          <p>Everest delivers corporate wellness, workplace fitness and preventative human performance programs to employers, councils, emergency services and health partners across Christchurch and Canterbury. We design programs around your people, sites and shift patterns, deliver on site or online, and report on the outcomes that matter.</p>
-          <p>From a single-site pilot to a multi-location rollout, our programs are governed, measurable and built to scale, so you can demonstrate real impact to your leadership, board or funders.</p>
-        </div>
-      </div>
-    </section>
-
     <section class="section bg-mist">
       <div class="wrap">
-        <div class="intro"><h2>Organisational questions, answered</h2></div>
-        <details class="faq-item"><summary>Do you work with councils and emergency services? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We design and deliver workforce and performance programs for employers, councils, emergency services and health-sector partners across Canterbury.</p></details>
-        <details class="faq-item"><summary>Can you run a pilot program? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We can outline a pilot tailored to your people and objectives, including what it would measure and how we would report on it.</p></details>
-        <details class="faq-item"><summary>Do you provide outcome reporting? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We provide participation, engagement and outcome reporting designed to stand up to governance and funding conversations.</p></details>
-        <details class="faq-item"><summary>Where do you deliver workplace programs? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>We deliver across Christchurch and Canterbury, on site at your workplace or venue, with online options where appropriate.</p></details>
+        <div class="faq-split">
+          <div class="faq-aside">
+            <span class="eyebrow-3">FAQs</span>
+            <h2>Organisational questions, answered</h2>
+            <p>The essentials for employers, councils and health partners. For anything specific to your organisation, let's talk.</p>
+            <a class="btn btn-deep" href="/contact/?type=organisation">Book a strategy call <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item"><summary>Do you work with councils and emergency services? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We design and deliver workforce and performance programs for employers, councils, emergency services and health-sector partners across Canterbury.</p></details>
+            <details class="faq-item"><summary>Can you run a pilot program? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We can outline a pilot tailored to your people and objectives, including what it would measure and how we would report on it.</p></details>
+            <details class="faq-item"><summary>Do you provide outcome reporting? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>Yes. We provide participation, engagement and outcome reporting designed to stand up to governance and funding conversations.</p></details>
+            <details class="faq-item"><summary>Where do you deliver workplace programs? <i class="ti ti-plus" aria-hidden="true"></i></summary><p>We deliver across Christchurch and Canterbury, on site at your workplace or venue, with online options where appropriate.</p></details>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="section bg-dark cta-band">
-      <div class="wrap">
-        <span class="eyebrow">Pilots, programs and partnerships</span>
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
         <h2>Let's discuss a pilot or partnership</h2>
-        <p>Tell us about your people and objectives and we will outline how a pilot could work, what it would measure and how we would report on it.</p>
-        <a class="btn btn-accent" href="/contact/?type=organisation">Request an organisational discussion <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        <p>Tell us about your people and objectives and we'll outline how a pilot could work, what it would measure and how we'd report on it.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/contact/?type=organisation">Request an organisational discussion <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/impact/">See our impact</a>
+        </div>
       </div>
     </section>
   </main>
