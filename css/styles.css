@@ -524,17 +524,23 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   transform: translateY(-4px); box-shadow: 0 16px 34px rgba(17,17,17,.10); }
 .feature:hover, .coach:hover, .evidence-tier:hover { border-color: var(--teal-accent); }
 
-/* story timeline (about page) */
-.story { position: relative; max-width: 720px; margin-top: 8px; }
-.story::before { content: ''; position: absolute; left: 19px; top: 14px; bottom: 14px;
-  width: 2px; background: var(--mist-line); }
-.story-item { position: relative; padding-left: 64px; padding-bottom: 34px; }
+/* story timeline (about page) — the Everest "ascent" */
+.story { position: relative; max-width: 760px; margin-top: 8px; }
+.story::before { content: ''; position: absolute; left: 23px; top: 20px; bottom: 20px;
+  width: 3px; border-radius: 3px; background: linear-gradient(180deg, var(--teal-accent), rgba(22,184,179,.25)); }
+.story-item { position: relative; padding-left: 72px; padding-bottom: 38px; }
 .story-item:last-child { padding-bottom: 0; }
-.story-num { position: absolute; left: 0; top: 0; width: 40px; height: 40px; border-radius: 50%;
-  background: var(--white); color: var(--teal-deep); border: 2px solid var(--teal-accent);
-  display: flex; align-items: center; justify-content: center; font-weight: 500; font-size: 15px; z-index: 1; }
-.story-item h3 { font-size: 20px; margin: 6px 0 8px; }
+.story-num { position: absolute; left: 0; top: 0; width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal-deep), var(--teal-accent)); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; z-index: 1;
+  box-shadow: 0 10px 22px rgba(11,124,122,.3); }
+.story-item h3 { font-family: var(--display); font-size: 21px; font-weight: 600; margin: 8px 0 8px; }
 .story-item p { font-size: 16px; color: #2c2f31; line-height: 1.75; margin: 0; }
+
+/* founder expertise chips */
+.founder-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.founder-tags span { font-family: var(--font); font-size: 12.5px; color: var(--teal-darkest);
+  background: #fff; border: 1px solid var(--mist-line); border-radius: 14px; padding: 6px 13px; }
 
 /* founder section */
 .founder { display: grid; grid-template-columns: 340px 1fr; gap: 44px; align-items: center; }
