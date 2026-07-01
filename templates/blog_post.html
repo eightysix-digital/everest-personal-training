@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page_description }}" />
+  <!-- STAGING: remove this noindex line when the live domain goes live -->
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="canonical" href="{{ canonical }}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="{{ og_title }}" />
+  <meta property="og:description" content="{{ page_description }}" />
+  <meta property="og:image" content="{{ og_image }}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script type="application/ld+json">{{ jsonld | safe }}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <article class="post">
+      <header class="post-hero">
+        <div class="post-hero-bg" aria-hidden="true"{% if post.featured_image %} style="background-image:linear-gradient(rgba(10,10,10,.5),rgba(4,52,44,.82)),url('{{ post.featured_image }}')"{% endif %}></div>
+        <div class="rail">
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <a href="/resources/">Resources</a></nav>
+          {% if post.tags %}<div class="post-tags">{% for t in post.tags %}<a class="post-tag" href="/resources/tag/{{ t | slugify }}/">{{ t }}</a>{% endfor %}</div>{% endif %}
+          <h1>{{ post.title }}</h1>
+          <p class="post-meta"><i class="ti ti-calendar" aria-hidden="true"></i> {{ post.date_display }} <span class="dot">·</span> <i class="ti ti-clock" aria-hidden="true"></i> {{ post.read_time }} min read <span class="dot">·</span> {{ post.author }}</p>
+        </div>
+      </header>
+
+      <div class="wrap post-wrap">
+        <div class="post-body prose">
+          {% if post.summary %}
+          <div class="post-summary">
+            <span class="post-summary-label"><i class="ti ti-sparkles" aria-hidden="true"></i> In short</span>
+            <p>{{ post.summary }}</p>
+          </div>
+          {% endif %}
+          {{ post.body_html | safe }}
+        </div>
+
+        {% if post.faq %}
+        <section class="post-faq">
+          <h2>Frequently asked questions</h2>
+          {% for f in post.faq %}
+          <details class="faq-item"><summary>{{ f.q }} <i class="ti ti-plus" aria-hidden="true"></i></summary><p>{{ f.a }}</p></details>
+          {% endfor %}
+        </section>
+        {% endif %}
+
+        <section class="post-cta">
+          <h2>Ready to put this into practice?</h2>
+          <p>Whether you're starting out or chasing a goal, we'll point you to the right program, coach or pathway.</p>
+          <div class="cine-actions">
+            <a class="btn btn-accent" href="/programs/">Find my program <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            <a class="btn btn-outline" href="/contact/">Get in touch</a>
+          </div>
+        </section>
+
+        {% if related %}
+        <section class="post-related">
+          <h2>More insights</h2>
+          <div class="fgrid">
+            {% for r in related %}
+            <a class="fcard" href="{{ r.url }}">
+              <div class="fpic" style="background-image:url('{{ r.featured_image or '/assets/img/placeholder-horizontal.jpg' }}')">{% if r.tags %}<span class="fchip">{{ r.tags[0] }}</span>{% endif %}</div>
+              <div class="fbody">
+                <p class="fmeta">{{ r.date_display }} · {{ r.read_time }} min read</p>
+                <h3>{{ r.title }}</h3>
+                <p>{{ r.excerpt }}</p>
+                <span class="go-link">Read more <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+              </div>
+            </a>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
+      </div>
+    </article>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="sticky-cta"></div>
+
+  <script src="/js/layout.js" defer></script>
+</body>
+</html>

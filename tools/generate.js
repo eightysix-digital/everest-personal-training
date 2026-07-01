@@ -9,7 +9,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const SITE_URL = (process.env.SITE_URL || 'https://everest-personal-training.vercel.app').replace(/\/+$/, '');
 const SITE_NAME = 'Everest Personal Training';
-const SKIP_DIRS = new Set(['.git', '.claude', 'node_modules', 'assets', 'css', 'js', 'data', 'tools']);
+const SKIP_DIRS = new Set(['.git', '.claude', 'node_modules', 'assets', 'css', 'js', 'data', 'tools', 'templates', 'blog', '.pydeps']);
 
 function findPages(dir, depth) {
   let pages = [];

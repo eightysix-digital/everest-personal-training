@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ page_description }}" />
+  {% if noindex %}<meta name="robots" content="noindex, follow" />{% else %}<!-- STAGING: remove this noindex line when the live domain goes live -->
+  <meta name="robots" content="noindex, nofollow" />{% endif %}
+  <link rel="canonical" href="{{ canonical }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ page_title }}" />
+  <meta property="og:description" content="{{ page_description }}" />
+  <meta property="og:image" content="{{ og_image }}" />
+  <link rel="alternate" type="application/rss+xml" title="Everest Blog" href="/resources/rss.xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3/dist/tabler-icons.min.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main>
+    <section class="subhero">
+      <div class="cine-bg" aria-hidden="true"></div>
+      <div class="ascent" aria-hidden="true">
+        <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
+          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
+          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
+          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+        </svg>
+      </div>
+      <div class="rail">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> {% if active_tag %}<a href="/resources/">Resources</a> <span>/</span> {{ active_tag }}{% else %}Resources{% endif %}</nav>
+        <h1>{{ heading }}</h1>
+        <p class="sub">{{ heading_lead }}</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        {% if posts %}
+        <div class="fgrid r-stagger">
+          {% for post in posts %}
+          <a class="fcard reveal" href="{{ post.url }}">
+            <div class="fpic" style="background-image:url('{{ post.featured_image or '/assets/img/placeholder-horizontal.jpg' }}')">{% if post.tags %}<span class="fchip">{{ post.tags[0] }}</span>{% endif %}</div>
+            <div class="fbody">
+              <p class="fmeta">{{ post.date_display }} · {{ post.read_time }} min read</p>
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.excerpt }}</p>
+              <span class="go-link">Read more <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="intro">
+          <h2>New articles are on the way</h2>
+          <p>We're building a library of useful, evidence-led content across consumer fitness, youth development and preventative human performance. In the meantime, get in touch with any questions.</p>
+        </div>
+        <a class="btn btn-deep" href="/contact/">Ask us a question <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+        {% endif %}
+      </div>
+    </section>
+
+    <section class="closer">
+      <div class="closer-bg" aria-hidden="true"></div>
+      <div class="rail">
+        <h2>Put it into practice.</h2>
+        <p>Find the right program, explore coaching, or start a conversation about a partnership.</p>
+        <div class="cine-actions">
+          <a class="btn btn-accent" href="/programs/">Find my program <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/contact/">Get in touch</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+  <div id="sticky-cta"></div>
+
+  <script src="/js/layout.js" defer></script>
+</body>
+</html>
