@@ -1,0 +1,22 @@
+name: Scheduled rebuild
+
+# Rebuilds the site once a day so future-dated blog posts go live on their
+# date with no manual action. Fires a Vercel Deploy Hook (VERCEL_DEPLOY_HOOK secret).
+
+on:
+  schedule:
+    # 18:00 UTC = ~early NZ morning, just after midnight NZ
+    - cron: '0 18 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Vercel deploy hook
+        run: |
+          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK }}" ]; then
+            echo "VERCEL_DEPLOY_HOOK secret is not set; add it in repo settings."
+            exit 1
+          fi
+          curl -fsS -X POST "${{ secrets.VERCEL_DEPLOY_HOOK }}" -o /dev/null -w "Deploy hook fired (HTTP %{http_code})\n"
