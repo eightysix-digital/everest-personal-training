@@ -948,6 +948,25 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .assurance-item p { margin: 0; color: var(--ink-on-dark); font-size: 13.5px; line-height: 1.5; }
 @media (max-width: 820px) { .assurance .rail { grid-template-columns: 1fr; gap: 30px; } }
 
+/* --- Trust logo wall (placeholder wordmarks until real logos supplied) --- */
+.logo-wall { padding: 46px 0; background: #fff; border-top: 1px solid rgba(0,0,0,.06); border-bottom: 1px solid rgba(0,0,0,.06); }
+.logo-wall.on-cloud { background: var(--cloud); }
+.logo-wall .lw-label { text-align: center; font-family: var(--font); font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--slate); margin: 0 0 28px; }
+.logo-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 22px 46px; }
+.logo-item { display: inline-flex; align-items: center; gap: 10px; color: var(--slate); opacity: .6;
+  font-family: var(--display); font-weight: 700; font-size: 20px; letter-spacing: -.01em;
+  transition: opacity .18s ease; }
+.logo-item i { font-size: 25px; color: var(--teal-deep); }
+.logo-item:hover { opacity: 1; }
+@media (max-width: 600px) { .logo-row { gap: 16px 28px; } .logo-item { font-size: 16px; } .logo-item i { font-size: 21px; } }
+
+/* --- Hero star rating (made-up placeholder trust signal) --- */
+.hero-rating { display: inline-flex; align-items: center; gap: 11px; margin-top: 24px;
+  color: var(--ink-on-dark); font-family: var(--font); font-size: 14px; }
+.hero-rating .stars { color: var(--teal-accent); letter-spacing: 2px; font-size: 15px; }
+.hero-rating strong { color: #fff; font-weight: 600; }
+
 /* --- Sticky intro + stacking outcome cards (two-column deck) --- */
 .iw-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start; }
 .iw-intro { position: sticky; top: 120px; }
