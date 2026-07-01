@@ -25,9 +25,8 @@
       .filter(Boolean)
       .map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('');
     return '' +
-      '<article class="product' + (p.best ? ' is-best' : '') + '">' +
+      '<article class="product">' +
         '<div class="pic" style="background-image:url(\'' + PROG_IMG[i % PROG_IMG.length] + '\')">' +
-          (p.best ? '<span class="pbadge">Best value</span>' : '') +
           '<span class="plabel">' + esc(p.label) + '</span>' +
         '</div>' +
         '<div class="pbody">' +
