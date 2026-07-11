@@ -87,6 +87,9 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; color: var(--black); }
 .nav a { color: var(--black); transition: color .12s ease; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-deep); }
+/* EMPOWER nav item in its brand pink */
+.nav .is-brand { color: var(--emp-pink); }
+.nav .is-brand:hover, .nav .is-brand[aria-current="page"] { color: var(--emp-hot); }
 .nav-cta { display: none; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .header-call { padding: 10px 20px; font-size: 13.5px;
@@ -1121,7 +1124,11 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-grid .feature-icon { background: var(--emp-wing); box-shadow: 0 10px 22px rgba(231,48,142,.26); }
 .emp-grid .feature::before { background: var(--emp-wing); }
 .emp-steps .step-num { background: var(--emp-wing); box-shadow: 0 10px 22px rgba(231,48,142,.3); }
-@media (min-width: 921px) { .emp-steps.steps::before { background: linear-gradient(90deg, var(--emp-pink), var(--emp-blue)); } }
+/* 3 across, 2 under (5 steps) — hide the single-row connecting line */
+.steps.emp-steps { grid-template-columns: repeat(3, 1fr); }
+.steps.emp-steps::before { display: none; }
+@media (max-width: 860px) { .steps.emp-steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 540px) { .steps.emp-steps { grid-template-columns: 1fr; } }
 
 /* --- EMPOWER hero (2-column: copy left, logo right) --- */
 .emp-hero { position: relative; min-height: var(--hero-h); display: flex; align-items: center;
