@@ -1123,22 +1123,31 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-steps .step-num { background: var(--emp-wing); box-shadow: 0 10px 22px rgba(231,48,142,.3); }
 @media (min-width: 921px) { .emp-steps.steps::before { background: linear-gradient(90deg, var(--emp-pink), var(--emp-blue)); } }
 
-/* --- EMPOWER hero (dark gradient + logo + wing glow) --- */
+/* --- EMPOWER hero (2-column: copy left, logo right) --- */
 .emp-hero { position: relative; min-height: var(--hero-h); display: flex; align-items: center;
-  text-align: center; color: #fff; overflow: hidden; background: var(--emp-dark); }
+  color: #fff; overflow: hidden; background: var(--emp-dark); }
 .emp-hero .wing-glow { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 .emp-hero .wing-glow::before, .emp-hero .wing-glow::after { content: ''; position: absolute; width: 52vw; height: 52vw;
   max-width: 720px; max-height: 720px; border-radius: 50%; filter: blur(100px); opacity: .32; top: -6%; }
 .emp-hero .wing-glow::before { left: -6%; background: var(--emp-pink); }
 .emp-hero .wing-glow::after { right: -6%; background: var(--emp-blue); }
-.emp-hero .rail { position: relative; z-index: 2; padding-top: 128px; padding-bottom: 56px; }
-.emp-hero .crumbs { justify-content: center; color: var(--ink-on-dark); }
-.emp-hero .emp-logo { width: min(300px, 66vw); height: auto; margin: 0 auto 26px; display: block; }
-.emp-hero h1 { font-size: clamp(29px, 4.4vw, 54px); font-weight: 700; line-height: 1.06; max-width: 22ch;
-  margin: 0 auto; text-transform: uppercase; letter-spacing: -0.01em; }
+.emp-hero .rail { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr;
+  gap: 48px; align-items: center; padding-top: 140px; padding-bottom: 64px; }
+.emp-hero .crumbs { color: var(--ink-on-dark); }
+.emp-hero h1 { font-size: clamp(30px, 4.4vw, 54px); font-weight: 700; line-height: 1.06; max-width: 18ch;
+  margin: 0; text-transform: uppercase; letter-spacing: -0.01em; }
 .emp-hero .sub { font-family: var(--font); font-size: clamp(16px, 1.7vw, 19px); color: #dbe4f0;
-  max-width: 660px; margin: 20px auto 30px; line-height: 1.6; }
-.emp-hero .cine-actions { justify-content: center; }
+  max-width: 560px; margin: 20px 0 30px; line-height: 1.6; }
+.emp-hero-logo { display: flex; justify-content: center; }
+.emp-hero .emp-logo { width: min(440px, 100%); height: auto; display: block; }
+@media (max-width: 860px) {
+  .emp-hero { text-align: center; }
+  .emp-hero .rail { grid-template-columns: 1fr; gap: 24px; padding-top: 120px; }
+  .emp-hero .crumbs, .emp-hero .cine-actions { justify-content: center; }
+  .emp-hero h1, .emp-hero .sub { margin-left: auto; margin-right: auto; }
+  .emp-hero-logo { order: -1; }
+  .emp-hero .emp-logo { width: min(300px, 72vw); }
+}
 
 /* --- EMPOWER dark statement / vision bands --- */
 .emp-band { position: relative; background: var(--emp-dark); color: #fff; overflow: hidden;
