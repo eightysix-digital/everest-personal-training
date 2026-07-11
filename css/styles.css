@@ -1140,7 +1140,10 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-hero .wing-glow::after { right: -6%; background: var(--emp-blue); }
 .emp-hero .rail { position: relative; z-index: 2; display: grid; grid-template-columns: 1.05fr .95fr;
   gap: 48px; align-items: center; padding-top: 140px; padding-bottom: 64px; }
-.emp-hero .crumbs { color: var(--ink-on-dark); }
+.emp-hero .crumbs { display: flex; width: fit-content; margin-bottom: 24px;
+  border-color: rgba(231,48,142,.55); color: var(--ink-on-dark); }
+.emp-hero .crumbs a { color: var(--emp-hot); }
+.emp-hero .crumbs a:hover { color: #fff; }
 .emp-hero h1 { font-size: clamp(30px, 4.4vw, 54px); font-weight: 700; line-height: 1.06; max-width: 18ch;
   margin: 0; text-transform: uppercase; letter-spacing: -0.01em; }
 .emp-hero .sub { font-family: var(--font); font-size: clamp(16px, 1.7vw, 19px); color: #dbe4f0;
@@ -1150,8 +1153,8 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @media (max-width: 860px) {
   .emp-hero { text-align: center; }
   .emp-hero .rail { grid-template-columns: 1fr; gap: 24px; padding-top: 120px; }
-  .emp-hero .crumbs, .emp-hero .cine-actions { justify-content: center; }
-  .emp-hero h1, .emp-hero .sub { margin-left: auto; margin-right: auto; }
+  .emp-hero .cine-actions { justify-content: center; }
+  .emp-hero .crumbs, .emp-hero h1, .emp-hero .sub { margin-left: auto; margin-right: auto; }
   .emp-hero-logo { order: -1; }
   .emp-hero .emp-logo { width: min(300px, 72vw); }
 }
