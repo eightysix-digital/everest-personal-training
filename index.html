@@ -192,8 +192,7 @@
              the dark section. -->
         <div class="journey-visual" aria-hidden="true">
           <div class="jviz jviz-plate">
-            <img class="plate-img" src="/assets/img/anatomy-muscle.png"
-                 alt="" width="620" height="1052" loading="lazy" />
+            <div class="plate-fig plate-muscle"></div>
             <svg class="plate-force" viewBox="0 0 320 560" preserveAspectRatio="xMidYMid meet">
               <path class="fa" d="M160 120 L160 300" />
               <path class="fa fa-b" d="M160 306 L128 412" />
@@ -239,26 +238,16 @@
       <div class="journey-inner">
         <h2 class="visually-hidden" id="j-cardio">Conditioning: heart, lungs and work capacity</h2>
         <div class="journey-visual" aria-hidden="true">
-          <svg class="jviz jviz-cardio" viewBox="0 0 320 560" preserveAspectRatio="xMidYMid meet">
-            <g class="cv-lungs">
-              <path d="M148 172 C112 176 92 220 96 268 C99 306 118 322 138 314 C150 309 152 292 152 268 L152 186 Z" />
-              <path d="M172 172 C208 176 228 220 224 268 C221 306 202 322 182 314 C170 309 168 292 168 268 L168 186 Z" />
-              <path d="M160 150 L160 186" />
-            </g>
-            <g class="cv-heart">
-              <path d="M160 246 C160 226 132 222 132 250 C132 274 160 292 160 292
-                       C160 292 188 274 188 250 C188 222 160 226 160 246 Z" />
-            </g>
-            <g class="cv-flow">
-              <path class="cf cf-1" d="M160 292 L160 360 L124 452" />
-              <path class="cf cf-2" d="M160 292 L160 360 L196 452" />
-              <path class="cf cf-3" d="M150 240 L104 214" />
-              <path class="cf cf-4" d="M170 240 L216 214" />
-            </g>
-            <g class="cv-trace">
-              <path class="ecg" d="M40 470 L96 470 L110 470 L118 442 L128 500 L140 462 L150 470 L280 470" />
-            </g>
-          </svg>
+          <!-- Heart, lungs and ribcage: Gray's Anatomy 1918, public domain.
+               The ECG trace sits over it and is ours, not part of the plate. -->
+          <div class="jviz jviz-plate jviz-plate-wide">
+            <div class="plate-fig plate-heart"></div>
+            <svg class="jviz-cardio plate-trace" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+              <g class="cv-trace">
+                <path class="ecg" d="M10 150 L86 150 L100 150 L108 122 L118 180 L130 142 L140 150 L310 150" />
+              </g>
+            </svg>
+          </div>
         </div>
         <div class="journey-steps">
           <div class="jstep">

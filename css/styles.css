@@ -602,20 +602,39 @@ summary:focus-visible {
 .jviz-neural .jn-3 { opacity: clamp(.3, calc((var(--p) - .45) * 9), 1); }
 .jviz-neural .jn-4 { opacity: clamp(.3, calc((var(--p) - .7) * 9), 1); }
 
-/* MOCKUP: photographic anatomy plate variant.
-   The plate itself carries the detail, so the reveal is done with a wipe
-   (clip-path driven by --p) rather than by fading separate SVG layers:
-   the figure builds from the ground up as the section is read. */
+/* Anatomy plates (public domain, Gray's Anatomy 1918).
+   The PNGs are alpha masks — every pixel white, ink density in the alpha —
+   and the teal is applied here as a background colour. That keeps the files
+   small (constant RGB channels compress well) and means the brand colour is
+   a style decision, not baked into the asset: change the variable and every
+   plate restyles. Sized by aspect-ratio so nothing shifts while they load. */
 .jviz-plate { position: relative; width: 100%; max-width: 330px; }
-.jviz-plate .plate-img { display: block; width: 100%; height: auto;
-  clip-path: inset(calc((1 - clamp(.15, calc(var(--p) * 1.5), 1)) * 100%) 0 0 0);
-  filter: drop-shadow(0 0 26px rgba(22,184,179,.35)); }
+.plate-fig { width: 100%; background-color: var(--teal-accent);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  filter: drop-shadow(0 0 26px rgba(22,184,179,.32));
+  clip-path: inset(calc((1 - clamp(.15, calc(var(--p) * 1.5), 1)) * 100%) 0 0 0); }
+.plate-muscle { aspect-ratio: 560 / 950;
+  -webkit-mask-image: url('/assets/img/anatomy-muscle-v2.png');
+          mask-image: url('/assets/img/anatomy-muscle-v2.png'); }
+.plate-heart { aspect-ratio: 420 / 398;
+  -webkit-mask-image: url('/assets/img/anatomy-heart.png');
+          mask-image: url('/assets/img/anatomy-heart.png'); }
+/* Without mask support the div would be a solid teal block, so hide it. */
+@supports not ((-webkit-mask-image: url('#')) or (mask-image: url('#'))) {
+  .plate-fig { display: none; }
+}
+.jviz-plate-wide { max-width: 400px; }
+/* ECG trace sits below the plate rather than over it, so it never obscures
+   the anatomy */
+.plate-trace { display: block; width: 100%; height: auto; margin-top: -6%; }
 .jviz-plate .plate-force { position: absolute; inset: 0; width: 100%; height: 100%;
   fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round;
   opacity: clamp(0, calc((var(--p) - .5) * 6), .9);
   filter: drop-shadow(0 0 8px rgba(255,255,255,.7)); }
 @media (prefers-reduced-motion: reduce) {
-  .jviz-plate .plate-img { clip-path: none; }
+  .plate-fig { clip-path: none; }
 }
 
 /* strength: outline, then muscle, tendon, bone, force */
