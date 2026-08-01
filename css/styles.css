@@ -640,8 +640,14 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .ascent .climber { offset-path: path("M0,748 L150,706 L300,716 L455,612 L605,626 L760,512 L905,528 L1050,392 L1150,414 L1245,256 L1290,274 L1320,120");
   offset-rotate: 0deg; offset-distance: 0%; opacity: 0;
   animation: climb 11s ease-in-out 2.4s infinite; }
-.ascent .climber-dot { fill: var(--teal-accent); }
-.ascent .climber-halo { fill: var(--teal-accent); opacity: .22; }
+/* the kettlebell itself. Drawn centred on 0,0 so the motion path positions it
+   by its middle. .climber-scale is counter-scaled by js/layout.js — the SVG is
+   stretched (preserveAspectRatio="none") so the route always spans the hero,
+   and without that correction the kettlebell squashes badly on narrow screens. */
+.ascent .kb-body { fill: var(--teal-accent); }
+.ascent .kb-handle { fill: none; stroke: var(--teal-accent); stroke-width: 3;
+  stroke-linecap: round; }
+.ascent .climber-halo { fill: var(--teal-accent); opacity: .2; }
 
 @keyframes ascend { to { stroke-dashoffset: 0; } }
 @keyframes nodeIn { to { opacity: 1; } }
@@ -696,6 +702,30 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .cine-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--teal-accent); }
 .cine-hero h1 { font-size: clamp(44px, 8.5vw, 116px); line-height: .94; font-weight: 700;
   letter-spacing: -0.02em; text-transform: uppercase; max-width: 15ch; }
+
+/* Hero title climbs into view a word at a time, spread across the ascent: the
+   first word lands as the kettlebell leaves base camp and the last as it
+   reaches the summit. Delays are matched to the climber timing above — if you
+   change the 11s loop, the route, or the number of words in the headline,
+   these need to move with it. There must be one delay per word, or any extra
+   word fires at 0s and appears before the rest.
+   The visible h1 is aria-hidden; the real heading for assistive tech and search
+   engines is the .visually-hidden h1 at the top of the page, so nothing is
+   hidden from them while this plays. */
+.cine-hero h1.climb-title span { display: inline-block; opacity: 0;
+  transform: translateY(.2em);
+  animation: wordIn .8s cubic-bezier(.2,.7,.3,1) forwards; }
+.cine-hero h1.climb-title span:nth-child(1) { animation-delay: 2.4s; }
+.cine-hero h1.climb-title span:nth-child(2) { animation-delay: 3.7s; }
+.cine-hero h1.climb-title span:nth-child(3) { animation-delay: 5s; }
+.cine-hero h1.climb-title span:nth-child(4) { animation-delay: 6.3s; }
+.cine-hero h1.climb-title span:nth-child(5) { animation-delay: 7.5s; }
+.cine-hero h1.climb-title span:nth-child(6) { animation-delay: 8.8s; }
+.cine-hero h1.climb-title span:nth-child(7) { animation-delay: 10.1s; }
+@keyframes wordIn { to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .cine-hero h1.climb-title span { animation: none; opacity: 1; transform: none; }
+}
 .cine-hero .sub { font-family: var(--font); font-size: clamp(16px, 1.8vw, 21px);
   color: #e4e8ea; max-width: 620px; margin: 24px 0 34px; line-height: 1.5; }
 .cine-actions { display: flex; gap: 14px; flex-wrap: wrap; }

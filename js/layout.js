@@ -181,6 +181,29 @@
     });
   });
 
+  /* Keep the hero kettlebell in true proportion.
+     The ascent SVG uses preserveAspectRatio="none" so the route always spans
+     the full hero, which stretches its contents unevenly (harmless for a dot,
+     very visible on a kettlebell). Counter-scale the climber horizontally so it
+     renders round on every viewport. */
+  function fitClimber() {
+    var svgs = document.querySelectorAll('.ascent svg');
+    for (var i = 0; i < svgs.length; i++) {
+      var box = svgs[i].getBoundingClientRect();
+      if (!box.width || !box.height) continue;
+      var kx = box.width / 1400;
+      var ky = box.height / 800;
+      var g = svgs[i].querySelector('.climber-scale');
+      if (g) g.setAttribute('transform', 'scale(' + (ky / kx).toFixed(4) + ',1)');
+    }
+  }
+  fitClimber();
+  var fitTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(fitTimer);
+    fitTimer = setTimeout(fitClimber, 120);
+  });
+
   /* mobile nav toggle */
   var header = document.querySelector('.site-header');
   var toggle = header && header.querySelector('.nav-toggle');
