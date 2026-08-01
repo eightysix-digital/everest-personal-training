@@ -620,26 +620,26 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 /* the full route, drawn once on load and then left as a faint guide */
 .ascent .trail { fill: none; stroke: var(--teal-accent); stroke-width: 2; opacity: .26;
   stroke-linecap: round; stroke-linejoin: round;
-  stroke-dasharray: 100; stroke-dashoffset: 100; animation: ascend 2.4s ease forwards; }
+  stroke-dasharray: 100; stroke-dashoffset: 100; animation: ascend 1.6s ease forwards; }
 
 /* the climbed portion, redrawn on each ascent */
 .ascent .trail-climb { fill: none; stroke: var(--teal-accent); stroke-width: 2.5; opacity: 0;
   stroke-linecap: round; stroke-linejoin: round;
   stroke-dasharray: 100; stroke-dashoffset: 100;
-  animation: climbTrail 11s ease-in-out 2.4s infinite; }
+  animation: climbTrail 7s ease-in-out 1.6s infinite; }
 
 /* camp markers along the route */
 .ascent .node { fill: var(--teal-accent); opacity: 0; animation: nodeIn .5s ease forwards; }
 
 /* the summit, which lifts as the climber arrives */
 .ascent .summit { fill: var(--teal-accent); opacity: 0;
-  animation: nodeIn .5s ease 2.1s forwards, summitReached 11s ease-in-out 2.4s infinite; }
+  animation: nodeIn .5s ease 1.4s forwards, summitReached 7s ease-in-out 1.6s infinite; }
 
 /* the climber — keyframe percentages match .trail-climb so the dot stays
    at the head of the drawn line */
 .ascent .climber { offset-path: path("M0,748 L150,706 L300,716 L455,612 L605,626 L760,512 L905,528 L1050,392 L1150,414 L1245,256 L1290,274 L1320,120");
   offset-rotate: 0deg; offset-distance: 0%; opacity: 0;
-  animation: climb 11s ease-in-out 2.4s infinite; }
+  animation: climb 7s ease-in-out 1.6s infinite; }
 /* the kettlebell itself. Drawn centred on 0,0 so the motion path positions it
    by its middle. .climber-scale is counter-scaled by js/layout.js — the SVG is
    stretched (preserveAspectRatio="none") so the route always spans the hero,
@@ -703,28 +703,36 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .cine-hero h1 { font-size: clamp(44px, 8.5vw, 116px); line-height: .94; font-weight: 700;
   letter-spacing: -0.02em; text-transform: uppercase; max-width: 15ch; }
 
-/* Hero title climbs into view a word at a time, spread across the ascent: the
-   first word lands as the kettlebell leaves base camp and the last as it
-   reaches the summit. Delays are matched to the climber timing above — if you
-   change the 11s loop, the route, or the number of words in the headline,
-   these need to move with it. There must be one delay per word, or any extra
-   word fires at 0s and appears before the rest.
+/* Hero title emerges a word at a time out of the background image: each word
+   starts deep in the scene, small and out of focus, then travels forward
+   through the image plane to rest at full size and sharpness.
+   Delays are staggered across the kettlebell's ascent, so the headline builds
+   while the climb is underway. If you change the climb timing, the route, or
+   the number of words in the headline, these need to move with it — there must
+   be one delay per word, or any extra word fires at 0s and appears first.
    The visible h1 is aria-hidden; the real heading for assistive tech and search
    engines is the .visually-hidden h1 at the top of the page, so nothing is
    hidden from them while this plays. */
+.cine-hero h1.climb-title { perspective: 820px; perspective-origin: 24% 55%; }
 .cine-hero h1.climb-title span { display: inline-block; opacity: 0;
-  transform: translateY(.2em);
-  animation: wordIn .8s cubic-bezier(.2,.7,.3,1) forwards; }
-.cine-hero h1.climb-title span:nth-child(1) { animation-delay: 2.4s; }
-.cine-hero h1.climb-title span:nth-child(2) { animation-delay: 3.7s; }
-.cine-hero h1.climb-title span:nth-child(3) { animation-delay: 5s; }
-.cine-hero h1.climb-title span:nth-child(4) { animation-delay: 6.3s; }
-.cine-hero h1.climb-title span:nth-child(5) { animation-delay: 7.5s; }
-.cine-hero h1.climb-title span:nth-child(6) { animation-delay: 8.8s; }
-.cine-hero h1.climb-title span:nth-child(7) { animation-delay: 10.1s; }
-@keyframes wordIn { to { opacity: 1; transform: translateY(0); } }
+  transform: translateZ(-560px);
+  animation: wordEmerge .85s cubic-bezier(.17,.78,.3,1) forwards;
+  will-change: transform, opacity, filter; }
+.cine-hero h1.climb-title span:nth-child(1) { animation-delay: 1.2s; }
+.cine-hero h1.climb-title span:nth-child(2) { animation-delay: 1.75s; }
+.cine-hero h1.climb-title span:nth-child(3) { animation-delay: 2.3s; }
+.cine-hero h1.climb-title span:nth-child(4) { animation-delay: 2.85s; }
+.cine-hero h1.climb-title span:nth-child(5) { animation-delay: 3.4s; }
+.cine-hero h1.climb-title span:nth-child(6) { animation-delay: 3.95s; }
+.cine-hero h1.climb-title span:nth-child(7) { animation-delay: 4.5s; }
+@keyframes wordEmerge {
+  0%   { opacity: 0; transform: translateZ(-560px); filter: blur(11px); }
+  40%  { opacity: 1; }
+  100% { opacity: 1; transform: translateZ(0); filter: blur(0); }
+}
 @media (prefers-reduced-motion: reduce) {
-  .cine-hero h1.climb-title span { animation: none; opacity: 1; transform: none; }
+  .cine-hero h1.climb-title { perspective: none; }
+  .cine-hero h1.climb-title span { animation: none; opacity: 1; transform: none; filter: none; }
 }
 .cine-hero .sub { font-family: var(--font); font-size: clamp(16px, 1.8vw, 21px);
   color: #e4e8ea; max-width: 620px; margin: 24px 0 34px; line-height: 1.5; }
