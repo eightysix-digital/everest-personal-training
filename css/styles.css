@@ -818,6 +818,21 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   transition: transform .18s ease, box-shadow .18s ease; }
 .product:hover { transform: translateY(-6px); box-shadow: 0 26px 54px rgba(17,17,17,.14); }
 .product .pic { position: relative; aspect-ratio: 5/4; background-size: cover; background-position: center; }
+/* Branded card panel used instead of stock photography: the same mountain mark
+   and wordmark as the site header, so every product reads as Everest. */
+.product .pic-brand { display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(150deg, var(--black-deep) 0%, var(--teal-darkest) 100%); }
+.pic-lockup { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pic-mark { width: 54px; height: 54px; border-radius: 15px; background: var(--teal-deep);
+  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 30px; }
+.pic-word { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: 3px;
+  color: var(--teal-on-dark); }
+/* catalogue groups: weekly plans, one-off services and proposal work never
+   share a grid, so pricing cannot be read across different billing models */
+.cat-group + .cat-group { margin-top: 52px; }
+.cat-head { margin-bottom: 20px; }
+.cat-head h3 { font-size: 22px; font-weight: 600; margin: 0; }
+.cat-head p { font-family: var(--font); font-size: 14px; color: var(--slate); margin: 5px 0 0; }
 .product .pic .plabel { position: absolute; left: 14px; top: 14px; font-family: var(--font);
   font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;
   background: rgba(10,10,10,.72); color: #fff; padding: 6px 11px; border-radius: 20px; backdrop-filter: blur(4px); }

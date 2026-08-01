@@ -11,7 +11,6 @@
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---- Featured product cards (image-led, direct) ---- */
-  var PROG_IMG = ['/assets/img/placeholder-horizontal.jpg', '/assets/img/placeholder-vertical.jpg'];
   var DELIVERY = { gym: 'In gym', home: 'At home', mixed: 'App based', online: 'Online' };
 
   function renderPrograms(data) {
@@ -36,7 +35,11 @@
         .map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('');
       return '' +
         '<article class="product">' +
-          '<div class="pic" style="background-image:url(\'' + PROG_IMG[i % PROG_IMG.length] + '\')">' +
+          '<div class="pic pic-brand">' +
+            '<span class="pic-lockup" aria-hidden="true">' +
+              '<span class="pic-mark"><i class="ti ti-mountain"></i></span>' +
+              '<span class="pic-word">EVEREST</span>' +
+            '</span>' +
             '<span class="plabel">' + esc(p.label) + '</span>' +
           '</div>' +
           '<div class="pbody">' +

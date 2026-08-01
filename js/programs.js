@@ -10,9 +10,26 @@
     });
   }
 
-  var PROG_IMG = ['/assets/img/placeholder-horizontal.jpg', '/assets/img/placeholder-vertical.jpg'];
   var DELIVERY = { gym: 'In gym', home: 'At home', mixed: 'App based', online: 'Online' };
   function cap(s) { s = String(s || ''); return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+
+  /* How a product is charged, derived from its price and billing fields so
+     data/programs.json stays simple to edit:
+       plan     - a dollar price billed on a repeating period (/week, /month)
+       service  - a dollar price paid once, or charged per hour
+       proposal - anything without a dollar price ("By proposal", "Price TBC")
+     Cards are grouped by this so weekly subscriptions and one-off services are
+     never mixed in the same grid. */
+  function groupOf(p) {
+    if (!/^\$/.test(String(p.price || ''))) return 'proposal';
+    return /^\/(week|fortnight|month)$/.test(String(p.billing || '')) ? 'plan' : 'service';
+  }
+
+  var GROUPS = [
+    { key: 'plan', title: 'Weekly programs', note: 'Ongoing training, billed weekly.' },
+    { key: 'service', title: 'One-off services', note: 'Paid as you go, no subscription.' },
+    { key: 'proposal', title: 'By proposal', note: 'Scoped and quoted around your situation.' }
+  ];
 
   function cardHTML(p, i) {
     var href = p.checkoutUrl || '/contact/';
@@ -26,7 +43,11 @@
       .map(function (m) { return '<span>' + esc(m) + '</span>'; }).join('');
     return '' +
       '<article class="product">' +
-        '<div class="pic" style="background-image:url(\'' + PROG_IMG[i % PROG_IMG.length] + '\')">' +
+        '<div class="pic pic-brand">' +
+          '<span class="pic-lockup" aria-hidden="true">' +
+            '<span class="pic-mark"><i class="ti ti-mountain"></i></span>' +
+            '<span class="pic-word">EVEREST</span>' +
+          '</span>' +
           '<span class="plabel">' + esc(p.label) + '</span>' +
         '</div>' +
         '<div class="pbody">' +
@@ -60,7 +81,14 @@
         (!f.support || p.support === f.support) &&
         (!f.audience || p.audience === f.audience);
     });
-    grid.innerHTML = list.map(cardHTML).join('');
+    grid.innerHTML = GROUPS.map(function (g) {
+      var items = list.filter(function (p) { return groupOf(p) === g.key; });
+      if (!items.length) return '';
+      return '<section class="cat-group">' +
+        '<div class="cat-head"><h3>' + g.title + '</h3><p>' + g.note + '</p></div>' +
+        '<div class="product-grid">' + items.map(cardHTML).join('') + '</div>' +
+        '</section>';
+    }).join('');
     if (empty) empty.style.display = list.length ? 'none' : 'block';
   }
 
