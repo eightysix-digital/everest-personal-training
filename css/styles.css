@@ -261,6 +261,26 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
+/* Site-wide keyboard focus indicator. Uses :focus-visible so it appears for
+   keyboard users without ringing every mouse click. The white outer ring keeps
+   it visible on dark hero and journey sections as well as light ones. */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--teal-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.55);
+}
+
+/* Skip link: first tab stop on every page, so keyboard and screen-reader users
+   can jump the header and the long journey sections. */
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--teal-deep); color: #fff; padding: 11px 18px; border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  transition: top .16s ease; }
+.skip-link:focus { top: 12px; }
+
 /* ============================================================
    Shared page components (inner pages)
    ============================================================ */

@@ -107,6 +107,21 @@
   mount('site-header', headerHTML());
   mount('site-footer', footerHTML());
 
+  /* Skip link, injected as the first focusable thing on the page. The journey
+     sections make these pages long, so keyboard users need a way past the nav
+     and straight to content. Targets <main>, which every page has. */
+  if (!document.querySelector('.skip-link')) {
+    var main = document.querySelector('main');
+    if (main) {
+      if (!main.id) main.id = 'main-content';
+      var skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#' + main.id;
+      skip.textContent = 'Skip to content';
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
+  }
+
   /* Reading-progress bar. Decorative only — the same information is available
      from the scrollbar, so it is hidden from assistive tech. js/journey.js
      drives it where present; without that file it simply stays at zero width. */
