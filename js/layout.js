@@ -7,7 +7,7 @@
     { label: 'Programs', href: '/programs/' },
     { label: 'Coaching', href: '/coaching/' },
     { label: 'Performance', href: '/performance/' },
-    { label: 'EMPOWER', href: '/empower/', brand: true },
+    { label: 'EMPOWER', href: '/empower/' },
     { label: 'Organisations', href: '/organisations/' },
     { label: 'Impact', href: '/impact/' },
     { label: 'About', href: '/about/' }
@@ -24,7 +24,6 @@
   function headerHTML() {
     var links = NAV.map(function (n) {
       return '<a href="' + n.href + '"' +
-        (n.brand ? ' class="is-brand"' : '') +
         (isActive(n.href) ? ' aria-current="page"' : '') +
         '>' + n.label + '</a>';
     }).join('');
