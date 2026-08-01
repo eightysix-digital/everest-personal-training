@@ -1084,6 +1084,15 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .logo-item { display: inline-flex; align-items: center; gap: 13px; margin-right: 72px; white-space: nowrap;
   color: var(--slate); opacity: .62; font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: -.01em; }
 .logo-item i { font-size: 36px; color: var(--teal-deep); }
+/* static, grouped variant of the logo wall — used where the relationship type
+   has to be stated rather than blurred into one scrolling row */
+.org-group + .org-group { margin-top: 36px; }
+.org-group .lw-label { text-align: left; margin-bottom: 18px; }
+.org-list { display: flex; flex-wrap: wrap; gap: 20px 46px; }
+.org-list .logo-item { margin-right: 0; font-size: 21px; }
+.org-list .logo-item i { font-size: 28px; }
+.lw-note { font-family: var(--font); font-size: 14px; color: var(--slate); margin-left: 7px; }
+@media (max-width: 600px) { .org-list { gap: 16px 28px; } .org-list .logo-item { font-size: 18px; } }
 @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; } }
 @media (max-width: 600px) { .logo-item { font-size: 22px; margin-right: 48px; } .logo-item i { font-size: 28px; } }
 
