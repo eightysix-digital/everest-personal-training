@@ -48,10 +48,17 @@
       <div class="cine-bg" aria-hidden="true"></div>
       <div class="ascent" aria-hidden="true">
         <svg viewBox="0 0 1400 800" preserveAspectRatio="none">
-          <polyline class="trail" points="0,720 260,660 470,690 720,470 940,510 1160,250 1400,180" />
-          <circle class="node" cx="470" cy="690" r="6" style="animation-delay:.9s" />
-          <circle class="node" cx="720" cy="470" r="6" style="animation-delay:1.3s" />
-          <circle class="node" cx="1160" cy="250" r="7" style="animation-delay:1.9s" />
+          <path class="trail" pathLength="100" d="M0,748 L150,706 L300,716 L455,612 L605,626 L760,512 L905,528 L1050,392 L1150,414 L1245,256 L1290,274 L1320,120" />
+          <path class="trail-climb" pathLength="100" d="M0,748 L150,706 L300,716 L455,612 L605,626 L760,512 L905,528 L1050,392 L1150,414 L1245,256 L1290,274 L1320,120" />
+          <circle class="node" cx="300" cy="716" r="6" style="animation-delay:.9s" />
+          <circle class="node" cx="605" cy="626" r="6" style="animation-delay:1.2s" />
+          <circle class="node" cx="905" cy="528" r="6" style="animation-delay:1.5s" />
+          <circle class="node" cx="1150" cy="414" r="6" style="animation-delay:1.8s" />
+          <circle class="summit" cx="1320" cy="120" r="7" />
+          <g class="climber">
+            <circle class="climber-halo" r="14" />
+            <circle class="climber-dot" r="6" />
+          </g>
         </svg>
       </div>
       <div class="rail">
@@ -148,29 +155,6 @@
           <div class="feature reveal"><span class="feature-icon"><i class="ti ti-briefcase" aria-hidden="true"></i></span><h3>Busy professionals</h3><p>Limited time and want maximum results from focused, efficient training.</p></div>
           <div class="feature reveal"><span class="feature-icon"><i class="ti ti-trophy" aria-hidden="true"></i></span><h3>Athletes</h3><p>Chasing performance goals and want sport-specific strength and conditioning.</p></div>
         </div>
-      </div>
-    </section>
-
-    <section class="section app-band">
-      <div class="wrap app-showcase">
-        <div class="app-copy">
-          <span class="eyebrow-3">Your training, in your pocket</span>
-          <h2>Track and train with our app</h2>
-          <p>Every coaching client trains through the app. Your sessions, sets, reps and demo videos
-            are there whenever you need them, whether you are in the gym with a coach or training
-            solo anywhere in the country.</p>
-          <ul class="app-points">
-            <li><i class="ti ti-list-check" aria-hidden="true"></i> Your full program, session by session</li>
-            <li><i class="ti ti-video" aria-hidden="true"></i> Demo videos for every movement</li>
-            <li><i class="ti ti-chart-line" aria-hidden="true"></i> Log your weights and track progress</li>
-            <li><i class="ti ti-message-circle" aria-hidden="true"></i> Feedback and check-ins from your coach</li>
-          </ul>
-        </div>
-        <figure class="app-figure">
-          <img src="/assets/img/app-showcase-v2.png"
-               alt="Two phones showing the Everest training app: the Everest Personal Training logo, and a Day 3 circuit workout listing exercises such as rower, barbell sumo deadlift and dumbbell thruster with target reps."
-               width="1080" height="906" loading="lazy" />
-        </figure>
       </div>
     </section>
 
