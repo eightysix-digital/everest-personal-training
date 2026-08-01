@@ -92,6 +92,26 @@ Then open the printed URL. (Opening `index.html` directly via `file://` will fai
 - **Impact figures** -> `data/impact.json`. Do **not** publish unverified numbers. Each metric
   must have a `source`, `dateRange` and `method` recorded, then set `display: true`. The whole
   impact section stays hidden until at least one metric is verified.
+- **Images** -> `assets/img`. Replacing an image **must use a new filename** (see below).
+
+## Replacing images (important)
+
+`vercel.json` serves everything under `/assets/` with
+`Cache-Control: public, max-age=31536000, immutable`. The `immutable` directive tells browsers
+not to revalidate for a year, so **overwriting a file in place does not reach anyone who has
+already loaded the page** — they keep seeing the old image indefinitely.
+
+To replace an image, give it a new filename and update the references:
+
+```
+assets/img/empower-youth.jpg  ->  assets/img/empower-youth-v2.jpg
+```
+
+Then update every page that points at it (`grep -r "old-filename" .`). Bumping the version
+suffix is enough; the old file can be deleted once nothing references it.
+
+This applies to any cached asset, not just images. `css/` and `js/` are not covered by the
+immutable rule, so those can be edited in place.
 
 ## Sitemap & llms.txt
 
