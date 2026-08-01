@@ -519,6 +519,82 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   .jstep { opacity: 1; transform: none; transition: none; }
 }
 
+/* ---- journey visuals ----
+   Layers fade in against --p (0..1 through the section) using clamp(), so the
+   whole reveal is CSS arithmetic with no per-layer JS. Under reduced motion
+   journey.js pins --p to 1, which lands every layer fully visible. */
+.jviz { width: 100%; max-width: 340px; height: auto; max-height: 78vh; overflow: visible; }
+.jviz g { transition: opacity .5s ease; }
+
+/* neural */
+.jviz-neural .jv-body { fill: none; stroke: var(--teal-accent); stroke-width: 1.4; opacity: .3; stroke-linecap: round; }
+.jviz-neural .jv-signal { fill: none; stroke: var(--teal-accent); stroke-width: 2.6; stroke-linecap: round;
+  filter: drop-shadow(0 0 7px rgba(22,184,179,.5)); }
+.jviz-neural .jl { opacity: 0; }
+.jviz-neural .jl-1 { opacity: clamp(0, calc((var(--p) - .06) * 9), 1); }
+.jviz-neural .jl-2 { opacity: clamp(0, calc((var(--p) - .32) * 9), 1); }
+.jviz-neural .jl-4 { opacity: clamp(0, calc((var(--p) - .38) * 9), 1); }
+.jviz-neural .jl-3 { opacity: clamp(0, calc((var(--p) - .62) * 9), 1); }
+.jviz-neural .jn { fill: var(--teal-accent); opacity: .3; }
+.jviz-neural .jn-2 { opacity: clamp(.3, calc((var(--p) - .2) * 9), 1); }
+.jviz-neural .jn-3 { opacity: clamp(.3, calc((var(--p) - .45) * 9), 1); }
+.jviz-neural .jn-4 { opacity: clamp(.3, calc((var(--p) - .7) * 9), 1); }
+
+/* strength: outline, then muscle, tendon, bone, force */
+.jviz-strength .jv-outline { fill: none; stroke: var(--teal-accent); stroke-width: 1.3; opacity: .22; stroke-linecap: round; }
+.jviz-strength .sl { fill: none; stroke-linecap: round; }
+.jviz-strength .sl-muscle { stroke: var(--teal-accent); stroke-width: 7; opacity: clamp(0, calc((var(--p) - .18) * 8), .8); }
+.jviz-strength .sl-tendon { stroke: var(--mist-line); stroke-width: 3; opacity: clamp(0, calc((var(--p) - .42) * 8), .85); }
+.jviz-strength .sl-bone { stroke: #fff; stroke-width: 2.4; opacity: clamp(0, calc((var(--p) - .66) * 8), .9); }
+.jviz-strength .sl-force { stroke: var(--teal-accent); stroke-width: 2; opacity: .8;
+  filter: drop-shadow(0 0 6px rgba(22,184,179,.6)); }
+.jviz-strength .fa { stroke-dasharray: 22 200; stroke-dashoffset: 222; animation: forceRun 3s linear infinite; }
+.jviz-strength .fa-b { animation-duration: 3.8s; animation-delay: .8s; }
+@keyframes forceRun { to { stroke-dashoffset: 0; } }
+
+/* conditioning: lungs, heart, flow, trace */
+.jviz-cardio g { fill: none; stroke-linecap: round; }
+.jviz-cardio .cv-lungs { stroke: var(--teal-accent); stroke-width: 1.6; opacity: clamp(.2, calc((var(--p) - .1) * 8), .55); }
+.jviz-cardio .cv-heart { stroke: var(--teal-accent); stroke-width: 2.4; fill: rgba(22,184,179,.16);
+  opacity: clamp(.3, calc((var(--p) - .05) * 8), 1); transform-origin: 160px 258px; animation: heartBeat 1.8s ease-in-out infinite; }
+.jviz-cardio .cv-flow { stroke: var(--teal-accent); stroke-width: 2.2; opacity: clamp(0, calc((var(--p) - .4) * 8), .9);
+  filter: drop-shadow(0 0 6px rgba(22,184,179,.5)); }
+.jviz-cardio .cf { stroke-dasharray: 18 180; stroke-dashoffset: 198; animation: flowRun 2.6s linear infinite; }
+.jviz-cardio .cf-2 { animation-delay: .5s; } .jviz-cardio .cf-3 { animation-delay: 1s; } .jviz-cardio .cf-4 { animation-delay: 1.5s; }
+.jviz-cardio .cv-trace { stroke: var(--mist-line); stroke-width: 1.8; opacity: clamp(0, calc((var(--p) - .68) * 8), .8); }
+.jviz-cardio .ecg { stroke-dasharray: 380; stroke-dashoffset: 380; animation: ecgRun 3.4s ease-in-out infinite; }
+@keyframes heartBeat { 0%,100% { transform: scale(1); } 18% { transform: scale(1.13); } 34% { transform: scale(1); } }
+@keyframes flowRun { to { stroke-dashoffset: 0; } }
+@keyframes ecgRun { to { stroke-dashoffset: -380; } }
+
+/* brain: one region lights per step, so the copy and the diagram always agree */
+.jviz-brain .br-outline, .jviz-brain .br-stem { fill: none; stroke: var(--teal-accent); stroke-width: 1.6; opacity: .4; }
+.jviz-brain .br-region ellipse { fill: var(--teal-accent); opacity: .1; transition: opacity .45s ease; }
+.jviz-brain .br-region { transition: opacity .45s ease; }
+[data-step="0"] .br-motor ellipse, [data-step="1"] .br-cerebellum ellipse,
+[data-step="2"] .br-prefrontal ellipse, [data-step="3"] .br-hippocampus ellipse,
+[data-step="4"] .br-amygdala ellipse, [data-step="5"] .br-basal ellipse {
+  opacity: .72; filter: drop-shadow(0 0 12px rgba(22,184,179,.75)); }
+
+/* whole person: every system layered together */
+.jviz-whole g { fill: none; stroke: var(--teal-accent); stroke-linecap: round; }
+.jviz-whole .wh-1 { stroke-width: 1.4; opacity: .3; }
+.jviz-whole .wh-2 { stroke-width: 7; opacity: clamp(0, calc((var(--p) - .12) * 8), .55); }
+.jviz-whole .wh-3 { stroke-width: 2.2; fill: rgba(22,184,179,.18); opacity: clamp(0, calc((var(--p) - .3) * 8), 1); }
+.jviz-whole .wh-4 { stroke-width: 2; fill: rgba(22,184,179,.14); opacity: clamp(0, calc((var(--p) - .48) * 8), 1); }
+.jviz-whole .wh-ring { stroke-width: 1; opacity: clamp(0, calc((var(--p) - .66) * 6), .3); stroke-dasharray: 3 9; }
+
+/* medical/scientific disclaimer — required, do not remove */
+.journey-note { background: var(--black-deep); padding: 0 0 64px; }
+.journey-note p { font-family: var(--font); font-size: 13px; line-height: 1.75;
+  color: var(--grey-muted); max-width: 78ch; margin: 0; border-left: 2px solid rgba(255,255,255,.14);
+  padding-left: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jviz-strength .fa, .jviz-cardio .cf, .jviz-cardio .ecg { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+  .jviz-cardio .cv-heart { animation: none; }
+}
+
 /* steps (how it works) — connected journey */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; }
 .step { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 18px; padding: 26px;
