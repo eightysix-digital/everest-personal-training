@@ -505,8 +505,35 @@ summary:focus-visible {
   will-change: transform; }
 
 /* journey shell */
-.journey { --p: 0; position: relative; background: var(--black); color: #fff; }
-.journey-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
+.journey { --p: 0; position: relative; background: var(--black); color: #fff;
+  overflow: hidden; isolation: isolate; }
+
+/* Atmosphere: slow-drifting teal light pools that give the large dark
+   sections depth instead of flat black. Two layers — a blob field that
+   drifts on its own timer, and a raking blade of light that brightens as
+   the section is scrolled. Both are pseudo-elements so no markup changes,
+   and both are purely decorative. */
+.journey::before { content: ''; position: absolute; inset: -12%; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 22% 26%, rgba(22,184,179,.17), transparent 70%),
+    radial-gradient(34% 27% at 79% 60%, rgba(11,124,122,.15), transparent 70%),
+    radial-gradient(28% 24% at 46% 92%, rgba(22,184,179,.10), transparent 70%);
+  filter: blur(12px);
+  animation: atmosDrift 38s ease-in-out infinite alternate; }
+.journey::after { content: ''; position: absolute; top: -20%; bottom: -20%;
+  left: 8%; width: 36%; z-index: 0; pointer-events: none;
+  transform: skewX(-14deg);
+  background: linear-gradient(100deg, transparent, rgba(22,184,179,.085) 46%, transparent);
+  opacity: calc(.22 + var(--p) * .55); }
+@keyframes atmosDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2.5%, -3%, 0) scale(1.09); }
+  100% { transform: translate3d(-2%, 2.5%, 0) scale(1.04); }
+}
+
+.journey-inner { position: relative; z-index: 1;
+  max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
   display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 /* 3D stage. The visual is rendered in perspective and rotates gently as the
    section is scrolled, so the anatomy reads as an object in space rather than
@@ -548,6 +575,7 @@ summary:focus-visible {
 /* Nothing may depend on scroll position for legibility. */
 @media (prefers-reduced-motion: reduce) {
   .scroll-progress { display: none; }
+  .journey::before { animation: none; }
   .journey-visual { position: relative; height: auto; }
   .journey-steps { padding: 40px 0; gap: 40px; }
   .jstep { opacity: 1; transform: none; transition: none; }
