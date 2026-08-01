@@ -584,6 +584,32 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .jviz-whole .wh-4 { stroke-width: 2; fill: rgba(22,184,179,.14); opacity: clamp(0, calc((var(--p) - .48) * 8), 1); }
 .jviz-whole .wh-ring { stroke-width: 1; opacity: clamp(0, calc((var(--p) - .66) * 6), .3); stroke-dasharray: 3 9; }
 
+/* ---- capability network: one person outward to communities ---- */
+.capability { background: var(--black); color: #fff; padding: clamp(72px, 12vh, 132px) 0; }
+.capability .cap-head { max-width: 640px; margin-bottom: 40px; }
+.capability .eyebrow-3 { color: var(--teal-accent); }
+.capability h2 { font-size: clamp(28px, 4.2vw, 54px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.03; margin: 0; }
+.capability .cap-head p { font-family: var(--font); font-size: clamp(15px, 1.7vw, 18px);
+  color: var(--ink-on-dark); line-height: 1.7; margin: 18px 0 0; }
+.cap-net { margin: 8px 0 40px; }
+.cap-net svg { width: 100%; height: auto; max-height: 300px; display: block; }
+.cap-net .cn-links { fill: none; stroke: var(--teal-accent); stroke-width: 1; opacity: .3; }
+.cap-net .cn-nodes circle { fill: var(--teal-accent); opacity: .55;
+  animation: capPulse 4s ease-in-out infinite; }
+.cap-net .cn-nodes circle:nth-child(3n) { animation-delay: .8s; }
+.cap-net .cn-nodes circle:nth-child(3n+1) { animation-delay: 1.6s; }
+.cap-net .cn-root { opacity: 1; filter: drop-shadow(0 0 10px rgba(22,184,179,.8)); }
+@keyframes capPulse { 0%, 100% { opacity: .4; } 50% { opacity: .95; } }
+.cap-list { list-style: none; margin: 0 0 34px; padding: 0; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px 32px; }
+.cap-list li { display: flex; align-items: center; gap: 12px; font-family: var(--font);
+  font-size: 15.5px; color: var(--ink-on-dark); }
+.cap-list li i { color: var(--teal-accent); font-size: 20px; flex: 0 0 auto; }
+.cap-cta { align-self: flex-start; }
+@media (max-width: 700px) { .cap-net { display: none; } }
+@media (prefers-reduced-motion: reduce) { .cap-net .cn-nodes circle { animation: none; opacity: .7; } }
+
 /* medical/scientific disclaimer — required, do not remove */
 .journey-note { background: var(--black-deep); padding: 0 0 64px; }
 .journey-note p { font-family: var(--font); font-size: 13px; line-height: 1.75;
