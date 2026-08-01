@@ -470,6 +470,55 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
+/* ============================================================
+   Scroll journey primitives (see js/journey.js)
+   Shared shell for the body-journey sections: a visual that sticks while
+   its copy steps scroll past. Progress through the section is published as
+   --p (0..1) so visuals can respond to scroll without an animation library.
+   ============================================================ */
+
+/* reading-progress bar */
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60;
+  pointer-events: none; background: transparent; }
+.scroll-progress span { display: block; height: 100%; transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--teal-deep), var(--teal-accent));
+  will-change: transform; }
+
+/* journey shell */
+.journey { --p: 0; position: relative; background: var(--black); color: #fff; }
+.journey-inner { max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.journey-visual { position: sticky; top: 0; height: 100vh; display: flex;
+  align-items: center; justify-content: center; }
+.journey-steps { padding: 22vh 0; display: flex; flex-direction: column; gap: 34vh; }
+
+.jstep { opacity: .32; transition: opacity .45s ease, transform .45s ease;
+  transform: translateY(10px); max-width: 46ch; }
+.jstep.is-active { opacity: 1; transform: none; }
+.jstep h3 { font-size: clamp(24px, 3vw, 38px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.05; margin: 0 0 14px; }
+.jstep p { font-family: var(--font); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7;
+  color: var(--ink-on-dark); margin: 0 0 12px; }
+.jstep .jstep-tag { display: inline-block; font-family: var(--font); font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--teal-accent); margin-bottom: 12px; }
+
+/* Single column on narrow screens: the visual leads, then the copy reads
+   straight through. Sticky is dropped so nothing traps the scroll on mobile. */
+@media (max-width: 860px) {
+  .journey-inner { grid-template-columns: 1fr; gap: 0; }
+  .journey-visual { position: relative; height: auto; min-height: 46vh; padding: 40px 0 8px; }
+  .journey-steps { padding: 24px 0 56px; gap: 44px; }
+  .jstep { opacity: 1; transform: none; max-width: none; }
+}
+
+/* Nothing may depend on scroll position for legibility. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { display: none; }
+  .journey-visual { position: relative; height: auto; }
+  .journey-steps { padding: 40px 0; gap: 40px; }
+  .jstep { opacity: 1; transform: none; transition: none; }
+}
+
 /* steps (how it works) — connected journey */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; }
 .step { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 18px; padding: 26px;

@@ -107,6 +107,17 @@
   mount('site-header', headerHTML());
   mount('site-footer', footerHTML());
 
+  /* Reading-progress bar. Decorative only — the same information is available
+     from the scrollbar, so it is hidden from assistive tech. js/journey.js
+     drives it where present; without that file it simply stays at zero width. */
+  if (!document.querySelector('.scroll-progress')) {
+    var prog = document.createElement('div');
+    prog.className = 'scroll-progress';
+    prog.setAttribute('aria-hidden', 'true');
+    prog.innerHTML = '<span></span>';
+    document.body.insertBefore(prog, document.body.firstChild);
+  }
+
   var stickyHost = document.getElementById('sticky-cta');
   if (stickyHost) {
     stickyHost.outerHTML = '<div class="sticky-cta"><a class="btn btn-deep" href="/contact/">Book a call</a></div>';
