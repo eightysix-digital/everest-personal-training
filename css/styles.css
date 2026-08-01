@@ -680,7 +680,10 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .division .go:hover { gap: 16px; color: var(--teal-accent); }
 .division:nth-child(even) .media { order: 2; }        /* alternate image side */
 .division.theme-teal .body { background: var(--teal-darkest); }
-.division.theme-mist .body { background: #14201c; }
+.division.theme-empower .body { background: var(--emp-dark); }
+.division.theme-empower .idx { color: var(--emp-hot); }
+.division.theme-empower .go { border-bottom-color: var(--emp-hot); }
+.division.theme-empower .go:hover { color: var(--emp-hot); }
 
 /* --- 4. Impact band (full-bleed, big numbers over imagery) --- */
 .impact-band { position: relative; color: #fff; overflow: hidden;
