@@ -183,34 +183,22 @@
     <section class="journey" data-journey aria-labelledby="j-strength">
       <div class="journey-inner">
         <h2 class="visually-hidden" id="j-strength">Strength: muscle, tendon, ligament and bone</h2>
+        <!-- MOCKUP: real anatomy plate replacing the hand-drawn figure.
+             Source: "Muscles anterior" on Wikimedia Commons, a collage from
+             Gray's Anatomy (20th US edition, 1918). Public domain - published
+             before 1931 - so no attribution obligation and no share-alike
+             encumbrance on the derived artwork. Recoloured to brand accent
+             teal with ink density mapped to alpha, so it reads as an x-ray on
+             the dark section. -->
         <div class="journey-visual" aria-hidden="true">
-          <svg class="jviz jviz-strength" viewBox="0 0 320 560" preserveAspectRatio="xMidYMid meet">
-            <g class="jv-outline">
-              <ellipse cx="160" cy="58" rx="34" ry="40" />
-              <path d="M160 98 L160 300 M160 134 L98 208 M160 134 L222 208
-                       M160 300 L122 414 M160 300 L198 414" />
-            </g>
-            <g class="sl sl-muscle">
-              <path d="M160 130 L104 204 M160 130 L216 204" />
-              <path d="M160 146 L118 214 M160 146 L202 214" />
-              <path d="M160 306 L128 406 M160 306 L192 406" />
-              <path d="M138 150 L138 250 M182 150 L182 250" />
-            </g>
-            <g class="sl sl-tendon">
-              <path d="M104 204 L86 288 M216 204 L234 288" />
-              <path d="M128 406 L116 512 M192 406 L204 512" />
-            </g>
-            <g class="sl sl-bone">
-              <path d="M160 100 L160 298" />
-              <path d="M160 136 L100 206 M160 136 L220 206" />
-              <path d="M160 300 L124 410 M160 300 L196 410" />
-              <path d="M124 410 L114 516 M196 410 L206 516" />
-            </g>
-            <g class="sl sl-force">
-              <path class="fa" d="M160 120 L160 290" />
-              <path class="fa fa-b" d="M160 300 L126 408" />
-            </g>
-          </svg>
+          <div class="jviz jviz-plate">
+            <img class="plate-img" src="/assets/img/anatomy-muscle.png"
+                 alt="" width="620" height="1052" loading="lazy" />
+            <svg class="plate-force" viewBox="0 0 320 560" preserveAspectRatio="xMidYMid meet">
+              <path class="fa" d="M160 120 L160 300" />
+              <path class="fa fa-b" d="M160 306 L128 412" />
+            </svg>
+          </div>
         </div>
         <div class="journey-steps">
           <div class="jstep">

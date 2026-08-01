@@ -602,6 +602,22 @@ summary:focus-visible {
 .jviz-neural .jn-3 { opacity: clamp(.3, calc((var(--p) - .45) * 9), 1); }
 .jviz-neural .jn-4 { opacity: clamp(.3, calc((var(--p) - .7) * 9), 1); }
 
+/* MOCKUP: photographic anatomy plate variant.
+   The plate itself carries the detail, so the reveal is done with a wipe
+   (clip-path driven by --p) rather than by fading separate SVG layers:
+   the figure builds from the ground up as the section is read. */
+.jviz-plate { position: relative; width: 100%; max-width: 330px; }
+.jviz-plate .plate-img { display: block; width: 100%; height: auto;
+  clip-path: inset(calc((1 - clamp(.15, calc(var(--p) * 1.5), 1)) * 100%) 0 0 0);
+  filter: drop-shadow(0 0 26px rgba(22,184,179,.35)); }
+.jviz-plate .plate-force { position: absolute; inset: 0; width: 100%; height: 100%;
+  fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round;
+  opacity: clamp(0, calc((var(--p) - .5) * 6), .9);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.7)); }
+@media (prefers-reduced-motion: reduce) {
+  .jviz-plate .plate-img { clip-path: none; }
+}
+
 /* strength: outline, then muscle, tendon, bone, force */
 .jviz-strength .jv-outline { fill: none; stroke: var(--teal-accent); stroke-width: 1.3; opacity: .22; stroke-linecap: round; }
 .jviz-strength .sl { fill: none; stroke-linecap: round; }
