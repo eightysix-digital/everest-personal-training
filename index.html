@@ -48,6 +48,35 @@
           </g>
         </svg>
       </div>
+      <!-- Nervous-system figure. Decorative brand device only: it carries no
+           information, so it is hidden from assistive tech and dropped under
+           reduced motion. Inline SVG rather than an image so it costs no extra
+           request and inherits the brand teal from CSS. -->
+      <div class="hero-figure" aria-hidden="true">
+        <svg viewBox="0 0 320 620" preserveAspectRatio="xMidYMid meet">
+          <g class="hf-body">
+            <ellipse cx="160" cy="66" rx="38" ry="45" />
+            <path d="M160 111 L160 330" />
+            <path d="M160 150 L92 232 M160 150 L228 232" />
+            <path d="M92 232 L74 322 M228 232 L246 322" />
+            <path d="M160 330 L118 452 M160 330 L202 452" />
+            <path d="M118 452 L106 566 M202 452 L214 566" />
+            <path d="M120 168 Q160 190 200 168" />
+            <path d="M126 216 Q160 236 194 216" />
+          </g>
+          <g class="hf-signal">
+            <path class="hf-pulse" d="M160 92 L160 330 L118 452 L106 566" />
+            <path class="hf-pulse hf-pulse-b" d="M160 92 L160 150 L228 232 L246 322" />
+          </g>
+          <g class="hf-nodes">
+            <circle cx="160" cy="66" r="5" />
+            <circle cx="160" cy="150" r="4" style="animation-delay:.5s" />
+            <circle cx="160" cy="330" r="4" style="animation-delay:1s" />
+            <circle cx="118" cy="452" r="4" style="animation-delay:1.5s" />
+          </g>
+        </svg>
+      </div>
+
       <div class="rail">
         <span class="cine-eyebrow">Human performance &amp; capability</span>
         <h1 aria-hidden="true" class="climb-title"><span>BRINGING</span> <span>EVERYDAY</span> <span>PEOPLE</span> <span>TO</span> <span>THEIR</span> <span>TRUE</span> <span>CAPABILITY</span></h1>
