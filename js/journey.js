@@ -105,7 +105,20 @@
         section.style.setProperty('--p', p.toFixed(4));
 
         if (!steps.length) return;
-        var idx = Math.min(steps.length - 1, Math.floor(p * steps.length));
+
+        /* Which step is active is decided by measuring where the steps
+           actually are, not by dividing progress by their count. The steps
+           have large padding and gaps, so an even split drifts out of sync
+           and highlights the wrong copy. Nearest to the viewport's reading
+           line (slightly above centre) wins. */
+        var line = vh * 0.42;
+        var idx = 0, bestDist = Infinity;
+        for (var i = 0; i < steps.length; i++) {
+          var r = steps[i].getBoundingClientRect();
+          var dist = Math.abs((r.top + r.height / 2) - line);
+          if (dist < bestDist) { bestDist = dist; idx = i; }
+        }
+
         if (section.getAttribute('data-step') !== String(idx)) {
           section.setAttribute('data-step', String(idx));
           for (var i = 0; i < steps.length; i++) {
