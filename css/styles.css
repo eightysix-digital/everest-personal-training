@@ -1239,16 +1239,21 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 /* --- Hero star rating (made-up placeholder trust signal) --- */
 /* Actions and rating both sit hard right, stacked, clear of the ascent line
    and kettlebell which climb through the left and centre of the hero. */
-.cine-hero .cine-actions { float: right; clear: both; justify-content: flex-end; }
+/* Subheroes carry the same climbing ascent line, so their buttons move right
+   too. Declared after .subhero .cine-actions so this wins on those pages. */
+.cine-hero .cine-actions,
+.subhero .cine-actions { float: right; clear: both; justify-content: flex-end; }
 .hero-rating { display: inline-flex; align-items: center; gap: 11px; margin-top: 18px;
   color: var(--ink-on-dark); font-family: var(--font); font-size: 14px;
   float: right; clear: both; background: rgba(10,10,10,.55); padding: 9px 16px;
   border-radius: 22px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,.12); }
 /* the rail must contain its floated children or the hero collapses */
-.cine-hero .rail::after { content: ''; display: block; clear: both; }
+.cine-hero .rail::after,
+.subhero .rail::after { content: ''; display: block; clear: both; }
 @media (max-width: 760px) {
-  .cine-hero .cine-actions { float: none; justify-content: flex-start; }
+  .cine-hero .cine-actions,
+  .subhero .cine-actions { float: none; justify-content: flex-start; }
   .hero-rating { float: none; }
 }
 .hero-rating .stars { color: var(--teal-accent); letter-spacing: 2px; font-size: 15px; }
