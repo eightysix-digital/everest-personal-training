@@ -621,6 +621,13 @@ summary:focus-visible {
 .plate-heart { aspect-ratio: 420 / 398;
   -webkit-mask-image: url('/assets/img/anatomy-heart.png');
           mask-image: url('/assets/img/anatomy-heart.png'); }
+.plate-skeleton { aspect-ratio: 520 / 1135;
+  -webkit-mask-image: url('/assets/img/anatomy-skeleton.png');
+          mask-image: url('/assets/img/anatomy-skeleton.png'); }
+/* faint orbit ring behind the whole-person figure */
+.plate-ring { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1;
+  fill: none; stroke: var(--teal-accent); stroke-width: 1; stroke-dasharray: 3 9;
+  opacity: clamp(0, calc((var(--p) - .5) * 5), .32); }
 /* Without mask support the div would be a solid teal block, so hide it. */
 @supports not ((-webkit-mask-image: url('#')) or (mask-image: url('#'))) {
   .plate-fig { display: none; }
@@ -708,6 +715,10 @@ summary:focus-visible {
 @media (prefers-reduced-motion: reduce) { .cap-net .cn-nodes circle { animation: none; opacity: .7; } }
 
 /* medical/scientific disclaimer â€” required, do not remove */
+/* image attribution — required by CC BY on one illustration, do not remove */
+.footer-credits { font-size: 11.5px; color: var(--grey-muted); margin-top: 8px; line-height: 1.6; }
+.footer-credits a { color: var(--ink-on-dark); text-decoration: underline; }
+
 .journey-note { background: var(--black-deep); padding: 0 0 64px; }
 .journey-note p { font-family: var(--font); font-size: 13px; line-height: 1.75;
   color: var(--grey-muted); max-width: 78ch; margin: 0; border-left: 2px solid rgba(255,255,255,.14);

@@ -94,6 +94,11 @@
         '</div>' +
         '<div class="wrap footer-note">' +
           '<p>Everest provides fitness coaching and human performance services. This is not clinical healthcare. We work alongside health professionals and refer where appropriate.</p>' +
+          /* Required by the CC BY 2.5 licence on the skeleton illustration used
+             in the homepage body journey. Do not remove while that image is in
+             use. The Gray's Anatomy plates alongside it are public domain and
+             carry no such obligation. */
+          '<p class="footer-credits">Skeleton illustration by <a href="https://commons.wikimedia.org/wiki/File:Skeleton_whole_body.svg" target="_blank" rel="noopener">Patrick J. Lynch, medical illustrator</a>, used under <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener">CC BY 2.5</a>. Other anatomical illustrations from Gray&rsquo;s Anatomy (1918), public domain.</p>' +
           '<span class="footer-credit">Another website designed and built by <a href="https://eightysix.digital/web-design/web-design-christchurch/" target="_blank" rel="noopener">EightySix Digital</a></span>' +
         '</div>' +
       '</footer>';
