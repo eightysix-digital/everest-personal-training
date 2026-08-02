@@ -70,34 +70,39 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   width: calc(100% - 48px); max-width: 1092px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
   padding: 9px 9px 9px 22px;
-  background-color: rgba(255,255,255,.5);
+  /* Dark glass rather than light. The logo's internal detail (mountain
+     crevices, barbell ring centres) is dark negative space, not real
+     transparency, so it can only sit backing-free on a dark ground. */
+  background-color: rgba(14,16,16,.62);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
-  border: 1px solid rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.14);
   border-radius: 999px;
-  box-shadow: 0 10px 34px rgba(17,17,17,.12);
+  box-shadow: 0 10px 34px rgba(0,0,0,.34);
 }
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .site-header { background: rgba(255,255,255,.95); }
+  .site-header { background: rgba(14,16,16,.95); }
 }
 .logo { display: flex; align-items: center; gap: 9px; font-weight: 500; letter-spacing: .5px; }
-/* The real logo badge. Its internal detail is dark negative space rather
-   than transparency, so on the light header pill it needs its own dark
-   rounded backing to read correctly — the same treatment it gets on the
-   dark product cards and footer. */
-.logo-mark { width: 34px; height: 34px; border-radius: 9px; padding: 3px;
-  background: var(--black-deep); object-fit: contain; display: block; }
-.site-footer .logo-mark { background: none; padding: 0; width: 36px; height: 36px; }
+.site-header .logo { color: #fff; }
+/* No backing plate — the logo sits directly on the dark glass, which is why
+   the header had to go dark. Do not put this on a light surface without a
+   light-background variant of the logo. */
+.logo-mark { width: 34px; height: 34px; object-fit: contain; display: block; }
+.site-footer .logo-mark { width: 36px; height: 36px; }
 .legacy-logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--teal-deep);
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 17px; }
 /* Nav uses the display face in caps to match the hero headline. Slightly
    tighter gap and a touch of tracking, since caps read wider than sentence
    case and the seven items have to stay on one line. */
 .nav { display: flex; gap: 17px; font-family: var(--display); font-size: 13px;
-  font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--black); }
-.nav a { color: var(--black); transition: color .12s ease; }
-.nav a:hover, .nav a[aria-current="page"] { color: var(--teal-deep); }
+  font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #fff; }
+/* Light nav on the dark pill. Accent teal rather than deep teal for the
+   active and hover state, since deep teal has too little contrast on dark. */
+.nav a { color: var(--ink-on-dark); transition: color .12s ease; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--teal-accent); }
+.nav-toggle { color: #fff; }
 .nav-cta { display: none; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .header-call { padding: 10px 20px; font-size: 13.5px;
@@ -239,11 +244,13 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* responsive */
 @media (max-width: 920px) {
+  /* matches the dark header pill — a light dropdown would leave the light
+     nav links invisible */
   .nav { position: absolute; top: calc(100% + 10px); left: 0; right: 0; flex-direction: column; gap: 0;
-    background: rgba(255,255,255,.92); backdrop-filter: blur(18px) saturate(180%);
+    background: rgba(14,16,16,.94); backdrop-filter: blur(18px) saturate(180%);
     -webkit-backdrop-filter: blur(18px) saturate(180%);
-    border: 1px solid rgba(0,0,0,.08); border-radius: 18px; overflow: hidden;
-    box-shadow: 0 12px 34px rgba(17,17,17,.14); padding: 6px 0; display: none; }
+    border: 1px solid rgba(255,255,255,.13); border-radius: 18px; overflow: hidden;
+    box-shadow: 0 12px 34px rgba(0,0,0,.4); padding: 6px 0; display: none; }
   .site-header.nav-open .nav { display: flex; }
   .nav a { padding: 12px 22px; font-size: 15px; }
   .nav-cta { display: block; margin: 10px 22px 12px; padding: 13px 18px; text-align: center;
@@ -909,9 +916,11 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .products .p-head p { font-family: var(--font); color: var(--slate); font-size: 15px; max-width: 34ch; margin: 6px 0 0; }
 .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
 .product { display: flex; flex-direction: column; background: #fff; border-radius: 18px;
-  overflow: hidden; box-shadow: 0 18px 40px rgba(17,17,17,.08);
-  transition: transform .18s ease, box-shadow .18s ease; }
-.product:hover { transform: translateY(-6px); box-shadow: 0 26px 54px rgba(17,17,17,.14); }
+  overflow: hidden; border: 1px solid rgba(17,17,17,.07);
+  box-shadow: 0 18px 40px rgba(17,17,17,.07);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+.product:hover { transform: translateY(-6px); border-color: rgba(11,124,122,.34);
+  box-shadow: 0 26px 54px rgba(11,124,122,.18); }
 .product .pic { position: relative; aspect-ratio: 5/4; background-size: cover; background-position: center; }
 /* Branded card panel used instead of stock photography.
    The Everest logo has a transparent outer background, but its internal
@@ -943,16 +952,25 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .product .pic .plabel { position: absolute; left: 14px; top: 14px; font-family: var(--font);
   font-size: 11px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600;
   background: rgba(10,10,10,.72); color: #fff; padding: 6px 11px; border-radius: 20px; backdrop-filter: blur(4px); }
-.product .pbody { display: flex; flex-direction: column; flex: 1; padding: 22px; }
-.product h3 { font-size: 21px; font-weight: 600; margin: 0 0 8px; }
+.product .pbody { display: flex; flex-direction: column; flex: 1; padding: 24px 22px 22px; }
+/* Program names in the display face, uppercase, to match the nav and hero. */
+.product h3 { font-family: var(--display); font-size: clamp(17px, 1.5vw, 20px);
+  font-weight: 700; text-transform: uppercase; letter-spacing: .01em;
+  line-height: 1.15; margin: 0 0 10px; }
 .product .pdesc { font-family: var(--font); font-size: 14px; color: var(--slate); line-height: 1.55; margin: 0 0 16px; }
 .product .pmeta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
-.product .pmeta span { font-family: var(--font); font-size: 11.5px; color: var(--slate);
-  background: var(--cloud); padding: 4px 10px; border-radius: 14px; }
-.product .pfoot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.product .pprice { font-family: var(--display); font-size: 26px; font-weight: 700; }
+.product .pmeta span { font-family: var(--font); font-size: 11px; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--teal-darkest);
+  background: var(--mist); border: 1px solid var(--mist-line);
+  padding: 4px 10px; border-radius: 14px; }
+/* price and CTA separated from the meta by a hairline, so the commercial
+   decision reads as its own block rather than more body copy */
+.product .pfoot { margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(17,17,17,.09);
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.product .pprice { font-family: var(--display); font-size: 28px; font-weight: 700; letter-spacing: -.01em; }
 .product .pprice small { font-family: var(--font); font-size: 12px; font-weight: 400; color: var(--slate); }
-.product .pprice.tbd { font-size: 17px; font-weight: 600; }
+.product .pprice.tbd { font-size: 16px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--teal-deep); }
 .product .btn { padding: 11px 18px; font-size: 13.5px; }
 @media (max-width: 1040px) { .product-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .product-grid { grid-template-columns: 1fr; } }
