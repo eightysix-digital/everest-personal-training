@@ -93,6 +93,24 @@
       "status": "active"
     },
     {
+      "slug": "strength-and-stretch",
+      "name": "Strength & Stretch",
+      "label": "Strength + mobility",
+      "headline": "Strength training partnered with yoga, building strength and mobility together rather than trading one for the other.",
+      "price": "$30",
+      "billing": "/week",
+      "theme": "mist",
+      "cta": "Sign up",
+      "checkoutUrl": "",
+      "goal": "general health",
+      "level": "beginner",
+      "location": "mixed",
+      "frequency": "3",
+      "support": "coached",
+      "audience": "adult",
+      "status": "active"
+    },
+    {
       "slug": "one-to-one-session",
       "name": "1-on-1 Session",
       "label": "In person · per session",

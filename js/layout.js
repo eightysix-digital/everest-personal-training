@@ -60,7 +60,7 @@
               '<a href="/programs/">Programs</a>' +
               '<a href="/coaching/">Coaching</a>' +
               '<a href="/performance/">Performance</a>' +
-              '<a href="/empower/">EMPOWER youth</a>' +
+              '<a href="/empower/">EMPOWER</a>' +
             '</div>' +
             '<div class="footer-col">' +
               '<h3>Organisations</h3>' +
