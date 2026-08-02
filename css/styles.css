@@ -82,7 +82,14 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   .site-header { background: rgba(255,255,255,.95); }
 }
 .logo { display: flex; align-items: center; gap: 9px; font-weight: 500; letter-spacing: .5px; }
-.logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--teal-deep);
+/* The real logo badge. Its internal detail is dark negative space rather
+   than transparency, so on the light header pill it needs its own dark
+   rounded backing to read correctly — the same treatment it gets on the
+   dark product cards and footer. */
+.logo-mark { width: 34px; height: 34px; border-radius: 9px; padding: 3px;
+  background: var(--black-deep); object-fit: contain; display: block; }
+.site-footer .logo-mark { background: none; padding: 0; width: 36px; height: 36px; }
+.legacy-logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--teal-deep);
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 17px; }
 /* Nav uses the display face in caps to match the hero headline. Slightly
    tighter gap and a touch of tracking, since caps read wider than sentence
@@ -648,6 +655,21 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    by its middle. .climber-scale is counter-scaled by js/layout.js — the SVG is
    stretched (preserveAspectRatio="none") so the route always spans the hero,
    and without that correction the kettlebell squashes badly on narrow screens. */
+/* The kettlebell turns on a vertical axis as it climbs — a horizontal spin,
+   as if you were walking around it. Done as an animated scaleX rather than a
+   CSS 3D rotateY: 3D transforms inside SVG are unreliable across browsers,
+   and squashing to near-zero width and back out reads as the same rotation
+   while working everywhere. transform-box keeps the pivot on the shape. */
+.ascent .climber-spin { transform-box: fill-box; transform-origin: 50% 50%;
+  animation: kbSpin 5.5s ease-in-out infinite; }
+@keyframes kbSpin {
+  0%   { transform: scaleX(1); }
+  25%  { transform: scaleX(.06); }
+  50%  { transform: scaleX(-1); }
+  75%  { transform: scaleX(.06); }
+  100% { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) { .ascent .climber-spin { animation: none; } }
 .ascent .kb-body { fill: var(--teal-accent); }
 .ascent .kb-handle { fill: none; stroke: var(--teal-accent); stroke-width: 3;
   stroke-linecap: round; }
@@ -887,9 +909,21 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    rather than true transparency. This panel must therefore stay on a DARK
    background — do not move it onto a light surface without a
    light-background variant of the logo. */
-.product .pic-brand { display: flex; align-items: center; justify-content: center;
+.product .pic-brand { position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
   background: linear-gradient(150deg, var(--black-deep) 0%, var(--teal-darkest) 100%); }
-.pic-logo { width: 62%; max-width: 190px; height: auto; display: block; }
+/* same drifting light pools as the dark bands, scaled down to card size, so
+   the panels breathe instead of sitting as flat blocks behind the logo */
+.product .pic-brand::before { content: ''; position: absolute; inset: -20%;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 34% at 26% 24%, rgba(22,184,179,.30), transparent 70%),
+    radial-gradient(38% 30% at 76% 72%, rgba(22,184,179,.18), transparent 70%);
+  filter: blur(14px);
+  animation: atmosDrift 30s ease-in-out infinite alternate; }
+.product:hover .pic-brand::before { animation-duration: 16s; }
+.pic-logo { position: relative; z-index: 1; width: 62%; max-width: 190px; height: auto; display: block; }
+@media (prefers-reduced-motion: reduce) { .product .pic-brand::before { animation: none; } }
 /* catalogue groups: weekly plans, one-off services and proposal work never
    share a grid, so pricing cannot be read across different billing models */
 .cat-group + .cat-group { margin-top: 52px; }
@@ -1175,14 +1209,20 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @media (max-width: 600px) { .logo-item { font-size: 22px; margin-right: 48px; } .logo-item i { font-size: 28px; } }
 
 /* --- Hero star rating (made-up placeholder trust signal) --- */
-/* Rating sits to the right of the hero rail, opposite the headline, so it
-   reads as a separate proof point rather than a footnote to the buttons. */
-.hero-rating { display: inline-flex; align-items: center; gap: 11px; margin-top: 24px;
+/* Actions and rating both sit hard right, stacked, clear of the ascent line
+   and kettlebell which climb through the left and centre of the hero. */
+.cine-hero .cine-actions { float: right; clear: both; justify-content: flex-end; }
+.hero-rating { display: inline-flex; align-items: center; gap: 11px; margin-top: 18px;
   color: var(--ink-on-dark); font-family: var(--font); font-size: 14px;
   float: right; clear: both; background: rgba(10,10,10,.55); padding: 9px 16px;
   border-radius: 22px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   border: 1px solid rgba(255,255,255,.12); }
-@media (max-width: 760px) { .hero-rating { float: none; } }
+/* the rail must contain its floated children or the hero collapses */
+.cine-hero .rail::after { content: ''; display: block; clear: both; }
+@media (max-width: 760px) {
+  .cine-hero .cine-actions { float: none; justify-content: flex-start; }
+  .hero-rating { float: none; }
+}
 .hero-rating .stars { color: var(--teal-accent); letter-spacing: 2px; font-size: 15px; }
 .hero-rating strong { color: #fff; font-weight: 600; }
 

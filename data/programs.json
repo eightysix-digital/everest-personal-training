@@ -52,7 +52,7 @@
       "level": "beginner",
       "location": "gym",
       "frequency": "3",
-      "support": "self-guided",
+      "support": "coached",
       "audience": "adult",
       "status": "active"
     },
@@ -70,7 +70,7 @@
       "level": "intermediate",
       "location": "gym",
       "frequency": "4",
-      "support": "self-guided",
+      "support": "coached",
       "audience": "adult",
       "status": "active"
     },
@@ -88,7 +88,7 @@
       "level": "intermediate",
       "location": "mixed",
       "frequency": "4",
-      "support": "self-guided",
+      "support": "coached",
       "audience": "adult",
       "status": "active"
     },

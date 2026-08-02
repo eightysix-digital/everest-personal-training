@@ -29,7 +29,7 @@
     }).join('');
     return '' +
       '<header class="site-header">' +
-        '<a class="logo" href="/"><span class="logo-mark"><i class="ti ti-mountain" aria-hidden="true"></i></span><span>EVEREST</span></a>' +
+        '<a class="logo" href="/"><img class="logo-mark" src="/assets/img/everest-logo.svg" alt="" aria-hidden="true" width="750" height="750" /><span>EVEREST</span></a>' +
         '<nav class="nav" aria-label="Primary">' + links +
           '<a class="nav-cta" href="/contact/">Book a call</a>' +
         '</nav>' +
@@ -46,7 +46,7 @@
       '<footer class="site-footer">' +
         '<div class="wrap footer-top">' +
           '<div class="footer-brand">' +
-            '<a class="logo" href="/"><span class="logo-mark"><i class="ti ti-mountain" aria-hidden="true"></i></span><span>EVEREST</span></a>' +
+            '<a class="logo" href="/"><img class="logo-mark" src="/assets/img/everest-logo.svg" alt="" aria-hidden="true" width="750" height="750" /><span>EVEREST</span></a>' +
             '<p>Structured training, expert coaching and human performance solutions for everyday people, athletes, young people and organisations.</p>' +
             '<div class="footer-social">' +
               '<a href="#" aria-label="Instagram"><i class="ti ti-brand-instagram" aria-hidden="true"></i></a>' +
