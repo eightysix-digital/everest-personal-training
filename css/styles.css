@@ -505,7 +505,12 @@ summary:focus-visible {
   will-change: transform; }
 
 /* journey shell */
-.journey { --p: 0; position: relative; background: var(--black); color: #fff;
+/* --p was the scroll-progress value that drove the old sticky journey. The
+   cards no longer scrub with scroll, so it is pinned to its finished value:
+   every layer, plate and highlight renders complete, and the .reveal system
+   handles the entrance instead. Left in place because the layer opacities and
+   plate clip-paths are still expressed against it. */
+.journey { --p: 1; position: relative; background: var(--black); color: #fff;
   overflow: hidden; isolation: isolate; }
 
 /* Atmosphere: slow-drifting teal light pools that give the large dark
@@ -532,44 +537,41 @@ summary:focus-visible {
   100% { transform: translate3d(-2%, 2.5%, 0) scale(1.04); }
 }
 
+/* Card layout. Replaced the sticky scroll-scrubbed version: it held the
+   visual on screen until the reader reached the bottom of the section, so
+   the anatomy revealed too late to be seen. Cards show as soon as they
+   scroll into view, using the site's existing .reveal system. */
 .journey-inner { position: relative; z-index: 1;
-  max-width: var(--maxw); margin: 0 auto; padding: 0 24px;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
-/* 3D stage. The visual is rendered in perspective and rotates gently as the
-   section is scrolled, so the anatomy reads as an object in space rather than
-   a flat diagram. Pure CSS transforms — no 3D library, no extra payload. */
-.journey-visual { position: sticky; top: 0; height: 100vh; display: flex;
-  align-items: center; justify-content: center;
-  perspective: 1100px; perspective-origin: 50% 45%; }
-.journey-visual::before { content: ''; position: absolute; width: 62%; aspect-ratio: 1;
-  border-radius: 50%; background: radial-gradient(circle, rgba(22,184,179,.16), transparent 68%);
-  filter: blur(28px); opacity: calc(.35 + var(--p) * .5); pointer-events: none; }
-.jviz { transform: rotateY(calc((var(--p) - .5) * 26deg))
-                  rotateX(calc((var(--p) - .5) * -10deg))
-                  translateZ(calc(var(--p) * 60px));
-  transition: transform .18s linear; will-change: transform; }
-/* Tightened from 22vh/34vh. The original spacing made the homepage
-   punishingly long and left large empty gaps between sections where the
-   sticky visual had nothing beside it. */
-.journey-steps { padding: 14vh 0; display: flex; flex-direction: column; gap: 18vh; }
+  max-width: var(--maxw); margin: 0 auto; padding: clamp(64px, 9vh, 104px) 24px;
+  display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(32px, 5vw, 64px); align-items: center; }
 
-.jstep { opacity: .32; transition: opacity .45s ease, transform .45s ease;
-  transform: translateY(10px); max-width: 46ch; }
-.jstep.is-active { opacity: 1; transform: none; }
-.jstep h3 { font-size: clamp(24px, 3vw, 38px); font-weight: 700; text-transform: uppercase;
-  line-height: 1.05; margin: 0 0 14px; }
-.jstep p { font-family: var(--font); font-size: clamp(15px, 1.6vw, 18px); line-height: 1.7;
-  color: var(--ink-on-dark); margin: 0 0 12px; }
-.jstep .jstep-tag { display: inline-block; font-family: var(--font); font-size: 12px;
-  letter-spacing: 2px; text-transform: uppercase; color: var(--teal-accent); margin-bottom: 12px; }
+.journey-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+.journey-visual::before { content: ''; position: absolute; width: 78%; aspect-ratio: 1;
+  border-radius: 50%; background: radial-gradient(circle, rgba(22,184,179,.20), transparent 68%);
+  filter: blur(30px); pointer-events: none; }
 
-/* Single column on narrow screens: the visual leads, then the copy reads
-   straight through. Sticky is dropped so nothing traps the scroll on mobile. */
+.journey-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: center; }
+
+.jstep { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px; padding: 22px;
+  transition: background-color .2s ease, border-color .2s ease, transform .2s ease; }
+.jstep:hover { background: rgba(22,184,179,.07); border-color: rgba(22,184,179,.32);
+  transform: translateY(-3px); }
+.jstep h3 { font-size: clamp(17px, 1.7vw, 21px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.15; margin: 0 0 10px; }
+.jstep p { font-family: var(--font); font-size: 14.5px; line-height: 1.65;
+  color: var(--ink-on-dark); margin: 0 0 10px; }
+.jstep .jstep-tag { display: inline-block; font-family: var(--font); font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--teal-accent); margin-bottom: 10px; }
+.jstep .btn { margin-top: 6px; }
+/* the step carrying the section CTA spans the row so the button has room */
+.jstep:has(.btn) { grid-column: 1 / -1; }
+
+@media (max-width: 980px) { .journey-steps { grid-template-columns: 1fr; } }
 @media (max-width: 860px) {
-  .journey-inner { grid-template-columns: 1fr; gap: 0; }
-  .journey-visual { position: relative; height: auto; min-height: 46vh; padding: 40px 0 8px; }
-  .journey-steps { padding: 24px 0 56px; gap: 44px; }
-  .jstep { opacity: 1; transform: none; max-width: none; }
+  .journey-inner { grid-template-columns: 1fr; gap: 28px; }
+  .journey-visual { order: -1; }
 }
 
 /* Nothing may depend on scroll position for legibility. */
