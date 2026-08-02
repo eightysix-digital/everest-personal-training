@@ -770,6 +770,16 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
 
 /* --- 2. Statement band (dark, minimal, high restraint) --- */
+/* ---- cursor glow trail (see js/layout.js) ----
+   Sits above the page but below nothing that matters: pointer-events are off
+   throughout, so it can never intercept a click. Fixed positioning keeps it
+   aligned to the viewport rather than the document, so it does not drift on
+   scroll. */
+.cursor-trail { position: fixed; inset: 0; z-index: 55; pointer-events: none; }
+.cursor-trail span { position: absolute; top: 0; left: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(22,184,179,.85), rgba(22,184,179,0) 70%);
+  filter: blur(5px); will-change: transform; }
+
 /* ---- kettlebell cursor ----
    Brand cursor for the default pointer only. Interactive and text elements
    deliberately keep their standard cursors: a link that does not show a hand,

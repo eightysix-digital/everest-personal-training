@@ -204,6 +204,63 @@
     fitTimer = setTimeout(fitClimber, 120);
   });
 
+  /* Cursor glow trail.
+     A short comet of teal light that follows the pointer. Purely decorative:
+     the real cursor is untouched, so nothing about pointing, clicking or
+     accessibility changes — this only adds light behind it.
+
+     Skipped entirely for reduced-motion, and for touch or coarse pointers
+     where there is no cursor to trail. The animation loop stops once the
+     trail has caught up and restarts on the next movement, so an idle page
+     costs nothing. */
+  (function cursorTrail() {
+    var fine = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduce) return;
+
+    var COUNT = 8;
+    var wrap = document.createElement('div');
+    wrap.className = 'cursor-trail';
+    wrap.setAttribute('aria-hidden', 'true');
+
+    var dots = [];
+    for (var i = 0; i < COUNT; i++) {
+      var d = document.createElement('span');
+      var t = i / (COUNT - 1);
+      d.style.width = d.style.height = (26 - t * 16).toFixed(1) + 'px';
+      d.style.opacity = (0.30 * (1 - t) + 0.04).toFixed(3);
+      wrap.appendChild(d);
+      dots.push({ el: d, x: -100, y: -100 });
+    }
+    document.body.appendChild(wrap);
+
+    var mx = -100, my = -100, running = false, idle = 0;
+
+    window.addEventListener('mousemove', function (e) {
+      mx = e.clientX; my = e.clientY; idle = 0;
+      if (!running) { running = true; window.requestAnimationFrame(step); }
+    }, { passive: true });
+
+    function step() {
+      var px = mx, py = my, moved = false;
+      for (var i = 0; i < dots.length; i++) {
+        var dot = dots[i];
+        var dx = px - dot.x, dy = py - dot.y;
+        if (Math.abs(dx) > 0.4 || Math.abs(dy) > 0.4) moved = true;
+        /* each dot chases the one ahead of it, easing more the further back
+           it sits, which is what gives the trail its taper */
+        dot.x += dx * (0.34 - i * 0.02);
+        dot.y += dy * (0.34 - i * 0.02);
+        dot.el.style.transform =
+          'translate3d(' + dot.x.toFixed(1) + 'px,' + dot.y.toFixed(1) + 'px,0) translate(-50%,-50%)';
+        px = dot.x; py = dot.y;
+      }
+      idle = moved ? 0 : idle + 1;
+      if (idle > 30) { running = false; return; }   /* settled — stop burning frames */
+      window.requestAnimationFrame(step);
+    }
+  })();
+
   /* mobile nav toggle */
   var header = document.querySelector('.site-header');
   var toggle = header && header.querySelector('.nav-toggle');
