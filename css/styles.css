@@ -744,6 +744,40 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @media (prefers-reduced-motion: reduce) { .scroll-cue { animation: none; } }
 
 /* --- 2. Statement band (dark, minimal, high restraint) --- */
+/* ---- kettlebell cursor ----
+   Brand cursor for the default pointer only. Interactive and text elements
+   deliberately keep their standard cursors: a link that does not show a hand,
+   or a field that does not show a caret, costs usability for the sake of a
+   flourish. Every rule falls back to the native cursor if the image fails.
+   Suppressed on touch and coarse pointers, where it is never seen anyway. */
+@media (hover: hover) and (pointer: fine) {
+  body { cursor: url('/assets/img/cursor-kettlebell.png') 16 22, auto; }
+  a, button, summary, label, select, [role="button"], .fopt, .quiz-opt, .nav-toggle {
+    cursor: url('/assets/img/cursor-kettlebell.png') 16 22, pointer; }
+  input, textarea { cursor: text; }
+  input[type="range"], input[type="checkbox"], input[type="radio"] { cursor: pointer; }
+}
+
+/* ---- atmospheric glow ----
+   Slow-drifting teal light pools that give flat dark bands depth. Applied
+   via .has-glow so it can be dropped onto any dark section. The host needs
+   position:relative and overflow:hidden, and its content needs a z-index
+   above 0 so the glow stays behind. Purely decorative. */
+.has-glow::before { content: ''; position: absolute; inset: -12%; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 22% 26%, rgba(22,184,179,.17), transparent 70%),
+    radial-gradient(34% 27% at 79% 60%, rgba(11,124,122,.15), transparent 70%),
+    radial-gradient(28% 24% at 46% 92%, rgba(22,184,179,.10), transparent 70%);
+  filter: blur(12px);
+  animation: atmosDrift 38s ease-in-out infinite alternate; }
+@keyframes atmosDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2.5%, -3%, 0) scale(1.09); }
+  100% { transform: translate3d(-2%, 2.5%, 0) scale(1.04); }
+}
+@media (prefers-reduced-motion: reduce) { .has-glow::before { animation: none; } }
+
 .statement { position: relative; background: var(--black); color: #fff; overflow: hidden;
   padding: clamp(80px, 14vh, 150px) 0; }
 .statement .rail { position: relative; z-index: 2; }
