@@ -84,7 +84,11 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .logo { display: flex; align-items: center; gap: 9px; font-weight: 500; letter-spacing: .5px; }
 .logo-mark { width: 28px; height: 28px; border-radius: 8px; background: var(--teal-deep);
   display: flex; align-items: center; justify-content: center; color: #fff; font-size: 17px; }
-.nav { display: flex; gap: 20px; font-size: 14px; font-weight: 500; color: var(--black); }
+/* Nav uses the display face in caps to match the hero headline. Slightly
+   tighter gap and a touch of tracking, since caps read wider than sentence
+   case and the seven items have to stay on one line. */
+.nav { display: flex; gap: 17px; font-family: var(--display); font-size: 13px;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--black); }
 .nav a { color: var(--black); transition: color .12s ease; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-deep); }
 .nav-cta { display: none; }
@@ -840,6 +844,31 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @media (max-width: 460px) { .impact-stats { grid-template-columns: 1fr; } }
 
 /* --- 5. Product sales (clean, direct, image-led cards) --- */
+/* ---- testimonials marquee ---- */
+.says { position: relative; overflow: hidden; background: var(--black);
+  padding: clamp(56px, 8vh, 88px) 0; }
+.says .wrap, .says .logo-marquee { position: relative; z-index: 2; }
+.says-head { display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.says .lw-label { text-align: left; margin: 0; color: var(--teal-on-dark); }
+.says-rating { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font);
+  font-size: 14px; color: var(--ink-on-dark); border: 1px solid rgba(255,255,255,.16);
+  padding: 8px 15px; border-radius: 22px; transition: border-color .16s ease; }
+.says-rating:hover { border-color: var(--teal-accent); }
+.says-rating .stars { color: var(--teal-accent); letter-spacing: 2px; }
+.says-rating strong { color: #fff; font-weight: 600; }
+.says-marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.say-card { flex: 0 0 auto; width: min(360px, 78vw); margin: 0 18px 0 0;
+  background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 16px; padding: 22px 24px; white-space: normal; }
+.say-stars { color: var(--teal-accent); font-size: 14px; letter-spacing: 2px; }
+.say-card blockquote { margin: 10px 0 14px; font-family: var(--font); font-size: 15px;
+  line-height: 1.65; color: #fff; }
+.say-card figcaption { font-family: var(--font); font-size: 13px; color: var(--grey-muted); }
+.say-card figcaption span { color: var(--slate); }
+@media (max-width: 560px) { .says-head { flex-direction: column; align-items: flex-start; } }
+
 .products { background: var(--cloud); padding: clamp(72px, 11vh, 120px) 0; }
 .products .p-head { display: flex; align-items: flex-end; justify-content: space-between;
   gap: 20px; flex-wrap: wrap; margin-bottom: 40px; }
@@ -1146,8 +1175,14 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @media (max-width: 600px) { .logo-item { font-size: 22px; margin-right: 48px; } .logo-item i { font-size: 28px; } }
 
 /* --- Hero star rating (made-up placeholder trust signal) --- */
+/* Rating sits to the right of the hero rail, opposite the headline, so it
+   reads as a separate proof point rather than a footnote to the buttons. */
 .hero-rating { display: inline-flex; align-items: center; gap: 11px; margin-top: 24px;
-  color: var(--ink-on-dark); font-family: var(--font); font-size: 14px; }
+  color: var(--ink-on-dark); font-family: var(--font); font-size: 14px;
+  float: right; clear: both; background: rgba(10,10,10,.55); padding: 9px 16px;
+  border-radius: 22px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.12); }
+@media (max-width: 760px) { .hero-rating { float: none; } }
 .hero-rating .stars { color: var(--teal-accent); letter-spacing: 2px; font-size: 15px; }
 .hero-rating strong { color: #fff; font-weight: 600; }
 

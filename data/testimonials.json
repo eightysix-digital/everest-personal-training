@@ -1,0 +1,13 @@
+{
+  "note": "REAL REVIEWS ONLY. Never write, paraphrase, embellish or invent an entry here. Every quote must be something a real person actually said, copied verbatim from your Google Business Profile or given to you directly with their permission to publish. Inventing testimonials is misleading conduct under the Fair Trading Act and would undermine exactly the credibility this site is trying to build with councils, ACC and health-sector partners. The section stays hidden until display is true AND at least one review exists, so an empty file is safe to ship.",
+
+  "google": {
+    "display": false,
+    "rating": null,
+    "reviewCount": null,
+    "profileUrl": "",
+    "sourceNote": "Set rating and reviewCount to the figures shown on the live Google Business Profile, and profileUrl to that profile, so visitors can verify the number themselves. Re-check periodically: a published rating that no longer matches the profile is a false claim."
+  },
+
+  "reviews": []
+}

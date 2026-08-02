@@ -115,6 +115,53 @@
     });
   }
 
+  /* ---- Testimonials (real reviews only) ----
+     Mirrors the impact-metrics rule: the section stays hidden until the data
+     file actually holds something. Nothing here invents or pads content, so
+     shipping an empty testimonials.json simply shows no section. */
+  function renderTestimonials(data) {
+    var section = document.getElementById('says');
+    var track = document.getElementById('says-track');
+    if (!section || !track || !data) return;
+
+    var reviews = (data.reviews || []).filter(function (r) { return r && r.quote; });
+    if (!reviews.length) return; // stays hidden
+
+    /* The marquee slides by -50%, so the set is duplicated and each half must
+       be wider than the viewport. Repeat short lists so no gap appears. */
+    var reps = reviews.length >= 6 ? 1 : Math.ceil(6 / reviews.length);
+    var cards = [];
+    for (var pass = 0; pass < reps * 2; pass++) {
+      reviews.forEach(function (r) {
+        var stars = Math.max(0, Math.min(5, parseInt(r.rating, 10) || 5));
+        cards.push(
+          '<figure class="say-card"' + (pass ? ' aria-hidden="true"' : '') + '>' +
+            '<span class="say-stars" aria-label="' + stars + ' out of 5">' +
+              new Array(stars + 1).join('★') + '</span>' +
+            '<blockquote>' + esc(r.quote) + '</blockquote>' +
+            '<figcaption>' + esc(r.name || 'Verified review') +
+              (r.source ? ' <span>· ' + esc(r.source) + '</span>' : '') +
+            '</figcaption>' +
+          '</figure>');
+      });
+    }
+    track.innerHTML = cards.join('');
+
+    var g = data.google || {};
+    if (g.display && g.rating && g.profileUrl) {
+      var el = document.getElementById('says-rating');
+      if (el) {
+        el.href = g.profileUrl;
+        el.innerHTML = '<span class="stars" aria-hidden="true">★★★★★</span> <strong>' +
+          esc(String(g.rating)) + '</strong>' +
+          (g.reviewCount ? ' from ' + esc(String(g.reviewCount)) + ' Google reviews' : ' on Google');
+        el.hidden = false;
+      }
+    }
+    section.hidden = false;
+  }
+
   load('/data/programs.json').then(renderPrograms).catch(function (e) { console.error(e); });
   load('/data/impact.json').then(renderImpact).catch(function (e) { console.error(e); });
+  load('/data/testimonials.json').then(renderTestimonials).catch(function (e) { console.error(e); });
 })();
