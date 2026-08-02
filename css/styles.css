@@ -1,4 +1,4 @@
-/* Everest Personal Training - core styles */
+﻿/* Everest Personal Training - core styles */
 :root {
   /* --- Brand palette (from the development brief) --- */
   --black: #111111;       /* Everest Black: primary text, dark sections */
@@ -261,6 +261,26 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
+/* Site-wide keyboard focus indicator. Uses :focus-visible so it appears for
+   keyboard users without ringing every mouse click. The white outer ring keeps
+   it visible on dark hero and journey sections as well as light ones. */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible,
+input:focus-visible, select:focus-visible, textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--teal-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.55);
+}
+
+/* Skip link: first tab stop on every page, so keyboard and screen-reader users
+   can jump the header and the long journey sections. */
+.skip-link { position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--teal-deep); color: #fff; padding: 11px 18px; border-radius: 8px;
+  font-family: var(--font); font-size: 14px; font-weight: 500;
+  transition: top .16s ease; }
+.skip-link:focus { top: 12px; }
+
 /* ============================================================
    Shared page components (inner pages)
    ============================================================ */
@@ -470,7 +490,259 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
 
-/* steps (how it works) — connected journey */
+/* ============================================================
+   Scroll journey primitives (see js/journey.js)
+   Shared shell for the body-journey sections: a visual that sticks while
+   its copy steps scroll past. Progress through the section is published as
+   --p (0..1) so visuals can respond to scroll without an animation library.
+   ============================================================ */
+
+/* reading-progress bar */
+.scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60;
+  pointer-events: none; background: transparent; }
+.scroll-progress span { display: block; height: 100%; transform: scaleX(0); transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--teal-deep), var(--teal-accent));
+  will-change: transform; }
+
+/* journey shell */
+/* --p was the scroll-progress value that drove the old sticky journey. The
+   cards no longer scrub with scroll, so it is pinned to its finished value:
+   every layer, plate and highlight renders complete, and the .reveal system
+   handles the entrance instead. Left in place because the layer opacities and
+   plate clip-paths are still expressed against it. */
+.journey { --p: 1; position: relative; background: var(--black); color: #fff;
+  overflow: hidden; isolation: isolate; }
+
+/* Atmosphere: slow-drifting teal light pools that give the large dark
+   sections depth instead of flat black. Two layers — a blob field that
+   drifts on its own timer, and a raking blade of light that brightens as
+   the section is scrolled. Both are pseudo-elements so no markup changes,
+   and both are purely decorative. */
+.journey::before { content: ''; position: absolute; inset: -12%; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38% 30% at 22% 26%, rgba(22,184,179,.17), transparent 70%),
+    radial-gradient(34% 27% at 79% 60%, rgba(11,124,122,.15), transparent 70%),
+    radial-gradient(28% 24% at 46% 92%, rgba(22,184,179,.10), transparent 70%);
+  filter: blur(12px);
+  animation: atmosDrift 38s ease-in-out infinite alternate; }
+.journey::after { content: ''; position: absolute; top: -20%; bottom: -20%;
+  left: 8%; width: 36%; z-index: 0; pointer-events: none;
+  transform: skewX(-14deg);
+  background: linear-gradient(100deg, transparent, rgba(22,184,179,.085) 46%, transparent);
+  opacity: calc(.22 + var(--p) * .55); }
+@keyframes atmosDrift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(2.5%, -3%, 0) scale(1.09); }
+  100% { transform: translate3d(-2%, 2.5%, 0) scale(1.04); }
+}
+
+/* Card layout. Replaced the sticky scroll-scrubbed version: it held the
+   visual on screen until the reader reached the bottom of the section, so
+   the anatomy revealed too late to be seen. Cards show as soon as they
+   scroll into view, using the site's existing .reveal system. */
+.journey-inner { position: relative; z-index: 1;
+  max-width: var(--maxw); margin: 0 auto; padding: clamp(64px, 9vh, 104px) 24px;
+  display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+  gap: clamp(32px, 5vw, 64px); align-items: center; }
+
+.journey-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+.journey-visual::before { content: ''; position: absolute; width: 78%; aspect-ratio: 1;
+  border-radius: 50%; background: radial-gradient(circle, rgba(22,184,179,.20), transparent 68%);
+  filter: blur(30px); pointer-events: none; }
+
+.journey-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: center; }
+
+.jstep { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 16px; padding: 22px;
+  transition: background-color .2s ease, border-color .2s ease, transform .2s ease; }
+.jstep:hover { background: rgba(22,184,179,.07); border-color: rgba(22,184,179,.32);
+  transform: translateY(-3px); }
+.jstep h3 { font-size: clamp(17px, 1.7vw, 21px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.15; margin: 0 0 10px; }
+.jstep p { font-family: var(--font); font-size: 14.5px; line-height: 1.65;
+  color: var(--ink-on-dark); margin: 0 0 10px; }
+.jstep .jstep-tag { display: inline-block; font-family: var(--font); font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--teal-accent); margin-bottom: 10px; }
+.jstep .btn { margin-top: 6px; }
+/* the step carrying the section CTA spans the row so the button has room */
+.jstep:has(.btn) { grid-column: 1 / -1; }
+
+@media (max-width: 980px) { .journey-steps { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+  .journey-inner { grid-template-columns: 1fr; gap: 28px; }
+  .journey-visual { order: -1; }
+}
+
+/* Nothing may depend on scroll position for legibility. */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress { display: none; }
+  .journey::before { animation: none; }
+  .journey-visual { position: relative; height: auto; }
+  .journey-steps { padding: 40px 0; gap: 40px; }
+  .jstep { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---- journey visuals ----
+   Layers fade in against --p (0..1 through the section) using clamp(), so the
+   whole reveal is CSS arithmetic with no per-layer JS. Under reduced motion
+   journey.js pins --p to 1, which lands every layer fully visible. */
+.jviz { width: 100%; max-width: 340px; height: auto; max-height: 78vh; overflow: visible; }
+.jviz g { transition: opacity .5s ease; }
+
+/* neural */
+.jviz-neural .jv-body { fill: none; stroke: var(--teal-accent); stroke-width: 1.4; opacity: .3; stroke-linecap: round; }
+.jviz-neural .jv-signal { fill: none; stroke: var(--teal-accent); stroke-width: 2.6; stroke-linecap: round;
+  filter: drop-shadow(0 0 7px rgba(22,184,179,.5)); }
+.jviz-neural .jl { opacity: 0; }
+.jviz-neural .jl-1 { opacity: clamp(0, calc((var(--p) - .06) * 9), 1); }
+.jviz-neural .jl-2 { opacity: clamp(0, calc((var(--p) - .32) * 9), 1); }
+.jviz-neural .jl-4 { opacity: clamp(0, calc((var(--p) - .38) * 9), 1); }
+.jviz-neural .jl-3 { opacity: clamp(0, calc((var(--p) - .62) * 9), 1); }
+.jviz-neural .jn { fill: var(--teal-accent); opacity: .3; }
+.jviz-neural .jn-2 { opacity: clamp(.3, calc((var(--p) - .2) * 9), 1); }
+.jviz-neural .jn-3 { opacity: clamp(.3, calc((var(--p) - .45) * 9), 1); }
+.jviz-neural .jn-4 { opacity: clamp(.3, calc((var(--p) - .7) * 9), 1); }
+
+/* Anatomy plates (public domain, Gray's Anatomy 1918).
+   The PNGs are alpha masks — every pixel white, ink density in the alpha —
+   and the teal is applied here as a background colour. That keeps the files
+   small (constant RGB channels compress well) and means the brand colour is
+   a style decision, not baked into the asset: change the variable and every
+   plate restyles. Sized by aspect-ratio so nothing shifts while they load. */
+.jviz-plate { position: relative; width: 100%; max-width: 330px; }
+.plate-fig { width: 100%; background-color: var(--teal-accent);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  filter: drop-shadow(0 0 26px rgba(22,184,179,.32));
+  clip-path: inset(calc((1 - clamp(.15, calc(var(--p) * 1.5), 1)) * 100%) 0 0 0); }
+.plate-muscle { aspect-ratio: 560 / 950;
+  -webkit-mask-image: url('/assets/img/anatomy-muscle-v2.png');
+          mask-image: url('/assets/img/anatomy-muscle-v2.png'); }
+.plate-heart { aspect-ratio: 420 / 398;
+  -webkit-mask-image: url('/assets/img/anatomy-heart.png');
+          mask-image: url('/assets/img/anatomy-heart.png'); }
+.plate-skeleton { aspect-ratio: 520 / 1135;
+  -webkit-mask-image: url('/assets/img/anatomy-skeleton.png');
+          mask-image: url('/assets/img/anatomy-skeleton.png'); }
+/* faint orbit ring behind the whole-person figure */
+.plate-ring { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1;
+  fill: none; stroke: var(--teal-accent); stroke-width: 1; stroke-dasharray: 3 9;
+  opacity: clamp(0, calc((var(--p) - .5) * 5), .32); }
+/* Without mask support the div would be a solid teal block, so hide it. */
+@supports not ((-webkit-mask-image: url('#')) or (mask-image: url('#'))) {
+  .plate-fig { display: none; }
+}
+.jviz-plate-wide { max-width: 400px; }
+/* ECG trace sits below the plate rather than over it, so it never obscures
+   the anatomy */
+.plate-trace { display: block; width: 100%; height: auto; margin-top: -6%; }
+.jviz-plate .plate-force { position: absolute; inset: 0; width: 100%; height: 100%;
+  fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round;
+  opacity: clamp(0, calc((var(--p) - .5) * 6), .9);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,.7)); }
+@media (prefers-reduced-motion: reduce) {
+  .plate-fig { clip-path: none; }
+}
+
+/* strength: outline, then muscle, tendon, bone, force */
+.jviz-strength .jv-outline { fill: none; stroke: var(--teal-accent); stroke-width: 1.3; opacity: .22; stroke-linecap: round; }
+.jviz-strength .sl { fill: none; stroke-linecap: round; }
+.jviz-strength .sl-muscle { stroke: var(--teal-accent); stroke-width: 7; opacity: clamp(0, calc((var(--p) - .18) * 8), .8); }
+.jviz-strength .sl-tendon { stroke: var(--mist-line); stroke-width: 3; opacity: clamp(0, calc((var(--p) - .42) * 8), .85); }
+.jviz-strength .sl-bone { stroke: #fff; stroke-width: 2.4; opacity: clamp(0, calc((var(--p) - .66) * 8), .9); }
+.jviz-strength .sl-force { stroke: var(--teal-accent); stroke-width: 2; opacity: .8;
+  filter: drop-shadow(0 0 6px rgba(22,184,179,.6)); }
+.jviz-strength .fa { stroke-dasharray: 22 200; stroke-dashoffset: 222; animation: forceRun 3s linear infinite; }
+.jviz-strength .fa-b { animation-duration: 3.8s; animation-delay: .8s; }
+@keyframes forceRun { to { stroke-dashoffset: 0; } }
+
+/* conditioning: lungs, heart, flow, trace */
+.jviz-cardio g { fill: none; stroke-linecap: round; }
+.jviz-cardio .cv-lungs { stroke: var(--teal-accent); stroke-width: 1.6; opacity: clamp(.2, calc((var(--p) - .1) * 8), .55); }
+.jviz-cardio .cv-heart { stroke: var(--teal-accent); stroke-width: 2.4; fill: rgba(22,184,179,.16);
+  opacity: clamp(.3, calc((var(--p) - .05) * 8), 1); transform-origin: 160px 258px; animation: heartBeat 1.8s ease-in-out infinite; }
+.jviz-cardio .cv-flow { stroke: var(--teal-accent); stroke-width: 2.2; opacity: clamp(0, calc((var(--p) - .4) * 8), .9);
+  filter: drop-shadow(0 0 6px rgba(22,184,179,.5)); }
+.jviz-cardio .cf { stroke-dasharray: 18 180; stroke-dashoffset: 198; animation: flowRun 2.6s linear infinite; }
+.jviz-cardio .cf-2 { animation-delay: .5s; } .jviz-cardio .cf-3 { animation-delay: 1s; } .jviz-cardio .cf-4 { animation-delay: 1.5s; }
+.jviz-cardio .cv-trace { stroke: var(--mist-line); stroke-width: 1.8; opacity: clamp(0, calc((var(--p) - .68) * 8), .8); }
+.jviz-cardio .ecg { stroke-dasharray: 380; stroke-dashoffset: 380; animation: ecgRun 3.4s ease-in-out infinite; }
+@keyframes heartBeat { 0%,100% { transform: scale(1); } 18% { transform: scale(1.13); } 34% { transform: scale(1); } }
+@keyframes flowRun { to { stroke-dashoffset: 0; } }
+@keyframes ecgRun { to { stroke-dashoffset: -380; } }
+
+/* brain: one region lights per step, so the copy and the diagram always agree */
+.jviz-brain .br-outline, .jviz-brain .br-stem { fill: none; stroke: var(--teal-accent); stroke-width: 1.6; opacity: .4; }
+.jviz-brain .br-region ellipse { fill: var(--teal-accent); opacity: .1; transition: opacity .45s ease; }
+.jviz-brain .br-region { transition: opacity .45s ease; }
+[data-step="0"] .br-motor ellipse, [data-step="1"] .br-cerebellum ellipse,
+[data-step="2"] .br-prefrontal ellipse, [data-step="3"] .br-hippocampus ellipse,
+[data-step="4"] .br-amygdala ellipse, [data-step="5"] .br-basal ellipse {
+  opacity: .72; filter: drop-shadow(0 0 12px rgba(22,184,179,.75)); }
+
+/* whole person: every system layered together */
+.jviz-whole g { fill: none; stroke: var(--teal-accent); stroke-linecap: round; }
+.jviz-whole .wh-1 { stroke-width: 1.4; opacity: .3; }
+.jviz-whole .wh-2 { stroke-width: 7; opacity: clamp(0, calc((var(--p) - .12) * 8), .55); }
+.jviz-whole .wh-3 { stroke-width: 2.2; fill: rgba(22,184,179,.18); opacity: clamp(0, calc((var(--p) - .3) * 8), 1); }
+.jviz-whole .wh-4 { stroke-width: 2; fill: rgba(22,184,179,.14); opacity: clamp(0, calc((var(--p) - .48) * 8), 1); }
+.jviz-whole .wh-ring { stroke-width: 1; opacity: clamp(0, calc((var(--p) - .66) * 6), .3); stroke-dasharray: 3 9; }
+
+/* ---- capability network: one person outward to communities ---- */
+.capability { background: var(--black); color: #fff; padding: clamp(72px, 12vh, 132px) 0; }
+.capability .cap-head { max-width: 640px; margin-bottom: 40px; }
+.capability .eyebrow-3 { color: var(--teal-accent); }
+.capability h2 { font-size: clamp(28px, 4.2vw, 54px); font-weight: 700; text-transform: uppercase;
+  line-height: 1.03; margin: 0; }
+.capability .cap-head p { font-family: var(--font); font-size: clamp(15px, 1.7vw, 18px);
+  color: var(--ink-on-dark); line-height: 1.7; margin: 18px 0 0; }
+.cap-net { margin: 8px 0 40px; }
+.cap-net svg { width: 100%; height: auto; max-height: 300px; display: block; }
+.cap-net .cn-links { fill: none; stroke: var(--teal-accent); stroke-width: 1; opacity: .3; }
+.cap-net .cn-nodes circle { fill: var(--teal-accent); opacity: .55;
+  animation: capPulse 4s ease-in-out infinite; }
+.cap-net .cn-nodes circle:nth-child(3n) { animation-delay: .8s; }
+.cap-net .cn-nodes circle:nth-child(3n+1) { animation-delay: 1.6s; }
+.cap-net .cn-root { opacity: 1; filter: drop-shadow(0 0 10px rgba(22,184,179,.8)); }
+@keyframes capPulse { 0%, 100% { opacity: .4; } 50% { opacity: .95; } }
+.cap-list { list-style: none; margin: 0 0 34px; padding: 0; display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px 32px; }
+.cap-list li { display: flex; align-items: center; gap: 12px; font-family: var(--font);
+  font-size: 15.5px; color: var(--ink-on-dark); }
+.cap-list li i { color: var(--teal-accent); font-size: 20px; flex: 0 0 auto; }
+.cap-cta { align-self: flex-start; }
+@media (max-width: 700px) { .cap-net { display: none; } }
+@media (prefers-reduced-motion: reduce) { .cap-net .cn-nodes circle { animation: none; opacity: .7; } }
+
+/* medical/scientific disclaimer â€” required, do not remove */
+/* image attribution — required by CC BY on one illustration, do not remove */
+.footer-credits { font-size: 11.5px; color: var(--grey-muted); margin-top: 8px; line-height: 1.6; }
+.footer-credits a { color: var(--ink-on-dark); text-decoration: underline; }
+
+.journey-note { background: var(--black-deep); padding: 0 0 64px; }
+.journey-note p { font-family: var(--font); font-size: 13px; line-height: 1.75;
+  color: var(--grey-muted); max-width: 78ch; margin: 0; border-left: 2px solid rgba(255,255,255,.14);
+  padding-left: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .jviz-strength .fa, .jviz-cardio .cf, .jviz-cardio .ecg { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
+  .jviz-cardio .cv-heart { animation: none; }
+  /* No perspective rotation: a diagram that tilts as you scroll is exactly the
+     kind of motion that triggers discomfort. */
+  .jviz { transform: none; transition: none; }
+  .journey-visual { perspective: none; }
+  .journey-visual::before { opacity: .4; }
+}
+/* On phones the visual is small and above the copy, so the tilt reads as
+   wobble rather than depth. */
+@media (max-width: 860px) {
+  .jviz { transform: none; }
+  .journey-visual { perspective: none; }
+}
+
+/* steps (how it works) â€” connected journey */
 .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; position: relative; }
 .step { background: #fff; border: 1px solid rgba(0,0,0,.06); border-radius: 18px; padding: 26px;
   box-shadow: 0 12px 30px rgba(17,17,17,.05);
@@ -535,7 +807,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
   transform: translateY(-4px); box-shadow: 0 16px 34px rgba(17,17,17,.10); }
 .feature:hover, .coach:hover, .evidence-tier:hover { border-color: var(--teal-accent); }
 
-/* story steps (about page) — stack as you scroll */
+/* story steps (about page) â€” stack as you scroll */
 .story { position: relative; max-width: 780px; margin-top: 8px; display: flex; flex-direction: column; gap: 18px; }
 .story-item { position: sticky; padding: 30px 32px 30px 96px; background: #fff;
   border: 1px solid rgba(0,0,0,.05); border-radius: 18px; box-shadow: 0 -12px 44px rgba(17,17,17,.12); }
@@ -589,7 +861,7 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 }
 
 /* ============================================================
-   HOMEPAGE REDESIGN v2 — full-bleed, image-led, cinematic
+   HOMEPAGE REDESIGN v2 â€” full-bleed, image-led, cinematic
    Refs: Exos (authority + scale), SpaceX / Boring Co (restraint),
    The Body Coach (accessibility), Lift Club (character).
    Principle: every major block is full width; imagery carries the
@@ -604,13 +876,13 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .rail { max-width: 1280px; margin: 0 auto; padding: 0 40px; width: 100%; }
 @media (max-width: 700px) { .rail { padding: 0 22px; } }
 
-/* ascent-line brand device — the route to the summit.
+/* ascent-line brand device â€” the route to the summit.
    The line reads as a climb up Everest: base camp bottom-left, four camps
    (the .node markers) where the route levels off, then the final summit push.
    A climber dot repeatedly ascends the route, drawing the climbed portion
    behind it, as a figure for a client's progress toward their own summit.
 
-   NOTE: the route geometry lives in TWO places — the `d` attribute on
+   NOTE: the route geometry lives in TWO places â€” the `d` attribute on
    .trail / .trail-climb in each page's SVG, and the `offset-path` below that
    the climber follows. If you change the shape, update BOTH or the dot will
    drift off the line. */
@@ -635,13 +907,13 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .ascent .summit { fill: var(--teal-accent); opacity: 0;
   animation: nodeIn .5s ease 1.4s forwards, summitReached 7s ease-in-out 1.6s infinite; }
 
-/* the climber — keyframe percentages match .trail-climb so the dot stays
+/* the climber â€” keyframe percentages match .trail-climb so the dot stays
    at the head of the drawn line */
 .ascent .climber { offset-path: path("M0,748 L150,706 L300,716 L455,612 L605,626 L760,512 L905,528 L1050,392 L1150,414 L1245,256 L1290,274 L1320,120");
   offset-rotate: 0deg; offset-distance: 0%; opacity: 0;
   animation: climb 7s ease-in-out 1.6s infinite; }
 /* the kettlebell itself. Drawn centred on 0,0 so the motion path positions it
-   by its middle. .climber-scale is counter-scaled by js/layout.js — the SVG is
+   by its middle. .climber-scale is counter-scaled by js/layout.js â€” the SVG is
    stretched (preserveAspectRatio="none") so the route always spans the hero,
    and without that correction the kettlebell squashes badly on narrow screens. */
 .ascent .kb-body { fill: var(--teal-accent); }
@@ -696,9 +968,14 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 @keyframes kenburns { to { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .cine-hero .cine-bg { animation: none; transform: none; } }
 .cine-hero .rail { position: relative; z-index: 2; padding-top: 150px; padding-bottom: 8vh; }
+
+/* Sits over photography, so it needs its own backing rather than relying on
+   the hero gradient. Teal on a bright patch of the image failed contrast. */
 .cine-eyebrow { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font);
   font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--teal-accent);
-  margin-bottom: 22px; }
+  margin-bottom: 22px; background: rgba(10,10,10,.62); padding: 7px 15px 7px 12px;
+  border-radius: 20px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(22,184,179,.3); }
 .cine-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--teal-accent); }
 .cine-hero h1 { font-size: clamp(44px, 8.5vw, 116px); line-height: .94; font-weight: 700;
   letter-spacing: -0.02em; text-transform: uppercase; max-width: 15ch; }
@@ -708,26 +985,31 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    through the image plane to rest at full size and sharpness.
    Delays are staggered across the kettlebell's ascent, so the headline builds
    while the climb is underway. If you change the climb timing, the route, or
-   the number of words in the headline, these need to move with it — there must
+   the number of words in the headline, these need to move with it â€” there must
    be one delay per word, or any extra word fires at 0s and appears first.
    The visible h1 is aria-hidden; the real heading for assistive tech and search
    engines is the .visually-hidden h1 at the top of the page, so nothing is
    hidden from them while this plays. */
 .cine-hero h1.climb-title { perspective: 820px; perspective-origin: 24% 55%; }
 .cine-hero h1.climb-title span { display: inline-block; opacity: 0;
-  transform: translateZ(-560px);
-  animation: wordEmerge .85s cubic-bezier(.17,.78,.3,1) forwards;
+  transform: translateZ(-380px);
+  animation: wordEmerge .55s cubic-bezier(.17,.78,.3,1) forwards;
   will-change: transform, opacity, filter; }
-.cine-hero h1.climb-title span:nth-child(1) { animation-delay: 1.2s; }
-.cine-hero h1.climb-title span:nth-child(2) { animation-delay: 1.75s; }
-.cine-hero h1.climb-title span:nth-child(3) { animation-delay: 2.3s; }
-.cine-hero h1.climb-title span:nth-child(4) { animation-delay: 2.85s; }
-.cine-hero h1.climb-title span:nth-child(5) { animation-delay: 3.4s; }
-.cine-hero h1.climb-title span:nth-child(6) { animation-delay: 3.95s; }
-.cine-hero h1.climb-title span:nth-child(7) { animation-delay: 4.5s; }
+/* Timing is deliberately tight. The headline is the largest contentful paint
+   on this page, so every millisecond it spends at opacity 0 is added directly
+   to the site's LCP score. The whole line is on screen by ~1.1s. Do not
+   stretch these delays to re-sync with the kettlebell climb â€” legibility and
+   load performance beat animation choreography here. */
+.cine-hero h1.climb-title span:nth-child(1) { animation-delay: .1s; }
+.cine-hero h1.climb-title span:nth-child(2) { animation-delay: .2s; }
+.cine-hero h1.climb-title span:nth-child(3) { animation-delay: .3s; }
+.cine-hero h1.climb-title span:nth-child(4) { animation-delay: .4s; }
+.cine-hero h1.climb-title span:nth-child(5) { animation-delay: .5s; }
+.cine-hero h1.climb-title span:nth-child(6) { animation-delay: .6s; }
+.cine-hero h1.climb-title span:nth-child(7) { animation-delay: .7s; }
 @keyframes wordEmerge {
-  0%   { opacity: 0; transform: translateZ(-560px); filter: blur(11px); }
-  40%  { opacity: 1; }
+  0%   { opacity: 0; transform: translateZ(-380px); filter: blur(7px); }
+  45%  { opacity: 1; }
   100% { opacity: 1; transform: translateZ(0); filter: blur(0); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -818,15 +1100,14 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   transition: transform .18s ease, box-shadow .18s ease; }
 .product:hover { transform: translateY(-6px); box-shadow: 0 26px 54px rgba(17,17,17,.14); }
 .product .pic { position: relative; aspect-ratio: 5/4; background-size: cover; background-position: center; }
-/* Branded card panel used instead of stock photography: the same mountain mark
-   and wordmark as the site header, so every product reads as Everest. */
+/* Branded card panel used instead of stock photography.
+   The Everest logo has transparent outer background but its internal detail
+   (mountain crevices, barbell ring centres) is dark negative space, so this
+   panel must stay on a DARK background. Do not move it onto a light surface
+   without a light-background variant of the logo. */
 .product .pic-brand { display: flex; align-items: center; justify-content: center;
   background: linear-gradient(150deg, var(--black-deep) 0%, var(--teal-darkest) 100%); }
-.pic-lockup { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.pic-mark { width: 54px; height: 54px; border-radius: 15px; background: var(--teal-deep);
-  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 30px; }
-.pic-word { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: 3px;
-  color: var(--teal-on-dark); }
+.pic-logo { width: 62%; max-width: 190px; height: auto; display: block; }
 /* catalogue groups: weekly plans, one-off services and proposal work never
    share a grid, so pricing cannot be read across different billing models */
 .cat-group + .cat-group { margin-top: 52px; }
@@ -1084,7 +1365,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .assurance-item p { margin: 0; color: var(--ink-on-dark); font-size: 13.5px; line-height: 1.5; }
 @media (max-width: 820px) { .assurance .rail { grid-template-columns: 1fr; gap: 30px; } }
 
-/* --- Trust logo wall — scrolling marquee (placeholder wordmarks) --- */
+/* --- Trust logo wall â€” scrolling marquee (placeholder wordmarks) --- */
 .logo-wall { padding: 48px 0; background: #fff; overflow: hidden;
   border-top: 1px solid rgba(0,0,0,.06); border-bottom: 1px solid rgba(0,0,0,.06); }
 .logo-wall.on-cloud { background: var(--cloud); }
@@ -1099,7 +1380,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .logo-item { display: inline-flex; align-items: center; gap: 13px; margin-right: 72px; white-space: nowrap;
   color: var(--slate); opacity: .62; font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: -.01em; }
 .logo-item i { font-size: 36px; color: var(--teal-deep); }
-/* static, grouped variant of the logo wall — used where the relationship type
+/* static, grouped variant of the logo wall â€” used where the relationship type
    has to be stated rather than blurred into one scrolling row */
 .org-group + .org-group { margin-top: 36px; }
 .org-group .lw-label { text-align: left; margin-bottom: 18px; }
@@ -1242,7 +1523,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .post-related h2 { font-size: clamp(22px, 3vw, 32px); margin: 0 0 24px; }
 
 /* ============================================================
-   EMPOWER page — Everest structure + EMPOWER (pink/blue) energy.
+   EMPOWER page â€” Everest structure + EMPOWER (pink/blue) energy.
    Everest black/white/teal stay structural; EMPOWER pink/blue are
    accents only. Tokens are page-scoped in spirit (only used by .emp-*).
    ============================================================ */
@@ -1266,7 +1547,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-grid .feature-icon { background: var(--emp-wing); box-shadow: 0 10px 22px rgba(231,48,142,.26); }
 .emp-grid .feature::before { background: var(--emp-wing); }
 .emp-steps .step-num { background: var(--emp-wing); box-shadow: 0 10px 22px rgba(231,48,142,.3); }
-/* 3 across, 2 under (5 steps) — hide the single-row connecting line */
+/* 3 across, 2 under (5 steps) â€” hide the single-row connecting line */
 .steps.emp-steps { grid-template-columns: repeat(3, 1fr); }
 .steps.emp-steps::before { display: none; }
 @media (max-width: 860px) { .steps.emp-steps { grid-template-columns: 1fr 1fr; } }

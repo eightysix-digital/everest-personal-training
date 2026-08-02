@@ -94,6 +94,11 @@
         '</div>' +
         '<div class="wrap footer-note">' +
           '<p>Everest provides fitness coaching and human performance services. This is not clinical healthcare. We work alongside health professionals and refer where appropriate.</p>' +
+          /* Required by the CC BY 2.5 licence on the skeleton illustration used
+             in the homepage body journey. Do not remove while that image is in
+             use. The Gray's Anatomy plates alongside it are public domain and
+             carry no such obligation. */
+          '<p class="footer-credits">Skeleton illustration by <a href="https://commons.wikimedia.org/wiki/File:Skeleton_whole_body.svg" target="_blank" rel="noopener">Patrick J. Lynch, medical illustrator</a>, used under <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener">CC BY 2.5</a>. Other anatomical illustrations from Gray&rsquo;s Anatomy (1918), public domain.</p>' +
           '<span class="footer-credit">Another website designed and built by <a href="https://eightysix.digital/web-design/web-design-christchurch/" target="_blank" rel="noopener">EightySix Digital</a></span>' +
         '</div>' +
       '</footer>';
@@ -106,6 +111,32 @@
 
   mount('site-header', headerHTML());
   mount('site-footer', footerHTML());
+
+  /* Skip link, injected as the first focusable thing on the page. The journey
+     sections make these pages long, so keyboard users need a way past the nav
+     and straight to content. Targets <main>, which every page has. */
+  if (!document.querySelector('.skip-link')) {
+    var main = document.querySelector('main');
+    if (main) {
+      if (!main.id) main.id = 'main-content';
+      var skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#' + main.id;
+      skip.textContent = 'Skip to content';
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
+  }
+
+  /* Reading-progress bar. Decorative only — the same information is available
+     from the scrollbar, so it is hidden from assistive tech. js/journey.js
+     drives it where present; without that file it simply stays at zero width. */
+  if (!document.querySelector('.scroll-progress')) {
+    var prog = document.createElement('div');
+    prog.className = 'scroll-progress';
+    prog.setAttribute('aria-hidden', 'true');
+    prog.innerHTML = '<span></span>';
+    document.body.insertBefore(prog, document.body.firstChild);
+  }
 
   var stickyHost = document.getElementById('sticky-cta');
   if (stickyHost) {

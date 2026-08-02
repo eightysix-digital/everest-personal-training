@@ -100,6 +100,357 @@
       </div>
     </section>
 
+    <!-- ============================================================
+         THE BODY JOURNEY (sections 3-7)
+         Scroll-led education on what structured training actually changes.
+         Built on the .journey primitive in js/journey.js: the visual sticks
+         while the copy steps scroll past, and [data-step] drives which
+         anatomical layer is showing.
+
+         WORDING RULE: this section describes general, well-established
+         exercise physiology. It must never claim Everest diagnoses, treats or
+         cures anything. Anything neurological or psychological stays hedged
+         ("associated with", "supports", "can contribute to") because the
+         evidence there is correlational or population-level, not a promise to
+         an individual. The disclaimer at the end of the journey is part of
+         that commitment - do not remove it.
+         ============================================================ -->
+
+    <!-- 3a. Nervous system -->
+    <section class="journey" aria-labelledby="j-neural">
+      <div class="journey-inner">
+        <h2 class="visually-hidden" id="j-neural">The nervous system</h2>
+        <div class="journey-visual reveal" aria-hidden="true">
+          <svg class="jviz jviz-neural" viewBox="0 0 320 560" preserveAspectRatio="xMidYMid meet">
+            <g class="jv-body">
+              <ellipse cx="160" cy="58" rx="34" ry="40" />
+              <path d="M160 98 L160 300" />
+              <path d="M160 134 L98 208 M160 134 L222 208" />
+              <path d="M98 208 L82 292 M222 208 L238 292" />
+              <path d="M160 300 L122 414 M160 300 L198 414" />
+              <path d="M122 414 L112 520 M198 414 L208 520" />
+            </g>
+            <g class="jv-signal">
+              <path class="jl jl-1" d="M160 78 L160 300" />
+              <path class="jl jl-2" d="M160 134 L222 208 L238 292" />
+              <path class="jl jl-3" d="M160 300 L122 414 L112 520" />
+              <path class="jl jl-4" d="M160 134 L98 208 L82 292" />
+            </g>
+            <g class="jv-nodes">
+              <circle class="jn jn-1" cx="160" cy="58" r="6" />
+              <circle class="jn jn-2" cx="160" cy="134" r="5" />
+              <circle class="jn jn-3" cx="160" cy="300" r="5" />
+              <circle class="jn jn-4" cx="122" cy="414" r="5" />
+            </g>
+          </svg>
+        </div>
+        <div class="journey-steps r-stagger">
+          <div class="jstep reveal">
+            <span class="jstep-tag">01 — Where training begins</span>
+            <h3>Before the body changes, the signal does</h3>
+            <p>The first weeks of a new program produce strength gains that are
+              largely neural rather than structural. The muscle has not grown yet.
+              The nervous system has simply become better at using what is
+              already there.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">02 — Motor unit recruitment</span>
+            <h3>Using more of the muscle you have</h3>
+            <p>A motor unit is a nerve and the muscle fibres it controls. Training
+              improves how many of those units the body can call on at once, and
+              how quickly it can fire them.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">03 — Coordination</span>
+            <h3>The right muscles, in the right order</h3>
+            <p>Force is not produced by one muscle in isolation. Movement improves
+              when muscles around a joint start working together with better
+              timing, and opposing muscles stop resisting the movement.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">04 — Why structure matters</span>
+            <h3>Skill is built by repetition, not intensity</h3>
+            <p>Motor patterns are learned through consistent, progressive practice.
+              This is why Everest programs are structured and coached rather than
+              a different workout every session.</p>
+            <a class="btn btn-accent" href="/programs/">Explore structured programs <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3b. Strength -->
+    <section class="journey" aria-labelledby="j-strength">
+      <div class="journey-inner">
+        <h2 class="visually-hidden" id="j-strength">Strength: muscle, tendon, ligament and bone</h2>
+        <!-- MOCKUP: real anatomy plate replacing the hand-drawn figure.
+             Source: "Muscles anterior" on Wikimedia Commons, a collage from
+             Gray's Anatomy (20th US edition, 1918). Public domain - published
+             before 1931 - so no attribution obligation and no share-alike
+             encumbrance on the derived artwork. Recoloured to brand accent
+             teal with ink density mapped to alpha, so it reads as an x-ray on
+             the dark section. -->
+        <div class="journey-visual reveal" aria-hidden="true">
+          <div class="jviz jviz-plate">
+            <div class="plate-fig plate-muscle"></div>
+            <svg class="plate-force" viewBox="0 0 320 560" preserveAspectRatio="xMidYMid meet">
+              <path class="fa" d="M160 120 L160 300" />
+              <path class="fa fa-b" d="M160 306 L128 412" />
+            </svg>
+          </div>
+        </div>
+        <div class="journey-steps r-stagger">
+          <div class="jstep reveal">
+            <span class="jstep-tag">01 — Strength is structure</span>
+            <h3>Build the system that holds you up</h3>
+            <p>Strength training does not only change how muscle looks. It changes
+              the tissue that supports every movement you make.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">02 — Muscle</span>
+            <h3>Muscle adapts to demand</h3>
+            <p>Skeletal muscle responds to mechanical tension applied progressively
+              over time, with adequate recovery and protein intake. Remove any one
+              of those and adaptation slows or stops.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">03 — Tendon and ligament</span>
+            <h3>Connective tissue adapts more slowly</h3>
+            <p>Tendons connect muscle to bone; ligaments stabilise joints. Both
+              strengthen under load, but collagen turnover is slower than muscle
+              adaptation. This mismatch is precisely why progression must be
+              managed rather than rushed.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">04 — Bone</span>
+            <h3>Bone responds to loading</h3>
+            <p>Bone is living tissue that remodels in response to mechanical stress.
+              Resistance and impact loading are associated with maintained or
+              improved bone mineral density, which matters increasingly with age.</p>
+            <a class="btn btn-accent" href="/programs/">Start strength training <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3c. Conditioning -->
+    <section class="journey" aria-labelledby="j-cardio">
+      <div class="journey-inner">
+        <h2 class="visually-hidden" id="j-cardio">Conditioning: heart, lungs and work capacity</h2>
+        <div class="journey-visual reveal" aria-hidden="true">
+          <!-- Heart, lungs and ribcage: Gray's Anatomy 1918, public domain.
+               The ECG trace sits over it and is ours, not part of the plate. -->
+          <div class="jviz jviz-plate jviz-plate-wide">
+            <div class="plate-fig plate-heart"></div>
+            <svg class="jviz-cardio plate-trace" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid meet">
+              <g class="cv-trace">
+                <path class="ecg" d="M10 150 L86 150 L100 150 L108 122 L118 180 L130 142 L140 150 L310 150" />
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="journey-steps r-stagger">
+          <div class="jstep reveal">
+            <span class="jstep-tag">01 — Build the engine</span>
+            <h3>From breath to output</h3>
+            <p>Conditioning is the system that delivers oxygen to working muscle and
+              clears the by-products of effort. It determines how much work you can
+              do, and how quickly you recover from it.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">02 — The heart</span>
+            <h3>A stronger pump, not a faster one</h3>
+            <p>Endurance training increases stroke volume — the blood ejected per
+              beat. The heart moves the same volume with fewer contractions, which
+              is why resting heart rate typically falls as conditioning improves.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">03 — Delivery and extraction</span>
+            <h3>More capillaries, more mitochondria</h3>
+            <p>Trained muscle develops greater capillary density and mitochondrial
+              content. Oxygen is not only delivered more effectively, it is used
+              more effectively once it arrives.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">04 — Work capacity</span>
+            <h3>Capable for life, not just the gym</h3>
+            <p>The practical outcome is work capacity: carrying, climbing, lifting,
+              playing and lasting a full day without the effort dominating it.</p>
+            <a class="btn btn-accent" href="/programs/#quiz">Find your training pathway <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3d. The brain -->
+    <section class="journey" aria-labelledby="j-brain">
+      <div class="journey-inner">
+        <h2 class="visually-hidden" id="j-brain">The brain</h2>
+        <div class="journey-visual reveal" aria-hidden="true">
+          <svg class="jviz jviz-brain" viewBox="0 0 340 320" preserveAspectRatio="xMidYMid meet">
+            <path class="br-outline" d="M96 196 C58 190 52 148 74 122 C68 92 96 66 128 74
+                     C146 52 190 50 210 72 C246 68 274 96 268 128 C288 148 282 188 248 198
+                     C240 222 210 236 186 226 C166 242 132 238 118 220 Z" />
+            <path class="br-stem" d="M172 226 L170 268 C170 280 182 286 194 282" />
+            <g class="br-region br-motor"><ellipse cx="150" cy="96" rx="30" ry="19" /></g>
+            <g class="br-region br-prefrontal"><ellipse cx="90" cy="140" rx="26" ry="24" /></g>
+            <g class="br-region br-cerebellum"><ellipse cx="238" cy="212" rx="28" ry="18" /></g>
+            <g class="br-region br-hippocampus"><ellipse cx="176" cy="176" rx="24" ry="14" /></g>
+            <g class="br-region br-amygdala"><ellipse cx="146" cy="192" rx="15" ry="11" /></g>
+            <g class="br-region br-basal"><ellipse cx="196" cy="136" rx="22" ry="16" /></g>
+          </svg>
+        </div>
+        <div class="journey-steps r-stagger">
+          <div class="jstep reveal" data-region="motor">
+            <span class="jstep-tag">Motor cortex</span>
+            <h3>Train the body, change the signal</h3>
+            <p>The motor cortex issues the commands that produce voluntary movement.
+              Repeated, deliberate practice refines those commands — the basis of
+              what people describe as the mind-muscle connection.</p>
+          </div>
+          <div class="jstep reveal" data-region="cerebellum">
+            <span class="jstep-tag">Cerebellum</span>
+            <h3>Timing, balance and precision</h3>
+            <p>The cerebellum coordinates the timing and accuracy of movement. As it
+              adapts to practice, movement becomes smoother and better controlled.</p>
+          </div>
+          <div class="jstep reveal" data-region="prefrontal">
+            <span class="jstep-tag">Prefrontal cortex</span>
+            <h3>Planning, focus and self-control</h3>
+            <p>The prefrontal cortex supports executive function: planning, attention
+              and impulse control. Regular aerobic exercise is associated with
+              improved executive function across age groups.</p>
+          </div>
+          <div class="jstep reveal" data-region="hippocampus">
+            <span class="jstep-tag">Hippocampus</span>
+            <h3>Learning and memory</h3>
+            <p>The hippocampus is central to memory formation. Aerobic exercise is
+              associated with hippocampal health and with increased brain-derived
+              neurotrophic factor, a protein involved in learning.</p>
+          </div>
+          <div class="jstep reveal" data-region="amygdala">
+            <span class="jstep-tag">Amygdala</span>
+            <h3>Stress and emotional regulation</h3>
+            <p>The amygdala is involved in processing threat and emotional response.
+              Regular physical activity is associated with improved stress regulation
+              and lower reported anxiety at a population level.</p>
+          </div>
+          <div class="jstep reveal" data-region="basal">
+            <span class="jstep-tag">Basal ganglia</span>
+            <h3>The body learns the pattern, the brain learns the habit</h3>
+            <p>The basal ganglia support habit formation and movement automation.
+              Consistency is what converts a decision you have to make into a routine
+              you simply follow.</p>
+            <a class="btn btn-accent" href="/impact/">Read our impact <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3e. Confidence and capability -->
+    <section class="journey" aria-labelledby="j-confidence">
+      <div class="journey-inner">
+        <h2 class="visually-hidden" id="j-confidence">Confidence and capability</h2>
+        <div class="journey-visual reveal" aria-hidden="true">
+          <!-- Whole-person figure: skeleton illustration by Patrick J. Lynch,
+               CC BY 2.5. Credited in the footer as the licence requires.
+               Unlike the Gray plates this one is a dark body with light bones,
+               so its mask is built from brightness rather than ink density. -->
+          <div class="jviz jviz-plate">
+            <div class="plate-fig plate-skeleton"></div>
+            <svg class="plate-ring" viewBox="0 0 320 560" preserveAspectRatio="none">
+              <circle cx="160" cy="280" r="150" />
+            </svg>
+          </div>
+        </div>
+        <div class="journey-steps r-stagger">
+          <div class="jstep reveal">
+            <span class="jstep-tag">01 — The systems integrate</span>
+            <h3>From movement to confidence</h3>
+            <p>Nerve, muscle, connective tissue, heart, lung and brain do not adapt in
+              isolation. Trained together over time, they stop being separate systems
+              and become one more capable person.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">02 — Evidence of your own progress</span>
+            <h3>Confidence is built, not decided</h3>
+            <p>Self-efficacy — the belief you can do a thing — is built most reliably
+              through mastery experience: attempting something, succeeding, and
+              repeating it. Structured progression manufactures those experiences on
+              purpose.</p>
+          </div>
+          <div class="jstep reveal">
+            <span class="jstep-tag">03 — Capability</span>
+            <h3>From confidence to capability</h3>
+            <p>What begins as a training decision becomes a physical capacity, then a
+              habit, then part of how you see yourself. That is the outcome Everest
+              is built to produce.</p>
+            <a class="btn btn-accent" href="/programs/#quiz">Find your program <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey-note">
+      <div class="wrap">
+        <p>The information on this page is general education about how the body
+          responds to exercise. It is not medical advice, and it is not a diagnosis
+          or treatment for any condition. Individual responses to training vary.
+          If you have a health condition or are unsure where to begin, speak with
+          your doctor or an appropriate health professional. Our coaches work within
+          their scope of practice and refer on where that is the right thing to do.</p>
+      </div>
+    </section>
+
+    <!-- 3f. From the individual to the community -->
+    <section class="capability" aria-labelledby="j-community">
+      <div class="rail">
+        <div class="cap-head reveal">
+          <span class="eyebrow-3">From one person outward</span>
+          <h2 id="j-community">Stronger people.<br />Stronger communities.</h2>
+          <p>When people become stronger, more confident and more capable, the effect
+            does not stop at the gym door. It reaches families, workplaces, teams and
+            the communities they belong to.</p>
+        </div>
+
+        <!-- Decorative network: one node becomes many. No information here that
+             is not already in the list below it. -->
+        <div class="cap-net reveal" aria-hidden="true">
+          <svg viewBox="0 0 900 300" preserveAspectRatio="xMidYMid meet">
+            <g class="cn-links">
+              <path d="M120 150 L300 90 M120 150 L300 150 M120 150 L300 212" />
+              <path d="M300 90 L500 60 M300 90 L500 128 M300 150 L500 128 M300 150 L500 186
+                       M300 212 L500 186 M300 212 L500 244" />
+              <path d="M500 60 L720 46 M500 128 L720 110 M500 128 L720 168
+                       M500 186 L720 168 M500 186 L720 226 M500 244 L720 258" />
+            </g>
+            <g class="cn-nodes">
+              <circle class="cn-root" cx="120" cy="150" r="13" />
+              <circle cx="300" cy="90" r="8" /><circle cx="300" cy="150" r="8" /><circle cx="300" cy="212" r="8" />
+              <circle cx="500" cy="60" r="6" /><circle cx="500" cy="128" r="6" />
+              <circle cx="500" cy="186" r="6" /><circle cx="500" cy="244" r="6" />
+              <circle cx="720" cy="46" r="4.5" /><circle cx="720" cy="110" r="4.5" />
+              <circle cx="720" cy="168" r="4.5" /><circle cx="720" cy="226" r="4.5" />
+              <circle cx="720" cy="258" r="4.5" />
+            </g>
+          </svg>
+        </div>
+
+        <ul class="cap-list r-stagger">
+          <li class="reveal"><i class="ti ti-user" aria-hidden="true"></i>Everyday people and first-time gym users</li>
+          <li class="reveal"><i class="ti ti-barbell" aria-hidden="true"></i>Experienced gym-goers and athletes</li>
+          <li class="reveal"><i class="ti ti-school" aria-hidden="true"></i>Young people, through EMPOWER</li>
+          <li class="reveal"><i class="ti ti-heart-handshake" aria-hidden="true"></i>Parents, families and whānau</li>
+          <li class="reveal"><i class="ti ti-briefcase" aria-hidden="true"></i>Workplaces and workforce wellbeing</li>
+          <li class="reveal"><i class="ti ti-building-community" aria-hidden="true"></i>Community organisations</li>
+          <li class="reveal"><i class="ti ti-first-aid-kit" aria-hidden="true"></i>Emergency services</li>
+          <li class="reveal"><i class="ti ti-stethoscope" aria-hidden="true"></i>Health-sector partners</li>
+        </ul>
+
+        <a class="btn btn-accent cap-cta" href="/organisations/">Work with Everest <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+      </div>
+    </section>
+
     <!-- 3. Division campaign panels -->
     <section aria-label="What we do">
       <article class="division">
@@ -186,11 +537,12 @@
     <section class="closer">
       <div class="closer-bg" aria-hidden="true"></div>
       <div class="rail">
-        <h2>A clear path from where you are to what comes next.</h2>
-        <p>Not sure where to start? Tell us your goal and we'll point you to the right program, coach or pathway in 60 seconds.</p>
+        <h2>Ready to remove the guesswork?</h2>
+        <p>Whether you are new to training, returning to exercise, chasing performance
+          or building capability across a team, Everest gives you a clear path forward.</p>
         <div class="cine-actions">
-          <a class="btn btn-accent" href="/programs/#quiz">Take the 60-second quiz <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
-          <a class="btn btn-ghost" href="/contact/">Book a call</a>
+          <a class="btn btn-accent" href="/programs/#quiz">Find your program <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          <a class="btn btn-ghost" href="/contact/">Book a conversation</a>
         </div>
       </div>
     </section>
@@ -201,5 +553,6 @@
 
   <script src="/js/layout.js" defer></script>
   <script src="/js/main.js" defer></script>
+  <script src="/js/journey.js" defer></script>
 </body>
 </html>
