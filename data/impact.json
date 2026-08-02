@@ -1,9 +1,59 @@
 {
-  "note": "Do not publish unverified figures on the LIVE site. Each metric needs a source, date range and calculation method recorded before display:true. The values below are marked placeholder:true purely so the homepage layout can be reviewed on staging; replace with verified figures and remove the placeholder flag before launch.",
+  "note": "Figures supplied by Jared (Everest) on 2 August 2026 as operational totals to date. These are no longer placeholders. Before they go in front of a funder, council, ACC or Health New Zealand, record the underlying method for each — what counts as a 'program', how unique people are de-duplicated across programs, and how retention is calculated — because that is the first thing a funding or procurement process asks for. Never round a figure upward. If a number changes, update it here rather than anywhere in the markup.",
   "metrics": [
-    { "label": "people supported", "value": 500, "suffix": "+", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true },
-    { "label": "programs delivered", "value": 60, "suffix": "+", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true },
-    { "label": "young people engaged", "value": 300, "suffix": "+", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true },
-    { "label": "community & org partners", "value": 12, "suffix": "", "source": "", "dateRange": "", "method": "PLACEHOLDER", "display": true, "placeholder": true }
+    {
+      "label": "programs delivered",
+      "value": 1000,
+      "suffix": "+",
+      "source": "Everest internal records",
+      "dateRange": "to 2 August 2026",
+      "method": "Total programs delivered across app, coached and organisational offerings.",
+      "display": true
+    },
+    {
+      "label": "people supported",
+      "value": 500,
+      "suffix": "+",
+      "source": "Everest internal records",
+      "dateRange": "to 2 August 2026",
+      "method": "Individual clients coached directly. Counted separately from group-session reach below.",
+      "display": true
+    },
+    {
+      "label": "group sessions delivered",
+      "value": 600,
+      "suffix": "+",
+      "source": "Everest internal records",
+      "dateRange": "to 2 August 2026",
+      "method": "Group and community sessions run.",
+      "display": true
+    },
+    {
+      "label": "people reached in group sessions",
+      "value": 6000,
+      "suffix": "+",
+      "source": "Everest internal records",
+      "dateRange": "to 2 August 2026",
+      "method": "Total attendances across group sessions. These are attendances rather than unique individuals — do not relabel this as unique people without recalculating.",
+      "display": true
+    },
+    {
+      "label": "young people engaged",
+      "value": 300,
+      "suffix": "+",
+      "source": "Everest internal records",
+      "dateRange": "to 2 August 2026",
+      "method": "Youth participants across EMPOWER and community delivery.",
+      "display": true
+    },
+    {
+      "label": "client retention rate",
+      "value": 97,
+      "suffix": "%+",
+      "source": "Everest internal records",
+      "dateRange": "to 2 August 2026",
+      "method": "Proportion of clients retained. Record the measurement window and what counts as a retained client before this is used in a funding submission.",
+      "display": true
+    }
   ]
 }

@@ -872,7 +872,9 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .impact-band .ib-head h2 { font-size: clamp(28px, 3.6vw, 46px); font-weight: 700; text-transform: uppercase;
   max-width: 16ch; line-height: 1.02; }
 .impact-band .ib-head p { font-family: var(--font); color: var(--ink-on-dark); font-size: 15px; max-width: 34ch; margin: 0; }
-.impact-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+/* three across, two rows — six metrics in a four-column grid would leave a
+   ragged pair on the second row */
+.impact-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 20px; }
 .impact-stats .metric { border-top: 1px solid rgba(255,255,255,.16); padding-top: 22px; }
 .impact-stats .num { font-family: var(--display); font-size: clamp(44px, 6vw, 80px); font-weight: 700;
   line-height: 1; color: #fff; letter-spacing: -0.02em; }
@@ -1213,7 +1215,8 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .logo-wall { padding: 48px 0; background: #fff; overflow: hidden;
   border-top: 1px solid rgba(0,0,0,.06); border-bottom: 1px solid rgba(0,0,0,.06); }
 .logo-wall.on-cloud { background: var(--cloud); }
-.logo-wall .lw-label { text-align: center; font-family: var(--font); font-size: 12px; letter-spacing: 2px;
+.logo-wall .lw-label { text-align: center; font-family: var(--display); font-weight: 700;
+  text-transform: uppercase; font-size: 12px; letter-spacing: 2px;
   text-transform: uppercase; color: var(--slate); margin: 0 0 34px; }
 .logo-marquee { overflow: hidden;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent);
@@ -1221,9 +1224,19 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .logo-track { display: flex; width: max-content; animation: logo-marquee 40s linear infinite; }
 .logo-wall:hover .logo-track { animation-play-state: paused; }
 @keyframes logo-marquee { to { transform: translateX(-50%); } }
-.logo-item { display: inline-flex; align-items: center; gap: 13px; margin-right: 72px; white-space: nowrap;
-  color: var(--slate); opacity: .62; font-family: var(--display); font-weight: 700; font-size: 30px; letter-spacing: -.01em; }
-.logo-item i { font-size: 36px; color: var(--teal-deep); }
+/* Uppercase display face at full strength, matching the nav and program
+   names. The old treatment sat at 62% opacity in slate, which read as
+   tentative — these are real partners and should look it. Icons are boxed
+   in brand teal so they carry weight instead of floating as thin outlines.
+   Replace the icons with real partner logos once permission is confirmed. */
+.logo-item { display: inline-flex; align-items: center; gap: 14px; margin-right: 64px;
+  white-space: nowrap; color: var(--black); opacity: 1;
+  font-family: var(--display); font-weight: 700; font-size: 25px;
+  text-transform: uppercase; letter-spacing: .02em; }
+.logo-item i { font-size: 22px; color: #fff; background: var(--teal-deep);
+  width: 44px; height: 44px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; }
+.logo-item img { width: auto; height: 46px; max-width: 190px; object-fit: contain; flex: 0 0 auto; }
 /* static, grouped variant of the logo wall — used where the relationship type
    has to be stated rather than blurred into one scrolling row */
 .org-group + .org-group { margin-top: 36px; }
