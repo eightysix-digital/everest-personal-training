@@ -751,9 +751,9 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    flourish. Every rule falls back to the native cursor if the image fails.
    Suppressed on touch and coarse pointers, where it is never seen anyway. */
 @media (hover: hover) and (pointer: fine) {
-  body { cursor: url('/assets/img/cursor-kettlebell.png') 16 22, auto; }
+  body { cursor: url('/assets/img/cursor-kettlebell-v2.png') 16 22, auto; }
   a, button, summary, label, select, [role="button"], .fopt, .quiz-opt, .nav-toggle {
-    cursor: url('/assets/img/cursor-kettlebell.png') 16 22, pointer; }
+    cursor: url('/assets/img/cursor-kettlebell-v2.png') 16 22, pointer; }
   input, textarea { cursor: text; }
   input[type="range"], input[type="checkbox"], input[type="radio"] { cursor: pointer; }
 }
@@ -852,15 +852,15 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   transition: transform .18s ease, box-shadow .18s ease; }
 .product:hover { transform: translateY(-6px); box-shadow: 0 26px 54px rgba(17,17,17,.14); }
 .product .pic { position: relative; aspect-ratio: 5/4; background-size: cover; background-position: center; }
-/* Branded card panel used instead of stock photography: the same mountain mark
-   and wordmark as the site header, so every product reads as Everest. */
+/* Branded card panel used instead of stock photography.
+   The Everest logo has a transparent outer background, but its internal
+   detail (mountain crevices, barbell ring centres) is dark negative space
+   rather than true transparency. This panel must therefore stay on a DARK
+   background — do not move it onto a light surface without a
+   light-background variant of the logo. */
 .product .pic-brand { display: flex; align-items: center; justify-content: center;
   background: linear-gradient(150deg, var(--black-deep) 0%, var(--teal-darkest) 100%); }
-.pic-lockup { display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.pic-mark { width: 54px; height: 54px; border-radius: 15px; background: var(--teal-deep);
-  display: flex; align-items: center; justify-content: center; color: #fff; font-size: 30px; }
-.pic-word { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: 3px;
-  color: var(--teal-on-dark); }
+.pic-logo { width: 62%; max-width: 190px; height: auto; display: block; }
 /* catalogue groups: weekly plans, one-off services and proposal work never
    share a grid, so pricing cannot be read across different billing models */
 .cat-group + .cat-group { margin-top: 52px; }
