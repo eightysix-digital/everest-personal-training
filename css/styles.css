@@ -1485,6 +1485,17 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-partner .emp-eyebrow { color: var(--emp-pink); }
 .emp-partner h2 { font-size: clamp(26px, 3.4vw, 42px); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
 .emp-partner p { font-family: var(--font); color: var(--slate); font-size: 16px; line-height: 1.7; margin: 16px 0 0; max-width: 52ch; }
+/* Outbound link to the partner's own site. Written as descriptive link text
+   rather than "click here" so it makes sense read on its own, which is how
+   screen-reader users often navigate a page. */
+.emp-partner-link { font-family: var(--font); font-size: 16px; color: var(--slate);
+  margin: 18px 0 0; line-height: 1.6; }
+.emp-partner-link a { display: inline-flex; align-items: center; gap: 7px;
+  font-weight: 500; color: var(--emp-pink);
+  border-bottom: 1px solid rgba(231,48,142,.4); transition: border-color .15s ease, color .15s ease; }
+.emp-partner-link a:hover { color: var(--emp-hot); border-bottom-color: var(--emp-hot); }
+.emp-partner-link a i { font-size: 16px; }
+
 .emp-slogan { font-family: var(--display); font-weight: 700; font-size: clamp(19px, 2.2vw, 26px); margin-top: 22px;
   background: var(--emp-wing); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @media (max-width: 760px) { .emp-partner .rail { grid-template-columns: 1fr; text-align: center; } .emp-partner p { margin-inline: auto; } }
