@@ -941,7 +941,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 /* --- 5. Product sales (clean, direct, image-led cards) --- */
 /* ---- testimonials marquee ---- */
 .says { position: relative; overflow: hidden; background: var(--black);
-  padding: clamp(56px, 8vh, 88px) 0; }
+  padding: clamp(44px, 6vh, 68px) 0; }
 .says .wrap, .says .logo-marquee { position: relative; z-index: 2; }
 .says-head { display: flex; align-items: center; justify-content: space-between;
   gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
@@ -954,13 +954,16 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .says-rating strong { color: #fff; font-weight: 600; }
 .says-marquee { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.say-card { flex: 0 0 auto; width: min(360px, 78vw); margin: 0 18px 0 0;
+/* Cards run smaller than the body copy elsewhere: a marquee of quotes is
+   scanned in passing, not read line by line, and more cards visible at once
+   makes the volume of reviews the point rather than any single one. */
+.say-card { flex: 0 0 auto; width: min(300px, 74vw); margin: 0 14px 0 0;
   background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.1);
-  border-radius: 16px; padding: 22px 24px; white-space: normal; }
-.say-stars { color: var(--teal-accent); font-size: 14px; letter-spacing: 2px; }
-.say-card blockquote { margin: 10px 0 14px; font-family: var(--font); font-size: 15px;
-  line-height: 1.65; color: #fff; }
-.say-card figcaption { font-family: var(--font); font-size: 13px; color: var(--grey-muted); }
+  border-radius: 14px; padding: 17px 18px; white-space: normal; }
+.say-stars { color: var(--teal-accent); font-size: 12px; letter-spacing: 2px; }
+.say-card blockquote { margin: 8px 0 11px; font-family: var(--font); font-size: 13.5px;
+  line-height: 1.6; color: var(--ink-on-dark); }
+.say-card figcaption { font-family: var(--font); font-size: 12px; color: var(--grey-muted); }
 .say-card figcaption span { color: var(--slate); }
 @media (max-width: 560px) { .says-head { flex-direction: column; align-items: flex-start; } }
 
