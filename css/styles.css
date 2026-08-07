@@ -106,9 +106,12 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 
 /* ---- nav submenu ---- */
 .nav-group { position: relative; display: flex; align-items: center; }
+/* Buttons do not pick up the nav's casing and tracking reliably, so both are
+   set explicitly here to match the sibling links. */
 .nav-trigger { display: inline-flex; align-items: center; gap: 5px;
   background: none; border: 0; padding: 0; cursor: inherit;
-  font: inherit; color: var(--ink-on-dark); transition: color .12s ease; }
+  font: inherit; text-transform: uppercase; letter-spacing: inherit;
+  color: var(--ink-on-dark); transition: color .12s ease; }
 .nav-trigger i { font-size: 14px; transition: transform .18s ease; }
 .nav-group.is-open .nav-trigger i { transform: rotate(180deg); }
 .nav-trigger:hover, .nav-group.is-open .nav-trigger,
