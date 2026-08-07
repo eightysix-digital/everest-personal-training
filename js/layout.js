@@ -10,7 +10,8 @@
     { label: 'EMPOWER', href: '/empower/' },
     { label: 'Organisations', href: '/organisations/' },
     { label: 'Impact', href: '/impact/' },
-    { label: 'About', href: '/about/' }
+    { label: 'About', href: '/about/' },
+    { label: 'Team', href: '/team/' }
   ];
 
   var path = location.pathname.replace(/index\.html$/, '');

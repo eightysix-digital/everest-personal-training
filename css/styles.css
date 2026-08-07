@@ -103,6 +103,14 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .nav a { color: var(--ink-on-dark); transition: color .12s ease; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-accent); }
 .nav-toggle { color: #fff; }
+/* Eight uppercase items, the logo and the CTA all share one pill. Between the
+   mobile breakpoint and full width there is not quite room, so tighten rather
+   than let the nav wrap or push the button out. */
+@media (min-width: 921px) and (max-width: 1180px) {
+  .nav { gap: 12px; font-size: 12px; letter-spacing: .03em; }
+  .header-call { padding: 9px 16px; font-size: 12.5px; }
+  .site-header { padding-left: 16px; }
+}
 .nav-cta { display: none; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
 .header-call { padding: 10px 20px; font-size: 13.5px;
