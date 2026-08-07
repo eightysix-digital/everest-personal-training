@@ -3,9 +3,15 @@
 (function () {
   'use strict';
 
+  /* Everest Group is the parent brand. Everest Personal Training is the
+     division that coaching and programs sit under, so they are grouped
+     rather than listed flat — eight top-level items had outgrown the header.
+     An item with `children` renders as a submenu. */
   var NAV = [
-    { label: 'Programs', href: '/programs/' },
-    { label: 'Coaching', href: '/coaching/' },
+    { label: 'Everest Personal Training', short: 'Personal Training', href: '/programs/', children: [
+      { label: 'Programs', href: '/programs/', desc: 'App plans, coached programs and one-off services' },
+      { label: 'Coaching', href: '/coaching/', desc: 'Personalised coaching, in person or online worldwide' }
+    ] },
     { label: 'Performance', href: '/performance/' },
     { label: 'EMPOWER', href: '/empower/' },
     { label: 'Organisations', href: '/organisations/' },
@@ -23,10 +29,31 @@
   }
 
   function headerHTML() {
-    var links = NAV.map(function (n) {
-      return '<a href="' + n.href + '"' +
-        (isActive(n.href) ? ' aria-current="page"' : '') +
-        '>' + n.label + '</a>';
+    var links = NAV.map(function (n, i) {
+      if (!n.children) {
+        return '<a href="' + n.href + '"' +
+          (isActive(n.href) ? ' aria-current="page"' : '') +
+          '>' + n.label + '</a>';
+      }
+      /* Grouped item. The trigger is a button rather than a link: it opens a
+         menu, it does not navigate, and announcing it as a link would be a
+         lie to anyone using a screen reader. Every child is reachable from
+         the menu, so nothing is lost by not linking the parent. */
+      var open = n.children.some(function (c) { return isActive(c.href); });
+      var id = 'navsub-' + i;
+      var kids = n.children.map(function (c) {
+        return '<a href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' +
+          '<span class="ns-label">' + c.label + '</span>' +
+          (c.desc ? '<span class="ns-desc">' + c.desc + '</span>' : '') +
+          '</a>';
+      }).join('');
+      return '<div class="nav-group' + (open ? ' is-current' : '') + '">' +
+          '<button type="button" class="nav-trigger" aria-expanded="false" aria-controls="' + id + '">' +
+            (n.short || n.label) +
+            '<i class="ti ti-chevron-down" aria-hidden="true"></i>' +
+          '</button>' +
+          '<div class="nav-sub" id="' + id + '">' + kids + '</div>' +
+        '</div>';
     }).join('');
     return '' +
       '<header class="site-header">' +
@@ -260,6 +287,65 @@
       if (idle > 30) { running = false; return; }   /* settled — stop burning frames */
       window.requestAnimationFrame(step);
     }
+  })();
+
+  /* Nav submenus.
+     Opens on hover for pointer users and on click/Enter for everyone else,
+     so it is usable by keyboard and on touch, where hover does not exist.
+     Escape closes and returns focus to the trigger; clicking outside closes. */
+  (function navGroups() {
+    var groups = document.querySelectorAll('.nav-group');
+    if (!groups.length) return;
+
+    function close(group) {
+      group.classList.remove('is-open');
+      var t = group.querySelector('.nav-trigger');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    }
+    function closeAll(except) {
+      Array.prototype.forEach.call(groups, function (g) { if (g !== except) close(g); });
+    }
+
+    Array.prototype.forEach.call(groups, function (group) {
+      var trigger = group.querySelector('.nav-trigger');
+      if (!trigger) return;
+
+      trigger.addEventListener('click', function (e) {
+        e.preventDefault();
+        var isOpen = group.classList.contains('is-open');
+        closeAll(group);
+        group.classList.toggle('is-open', !isOpen);
+        trigger.setAttribute('aria-expanded', String(!isOpen));
+      });
+
+      group.addEventListener('mouseenter', function () {
+        if (window.matchMedia('(hover: hover) and (min-width: 921px)').matches) {
+          closeAll(group);
+          group.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+      group.addEventListener('mouseleave', function () {
+        if (window.matchMedia('(hover: hover) and (min-width: 921px)').matches) close(group);
+      });
+
+      group.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && group.classList.contains('is-open')) {
+          close(group);
+          trigger.focus();
+        }
+      });
+      /* leaving the group by tabbing closes it */
+      group.addEventListener('focusout', function (e) {
+        if (!group.contains(e.relatedTarget)) close(group);
+      });
+    });
+
+    document.addEventListener('click', function (e) {
+      var inside = false;
+      Array.prototype.forEach.call(groups, function (g) { if (g.contains(e.target)) inside = true; });
+      if (!inside) closeAll(null);
+    });
   })();
 
   /* mobile nav toggle */

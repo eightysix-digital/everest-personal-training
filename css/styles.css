@@ -103,13 +103,56 @@ h1, h2, h3 { font-weight: 500; margin: 0; line-height: 1.12; }
 .nav a { color: var(--ink-on-dark); transition: color .12s ease; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--teal-accent); }
 .nav-toggle { color: #fff; }
-/* Eight uppercase items, the logo and the CTA all share one pill. Between the
-   mobile breakpoint and full width there is not quite room, so tighten rather
-   than let the nav wrap or push the button out. */
+
+/* ---- nav submenu ---- */
+.nav-group { position: relative; display: flex; align-items: center; }
+.nav-trigger { display: inline-flex; align-items: center; gap: 5px;
+  background: none; border: 0; padding: 0; cursor: inherit;
+  font: inherit; color: var(--ink-on-dark); transition: color .12s ease; }
+.nav-trigger i { font-size: 14px; transition: transform .18s ease; }
+.nav-group.is-open .nav-trigger i { transform: rotate(180deg); }
+.nav-trigger:hover, .nav-group.is-open .nav-trigger,
+.nav-group.is-current .nav-trigger { color: var(--teal-accent); }
+.nav-sub { position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(-6px);
+  min-width: 290px; background: rgba(14,16,16,.97);
+  backdrop-filter: blur(18px) saturate(180%); -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1px solid rgba(255,255,255,.13); border-radius: 16px; padding: 8px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .16s ease, transform .16s ease, visibility .16s; z-index: 60; }
+.nav-group.is-open .nav-sub { opacity: 1; visibility: visible; pointer-events: auto;
+  transform: translateX(-50%) translateY(0); }
+/* bridges the gap between trigger and panel so the pointer can travel down
+   without the menu closing under it */
+.nav-group.is-open::after { content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 16px; }
+.nav-sub a { display: block; padding: 11px 13px; border-radius: 10px;
+  text-transform: none; letter-spacing: 0; font-weight: 500;
+  transition: background-color .14s ease; }
+.nav-sub a:hover, .nav-sub a:focus-visible { background: rgba(22,184,179,.13); }
+.nav-sub .ns-label { display: block; font-family: var(--display); font-size: 14px;
+  color: #fff; letter-spacing: .02em; }
+.nav-sub a[aria-current="page"] .ns-label { color: var(--teal-accent); }
+.nav-sub .ns-desc { display: block; font-family: var(--font); font-size: 12px;
+  font-weight: 400; color: var(--grey-muted); margin-top: 3px; line-height: 1.45; }
+
+/* Seven top-level items, the logo and the CTA share one pill. Between the
+   mobile breakpoint and full width there is not quite room, so tighten
+   rather than let the nav wrap or push the button out. */
 @media (min-width: 921px) and (max-width: 1180px) {
   .nav { gap: 12px; font-size: 12px; letter-spacing: .03em; }
   .header-call { padding: 9px 16px; font-size: 12.5px; }
   .site-header { padding-left: 16px; }
+}
+/* In the mobile dropdown the submenu is always expanded — a menu inside a
+   menu is needless friction on a phone. */
+@media (max-width: 920px) {
+  .nav-group { display: block; }
+  .nav-trigger { display: none; }
+  .nav-sub { position: static; transform: none; opacity: 1; visibility: visible;
+    pointer-events: auto; min-width: 0; background: none; border: 0; padding: 0;
+    box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .nav-sub a { padding: 12px 22px; border-radius: 0; }
+  .nav-sub .ns-desc { display: none; }
 }
 .nav-cta { display: none; }
 .header-cta { display: flex; align-items: center; gap: 12px; }
@@ -802,9 +845,9 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    flourish. Every rule falls back to the native cursor if the image fails.
    Suppressed on touch and coarse pointers, where it is never seen anyway. */
 @media (hover: hover) and (pointer: fine) {
-  body { cursor: url('/assets/img/cursor-kettlebell-v3.png') 16 22, auto; }
+  body { cursor: url('/assets/img/cursor-kettlebell-v4.png') 16 22, auto; }
   a, button, summary, label, select, [role="button"], .fopt, .quiz-opt, .nav-toggle {
-    cursor: url('/assets/img/cursor-kettlebell-v3.png') 16 22, pointer; }
+    cursor: url('/assets/img/cursor-kettlebell-v4.png') 16 22, pointer; }
   input, textarea { cursor: text; }
   input[type="range"], input[type="checkbox"], input[type="radio"] { cursor: pointer; }
 }
