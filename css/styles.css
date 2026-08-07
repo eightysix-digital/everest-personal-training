@@ -1323,6 +1323,9 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   .subhero .cine-actions { float: none; justify-content: flex-start; }
   .hero-rating { float: none; }
 }
+/* now a link to the Google profile, so the claim is checkable */
+.hero-rating { transition: border-color .15s ease; }
+.hero-rating:hover { border-color: rgba(22,184,179,.55); }
 .hero-rating .stars { color: var(--teal-accent); letter-spacing: 2px; font-size: 15px; }
 .hero-rating strong { color: #fff; font-weight: 600; }
 
