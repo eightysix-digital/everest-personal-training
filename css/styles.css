@@ -1509,6 +1509,13 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-stat { border-top: 2px solid rgba(255,255,255,.16); padding-top: 22px; }
 .emp-stat .num { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 4vw, 50px); line-height: 1.02;
   background: var(--emp-youth); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* Text-valued stats (a date range, a partner name) need their own size. At
+   the numeric 50px they wrapped mid-value and read as two disconnected
+   fragments rather than one figure. Each part is held together with
+   non-breaking spaces so a date can never split across "21" and "Oct". */
+.emp-stat.is-text .num { font-size: clamp(21px, 2.3vw, 30px); line-height: 1.15;
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 0 8px; }
+.emp-stat.is-text .num .rng { opacity: .65; font-weight: 500; }
 .emp-stat .cap { font-family: var(--font); font-size: 14px; color: var(--ink-on-dark); margin-top: 12px; line-height: 1.45; }
 .emp-measured { margin-top: 34px; padding: 22px 24px; border-radius: 16px;
   background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
