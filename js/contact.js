@@ -5,9 +5,22 @@
 (function () {
   'use strict';
 
-  /* Set this to your form backend (Formspree, Basin, Netlify Forms, etc.). */
+  /* Where submissions go.
+     This site is static — there is no server here to send mail, so delivery
+     needs a form backend. Paste the endpoint below and submissions start
+     arriving at jared@everest-pt.com automatically, with no other change:
+
+       Web3Forms  https://web3forms.com   (no account, just verify the email;
+                  gives an access key — endpoint is https://api.web3forms.com/submit
+                  and the key goes in ACCESS_KEY below)
+       Formspree  https://formspree.io    (free tier, endpoint looks like
+                  https://formspree.io/f/xxxxxxx)
+
+     Until one is set the form falls back to opening the visitor's email app,
+     which many people abandon — so this is worth doing before launch. */
   var FORM_ENDPOINT = '';
-  var FALLBACK_EMAIL = 'hello@everestpt.co.nz';
+  var ACCESS_KEY = '';                        /* Web3Forms only */
+  var FALLBACK_EMAIL = 'jared@everest-pt.com';
 
   var form = document.getElementById('contact-form');
   if (!form) return;
@@ -44,10 +57,16 @@
 
     if (FORM_ENDPOINT) {
       status.textContent = 'Sending...';
+      var payload = {
+        name: data.name, email: data.email, type: data.type,
+        organisation: data.organisation, message: data.message,
+        subject: 'Website enquiry (' + data.type + ') from ' + data.name
+      };
+      if (ACCESS_KEY) payload.access_key = ACCESS_KEY;   /* Web3Forms */
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       }).then(function (r) {
         if (r.ok) { form.reset(); syncOrg(); status.textContent = 'Thanks. We will be in touch soon.'; }
         else throw new Error('bad response');

@@ -106,8 +106,8 @@
             '</div>' +
             '<div class="footer-col">' +
               '<h3>Get in touch</h3>' +
-              '<a href="mailto:hello@everestpt.co.nz">hello@everestpt.co.nz</a>' +
-              '<a href="tel:+6400000000">Call the team</a>' +
+              '<a href="mailto:jared@everest-pt.com">jared@everest-pt.com</a>' +
+              '<a href="tel:+64221398969">022 139 8969</a>' +
               '<span class="footer-meta">Christchurch, New Zealand</span>' +
             '</div>' +
           '</div>' +
@@ -150,7 +150,7 @@
         "name": "Everest Personal Training",
         "description": "Personal training, fitness and human performance coaching in Christchurch and across Canterbury, New Zealand. Online, in-person and hybrid coaching for individuals, athletes, young people and organisations.",
         "url": origin + "/",
-        "email": "hello@everestpt.co.nz",
+        "email": "jared@everest-pt.com",
         "areaServed": [
           { "@type": "City", "name": "Christchurch" },
           { "@type": "AdministrativeArea", "name": "Canterbury" }

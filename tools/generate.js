@@ -75,7 +75,7 @@ const llms = `# ${SITE_NAME}\n\n` +
   `personalised coaching, youth development (EMPOWER), performance (Everest Elite) and corporate/workforce wellness.\n\n` +
   `## Pages\n\n` +
   pages.map(p => `- [${p.title}](${p.url})${p.description ? ': ' + p.description : ''}`).join('\n') +
-  `\n\n## Contact\n\n- Email: hello@everestpt.co.nz\n- Location: Christchurch, Canterbury, New Zealand\n`;
+  `\n\n## Contact\n\n- Email: jared@everest-pt.com\n- Location: Christchurch, Canterbury, New Zealand\n`;
 fs.writeFileSync(path.join(ROOT, 'llms.txt'), llms);
 
 console.log(`Generated sitemap.xml and llms.txt (${pages.length} pages) for ${SITE_URL}`);

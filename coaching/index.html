@@ -215,14 +215,14 @@
       <div class="wrap">
         <div class="intro">
           <h2>What our clients say</h2>
-          <p>Real coaching, real people. Testimonials shown with permission.</p>
+          <p>Real coaching, real people. Reviews published on our Google profile.</p>
         </div>
-        <div class="testimonials r-stagger">
-          <figure class="testimonial reveal"><i class="ti ti-quote" aria-hidden="true"></i><blockquote>Placeholder testimonial. Everest gave me a plan that actually fit my week and I am stronger than I have ever been.</blockquote><figcaption>Client name, Christchurch</figcaption></figure>
-          <figure class="testimonial reveal"><i class="ti ti-quote" aria-hidden="true"></i><blockquote>Placeholder testimonial. The accountability made all the difference. I finally stuck with it and saw real results.</blockquote><figcaption>Client name, Canterbury</figcaption></figure>
-          <figure class="testimonial reveal"><i class="ti ti-quote" aria-hidden="true"></i><blockquote>Placeholder testimonial. Online coaching fit around my shifts perfectly and the support was always there.</blockquote><figcaption>Client name, NZ</figcaption></figure>
-        </div>
-        <p style="font-size:13px;color:var(--slate);margin-top:16px">Placeholder testimonials for review. We will replace these with real, consented client quotes.</p>
+        <!-- Rendered from data/testimonials.json by js/coaching.js. Do not
+             hard-code quotes here: this block previously held three invented
+             "placeholder testimonials" on a page selling coaching, which is
+             exactly what must never ship. The section hides itself if the
+             data file holds no reviews. -->
+        <div class="testimonials r-stagger" id="coach-testimonials"></div>
       </div>
     </section>
 
