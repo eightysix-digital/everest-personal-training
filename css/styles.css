@@ -1504,13 +1504,30 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    accents only. Tokens are page-scoped in spirit (only used by .emp-*).
    ============================================================ */
 :root {
-  --emp-pink: #E7308E; --emp-hot: #F656A6; --emp-deep-pink: #9B1762;
-  --emp-blue: #04A5ED; --emp-sky: #26CEFE; --emp-deep-blue: #033262;
-  --emp-navy: #01095E; --emp-soft-pink: #FA9CCB; --emp-light-blue: #4FDDFE;
-  --emp-wing: linear-gradient(135deg, #E7308E, #04A5ED);
-  --emp-youth: linear-gradient(135deg, #F656A6, #26CEFE);
-  --emp-dark: linear-gradient(160deg, #000000, #033262);
+/* Sampled from the EMPOWER x Busy Bumbles badge (Aug 2026) so the page and
+   the co-brand mark are the same colours: pink #F00060, blue #0CA8F0,
+   navy #001848, yellow #FCCC00.
+
+   Note the blue sits at hue ~199 and the new Everest accent teal at ~187 —
+   close enough that side by side they read as a mistake rather than two
+   brands. Handled by scoping: inside EMPOWER content the shared teal token
+   is remapped to EMPOWER blue (see .empower-scope), so only the site header
+   stays Everest teal. */
+  --emp-pink: #F00060; --emp-hot: #FF3D82; --emp-deep-pink: #99003D;
+  --emp-blue: #0CA8F0; --emp-sky: #46C8FF; --emp-deep-blue: #00305C;
+  --emp-navy: #001848; --emp-soft-pink: #FF8FB8; --emp-light-blue: #7ADCFF;
+  --emp-yellow: #FCCC00;  /* badge yellow: highlights and youth energy */
+  --emp-wing: linear-gradient(135deg, #F00060, #0CA8F0);
+  --emp-youth: linear-gradient(135deg, #FF3D82, #46C8FF);
+  --emp-dark: linear-gradient(160deg, #000616, #00305C);
 }
+
+/* Inside EMPOWER content, shared components adopt EMPOWER blue instead of
+   Everest teal. Applied to <main> only, so the header and footer stay
+   Everest — the sub-brand owns the page, not the chrome. */
+.empower-scope { --teal-accent: var(--emp-blue); --teal-deep: var(--emp-deep-blue);
+  --teal-darkest: var(--emp-navy); --teal-on-dark: var(--emp-light-blue);
+  --mist-line: #BFE4F7; --mist: #EAF6FE; }
 
 /* highlight phrase + pink/blue button */
 .emp-hi { background: var(--emp-wing); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -1570,10 +1587,20 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 /* --- Topics grid (parent-friendly soft tint) --- */
 .emp-topics-band { background: linear-gradient(180deg, rgba(250,156,203,.10), rgba(79,221,254,.10)); }
 .emp-topics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.emp-topic { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--mist-line);
-  border-radius: 12px; padding: 15px 17px; font-family: var(--font); font-weight: 500; font-size: 15px; color: var(--charcoal, #111827); }
-.emp-topic i { font-size: 20px; flex: 0 0 auto; color: var(--emp-pink); }
-.emp-topic:nth-child(even) i { color: var(--emp-blue); }
+/* Youth-facing but not childish: generous pill radii and a coloured icon
+   chip give it energy, while the restraint elsewhere keeps it credible to
+   the parents and schools who actually make the decision. */
+.emp-topic { display: flex; align-items: center; gap: 13px; background: #fff;
+  border: 1px solid var(--mist-line); border-radius: 999px; padding: 12px 20px 12px 12px;
+  font-family: var(--font); font-weight: 600; font-size: 15px; color: var(--emp-navy);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.emp-topic:hover { transform: translateY(-3px); border-color: transparent;
+  box-shadow: 0 12px 26px rgba(0,24,72,.13); }
+.emp-topic i { font-size: 19px; flex: 0 0 auto; color: #fff; width: 36px; height: 36px;
+  border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  background: var(--emp-pink); }
+.emp-topic:nth-child(even) i { background: var(--emp-blue); }
+.emp-topic:nth-child(3n) i { background: var(--emp-navy); }
 @media (max-width: 760px) { .emp-topics { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 460px) { .emp-topics { grid-template-columns: 1fr; } }
 
@@ -1581,9 +1608,18 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 
 /* --- Busy Bumbles partnership --- */
 .emp-partner { background: var(--cloud); }
-.emp-partner .rail { display: grid; grid-template-columns: 320px 1fr; gap: 52px; align-items: center; }
-.emp-partner .badge-wrap { text-align: center; }
-.emp-partner .badge-wrap img { width: min(300px, 78%); height: auto; }
+.emp-partner .rail { display: grid; grid-template-columns: 340px 1fr; gap: 52px; align-items: center; }
+/* the badge floats on a soft pink/blue halo drawn from its own colours,
+   which lifts it off the flat section without a hard container */
+.emp-partner .badge-wrap { text-align: center; position: relative; }
+.emp-partner .badge-wrap::before { content: ''; position: absolute; inset: 4% 8%;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle at 32% 30%, rgba(240,0,96,.22), transparent 62%),
+              radial-gradient(circle at 70% 68%, rgba(12,168,240,.26), transparent 62%);
+  filter: blur(26px); }
+.emp-partner .badge-wrap img { position: relative; width: min(320px, 84%); height: auto;
+  transition: transform .5s cubic-bezier(.22,.75,.28,1); }
+.emp-partner .badge-wrap img:hover { transform: rotate(-4deg) scale(1.04); }
 .emp-partner .emp-eyebrow { color: var(--emp-pink); }
 .emp-partner h2 { font-size: clamp(26px, 3.4vw, 42px); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
 .emp-partner p { font-family: var(--font); color: var(--slate); font-size: 16px; line-height: 1.7; margin: 16px 0 0; max-width: 52ch; }
