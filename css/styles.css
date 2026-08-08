@@ -1529,6 +1529,21 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   --teal-darkest: var(--emp-navy); --teal-on-dark: var(--emp-light-blue);
   --mist-line: #BFE4F7; --mist: #EAF6FE; }
 
+/* EMPOWER wings replace the kettlebell inside the sub-brand's own page.
+   Same rules as the kettlebell: interactive elements keep their native
+   affordance as the fallback, and it is skipped on touch. */
+@media (hover: hover) and (pointer: fine) {
+  .empower-scope { cursor: url('/assets/img/cursor-empower-wings.png') 16 16, auto; }
+  .empower-scope a, .empower-scope button, .empower-scope summary,
+  .empower-scope label, .empower-scope select, .empower-scope [role="button"] {
+    cursor: url('/assets/img/cursor-empower-wings.png') 16 16, pointer; }
+  .empower-scope input, .empower-scope textarea { cursor: text; }
+  .empower-scope input[type="checkbox"], .empower-scope input[type="radio"] { cursor: pointer; }
+}
+/* the site-wide glow trail follows EMPOWER's pink rather than Everest teal */
+.empower-scope-active .cursor-trail span {
+  background: radial-gradient(circle, rgba(240,0,96,.85), rgba(240,0,96,0) 70%); }
+
 /* highlight phrase + pink/blue button */
 .emp-hi { background: var(--emp-wing); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .btn-emp { background: var(--emp-pink); color: #fff; box-shadow: 0 10px 26px rgba(231,48,142,.4); }
@@ -1623,6 +1638,10 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-partner .emp-eyebrow { color: var(--emp-pink); }
 .emp-partner h2 { font-size: clamp(26px, 3.4vw, 42px); font-weight: 700; text-transform: uppercase; line-height: 1.05; }
 .emp-partner p { font-family: var(--font); color: var(--slate); font-size: 16px; line-height: 1.7; margin: 16px 0 0; max-width: 52ch; }
+/* who-they-are line, set apart from the partnership narrative that follows */
+.emp-partner-who { border-left: 3px solid var(--emp-yellow); padding-left: 16px;
+  color: var(--emp-navy) !important; font-size: 16.5px !important; }
+.emp-partner-who strong { color: var(--emp-navy); font-weight: 700; }
 /* Outbound link to the partner's own site. Written as descriptive link text
    rather than "click here" so it makes sense read on its own, which is how
    screen-reader users often navigate a page. */

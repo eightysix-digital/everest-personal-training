@@ -250,6 +250,11 @@
     var wrap = document.createElement('div');
     wrap.className = 'cursor-trail';
     wrap.setAttribute('aria-hidden', 'true');
+    /* the trail lives on <body>, outside .empower-scope, so flag the body on
+       EMPOWER pages to let the trail pick up the sub-brand colour */
+    if (document.querySelector('.empower-scope')) {
+      document.body.classList.add('empower-scope-active');
+    }
 
     var dots = [];
     for (var i = 0; i < COUNT; i++) {
