@@ -1947,3 +1947,74 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-radios label:has(input:checked) { background: var(--emp-pink); border-color: var(--emp-pink); color: #fff; }
 .emp-form .form-note { font-size: 13px; color: var(--slate); margin-top: 14px; }
 @media (max-width: 560px) { .emp-form .form-row { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   Mission & vision (About) + the preventative case (Impact)
+   ============================================================ */
+/* Uppercase in the stylesheet, not the markup: assistive tech reads the
+   source text, and some screen readers spell out all-caps words. */
+.h-caps { text-transform: uppercase; letter-spacing: -.005em; }
+.story.is-caps .story-item h3 { text-transform: uppercase; letter-spacing: .01em; }
+
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 8px; }
+.mv-card { position: relative; overflow: hidden; border-radius: 22px; padding: 34px 34px 32px;
+  background: #fff; border: 1px solid var(--mist-line); }
+/* the two statements are the load-bearing sentences on the page, so they get
+   a colour edge and display type rather than sitting in body copy */
+.mv-card::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 6px;
+  background: var(--teal-deep); }
+.mv-card.mv-vision::before { background: var(--teal-accent); }
+.mv-label { display: inline-block; font-family: var(--font); font-size: 12px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--teal-deep); margin-bottom: 14px; }
+.mv-vision .mv-label { color: var(--teal-accent); }
+.mv-statement { font-family: var(--display); font-weight: 600;
+  font-size: clamp(19px, 2.1vw, 25px); line-height: 1.32; color: var(--teal-darkest);
+  margin: 0; }
+.mv-sub { font-family: var(--font); font-size: 15px; line-height: 1.7; color: var(--slate);
+  margin: 16px 0 0; }
+/* the two audiences read this page for different reasons and neither should
+   feel like the afterthought, so they are stated side by side */
+.mv-reads { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 22px; }
+.mv-read { border-left: 3px solid var(--mist-line); padding: 2px 0 2px 20px; }
+.mv-read h3 { font-family: var(--display); font-size: 17px; font-weight: 700;
+  text-transform: uppercase; color: var(--teal-darkest); margin: 0 0 8px; }
+.mv-read p { font-family: var(--font); font-size: 15px; line-height: 1.7; color: var(--slate); margin: 0; }
+@media (max-width: 820px) { .mv-grid, .mv-reads { grid-template-columns: 1fr; } }
+
+/* --- The preventative case (Impact) --- */
+.case-band { position: relative; overflow: hidden; background: var(--black); color: #fff;
+  padding: clamp(64px, 10vh, 116px) 0; }
+.case-band::before { content: ''; position: absolute; width: 60vw; height: 60vw; right: -18%; top: -28%;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(20,164,184,.20), transparent 66%); }
+.case-band .wrap { position: relative; z-index: 2; }
+/* .intro caps at 680px, which is tight for a lede this long on a dark band */
+.case-band .intro { max-width: 880px; }
+/* .eyebrow-2 was only ever styled inside five specific containers, so the
+   class did nothing in an .intro — scoped here rather than given a base rule,
+   which would have shifted spacing on pages already using it */
+.intro .eyebrow-2 { display: inline-block; font-family: var(--font); font-size: 12px;
+  letter-spacing: 1px; font-weight: 500; color: var(--teal-deep); margin-bottom: 10px; }
+.case-band h2 { color: #fff; font-size: clamp(26px, 3.6vw, 44px); font-weight: 700;
+  text-transform: uppercase; line-height: 1.05; max-width: 20ch; }
+.case-band .intro p { color: var(--ink-on-dark); }
+.case-lede { font-family: var(--font); font-size: clamp(16px, 1.8vw, 19px); line-height: 1.7;
+  color: var(--ink-on-dark); max-width: 66ch; margin: 18px 0 0; }
+.case-split { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 40px; }
+.case-col { border-top: 2px solid rgba(255,255,255,.16); padding-top: 22px; }
+.case-col h3 { font-family: var(--display); font-size: 17px; font-weight: 700;
+  text-transform: uppercase; color: #fff; margin: 0 0 12px; }
+.case-col p { font-family: var(--font); font-size: 15.5px; line-height: 1.68;
+  color: var(--ink-on-dark); margin: 0 0 12px; }
+.case-col p:last-child { margin-bottom: 0; }
+/* the limits of the pilot are stated in the accent colour rather than buried,
+   because saying it first is what makes the rest of the page credible */
+.case-limit { margin-top: 34px; padding: 24px 26px; border-radius: 16px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); }
+.case-limit h3 { font-family: var(--display); font-size: 16px; font-weight: 700;
+  text-transform: uppercase; color: var(--teal-on-dark); margin: 0 0 10px; }
+.case-limit p { font-family: var(--font); font-size: 15px; line-height: 1.65;
+  color: var(--ink-on-dark); margin: 0; }
+.case-source { font-family: var(--font); font-size: 12.5px; color: var(--grey-muted);
+  margin-top: 26px; }
+@media (max-width: 820px) { .case-split { grid-template-columns: 1fr; } }
