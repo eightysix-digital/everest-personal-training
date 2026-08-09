@@ -36,6 +36,53 @@
   <div id="site-header"></div>
 
   <main class="empower-scope">
+    <!-- Kids' training kit, drawn once and referenced with <use> by both call
+         to action bands. Each piece takes its body colour from `currentColor`
+         and its accent from --eq-acc, so one set of artwork recolours to suit
+         whichever band it is floating in. -->
+    <svg class="emp-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+      <symbol id="eq-kettlebell" viewBox="0 0 100 100">
+        <path d="M31 44C31 20 69 20 69 44" fill="none" stroke="currentColor" stroke-width="9" stroke-linecap="round"/>
+        <path d="M50 40c20 0 34 15 34 32 0 12-14 18-34 18S16 84 16 72c0-17 14-32 34-32Z" fill="currentColor"/>
+        <ellipse cx="37" cy="61" rx="10" ry="6" fill="var(--eq-acc, #fff)" transform="rotate(-26 37 61)"/>
+      </symbol>
+      <symbol id="eq-ball" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="36" fill="currentColor"/>
+        <g fill="none" stroke="var(--eq-acc, #fff)" stroke-width="5" stroke-linecap="round">
+          <path d="M50 14c-11 12-11 60 0 72"/><path d="M50 14c11 12 11 60 0 72"/>
+          <path d="M17 36c20 8 46 8 66 0"/><path d="M17 64c20-8 46-8 66 0"/>
+        </g>
+      </symbol>
+      <symbol id="eq-rope" viewBox="0 0 100 100">
+        <path d="M24 40c-14 24 2 46 26 46s40-22 26-46" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
+        <rect x="17" y="12" width="12" height="28" rx="6" fill="var(--eq-acc, #fff)"/>
+        <rect x="71" y="12" width="12" height="28" rx="6" fill="var(--eq-acc, #fff)"/>
+      </symbol>
+      <symbol id="eq-hoop" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="34" fill="none" stroke="currentColor" stroke-width="11"/>
+        <!-- 17.8 rather than a round 17: the ring is 213.6 long, so only a
+             dash that divides it evenly avoids a visible seam at the wrap -->
+        <circle cx="50" cy="50" r="34" fill="none" stroke="var(--eq-acc, #fff)" stroke-width="11" stroke-dasharray="17.8 17.8"/>
+      </symbol>
+      <symbol id="eq-dumbbell" viewBox="0 0 100 100">
+        <rect x="28" y="44" width="44" height="12" rx="6" fill="currentColor"/>
+        <rect x="14" y="30" width="15" height="40" rx="7" fill="currentColor"/>
+        <rect x="71" y="30" width="15" height="40" rx="7" fill="currentColor"/>
+        <rect x="4" y="38" width="9" height="24" rx="4.5" fill="var(--eq-acc, #fff)"/>
+        <rect x="87" y="38" width="9" height="24" rx="4.5" fill="var(--eq-acc, #fff)"/>
+      </symbol>
+      <symbol id="eq-bottle" viewBox="0 0 100 100">
+        <rect x="31" y="26" width="38" height="62" rx="13" fill="currentColor"/>
+        <rect x="40" y="10" width="20" height="15" rx="5" fill="var(--eq-acc, #fff)"/>
+        <rect x="31" y="50" width="38" height="11" fill="var(--eq-acc, #fff)"/>
+      </symbol>
+      <symbol id="eq-cone" viewBox="0 0 100 100">
+        <path d="M46 16a5 5 0 0 1 8 0l24 62H22Z" fill="currentColor"/>
+        <rect x="14" y="76" width="72" height="12" rx="6" fill="currentColor"/>
+        <path d="M36 46h28l5 13H31Z" fill="var(--eq-acc, #fff)"/>
+      </symbol>
+    </svg>
+
     <!-- 1. Hero -->
     <section class="emp-hero">
       <div class="wing-glow" aria-hidden="true"></div>
@@ -59,9 +106,14 @@
     <!-- 1b. Call to action, bright variant. Deliberately repeated before the
          form at the foot of the page. -->
     <section class="emp-ready is-top" aria-labelledby="emp-ready-top-h">
-      <span class="emp-ready-bubble emp-ready-b1" aria-hidden="true"></span>
-      <span class="emp-ready-bubble emp-ready-b2" aria-hidden="true"></span>
-      <span class="emp-ready-bubble emp-ready-b3" aria-hidden="true"></span>
+      <div class="emp-floaters" aria-hidden="true">
+        <span class="emp-float f1"><svg viewBox="0 0 100 100"><use href="#eq-kettlebell"/></svg></span>
+        <span class="emp-float f2"><svg viewBox="0 0 100 100"><use href="#eq-ball"/></svg></span>
+        <span class="emp-float f3"><svg viewBox="0 0 100 100"><use href="#eq-rope"/></svg></span>
+        <span class="emp-float f4"><svg viewBox="0 0 100 100"><use href="#eq-hoop"/></svg></span>
+        <span class="emp-float f5"><svg viewBox="0 0 100 100"><use href="#eq-dumbbell"/></svg></span>
+        <span class="emp-float f6"><svg viewBox="0 0 100 100"><use href="#eq-bottle"/></svg></span>
+      </div>
       <div class="rail">
         <h2 id="emp-ready-top-h">Are you ready to be <span class="emp-ready-word">EMPOWERED</span>?</h2>
         <p>Every child has a first session. This could be theirs.</p>
@@ -312,9 +364,14 @@
          the page does not — everything above addresses parents, schools and
          providers. -->
     <section class="emp-ready" aria-labelledby="emp-ready-h">
-      <span class="emp-ready-bubble emp-ready-b1" aria-hidden="true"></span>
-      <span class="emp-ready-bubble emp-ready-b2" aria-hidden="true"></span>
-      <span class="emp-ready-bubble emp-ready-b3" aria-hidden="true"></span>
+      <div class="emp-floaters" aria-hidden="true">
+        <span class="emp-float f1"><svg viewBox="0 0 100 100"><use href="#eq-ball"/></svg></span>
+        <span class="emp-float f2"><svg viewBox="0 0 100 100"><use href="#eq-kettlebell"/></svg></span>
+        <span class="emp-float f3"><svg viewBox="0 0 100 100"><use href="#eq-cone"/></svg></span>
+        <span class="emp-float f4"><svg viewBox="0 0 100 100"><use href="#eq-hoop"/></svg></span>
+        <span class="emp-float f5"><svg viewBox="0 0 100 100"><use href="#eq-bottle"/></svg></span>
+        <span class="emp-float f6"><svg viewBox="0 0 100 100"><use href="#eq-rope"/></svg></span>
+      </div>
       <div class="rail">
         <h2 id="emp-ready-h">Are you ready to be <span class="emp-ready-word">EMPOWERED</span>?</h2>
         <p>Move better. Feel stronger. Back yourself. It starts with one session.</p>

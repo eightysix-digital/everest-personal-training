@@ -1684,21 +1684,33 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   .emp-outcome { padding: 28px 24px 26px; } }
 
 /* --- Hover reveal shared by the curriculum and outcome cards ---
-   The description lifts up over the face of the card in that card's own
-   EMPOWER colour. The panel is always in the DOM and only visually hidden,
-   so screen readers still reach the copy when it is not on screen. */
+   The description lifts up over the face of the card. Every panel shares one
+   EMPOWER gradient — pink through deep blue into navy — with that card's own
+   hue blooming through the lower right, so the sixteen panels read as one
+   brand rather than sixteen separate colour swatches.
+
+   The shared gradient is what keeps the white copy legible. A solid fill in
+   each card's colour would have put white on #FCCC00 at roughly 1.6:1 for
+   the yellow cards; blended at 45% over a navy base the same yellow measures
+   about 5.6:1. The 26% and 45% figures below are the ceiling those sums
+   allow — raising them starts failing AA again.
+
+   The panel is always in the DOM and only visually hidden, so screen readers
+   still reach the copy when it is not on screen. */
 .emp-learn-back, .emp-outcome-back {
   position: absolute; inset: 0; z-index: 3; border-radius: inherit;
   display: flex; flex-direction: column; justify-content: center;
-  background: var(--c); color: #fff; pointer-events: none;
+  color: #fff; pointer-events: none;
+  background:
+    radial-gradient(120% 95% at 14% 8%, rgba(255,255,255,.26), transparent 58%),
+    radial-gradient(88% 68% at 84% 88%,
+      color-mix(in srgb, var(--c) 45%, transparent), transparent 72%),
+    linear-gradient(148deg, var(--emp-pink) 0%, var(--emp-deep-pink) 26%,
+      var(--emp-deep-blue) 66%, var(--emp-navy) 100%);
   opacity: 0; transform: translateY(14px);
   transition: opacity .2s ease, transform .3s cubic-bezier(.34,1.56,.64,1); }
 .emp-learn-back { padding: 22px 20px; }
 .emp-outcome-back { padding: 32px; }
-/* soft light off the top-left stops the flat fill looking like a colour swatch */
-.emp-learn-back::before, .emp-outcome-back::before { content: ''; position: absolute;
-  inset: 0; border-radius: inherit;
-  background: radial-gradient(120% 90% at 18% 12%, rgba(255,255,255,.30), transparent 62%); }
 .emp-learn-back > *, .emp-outcome-back > * { position: relative; z-index: 1; }
 /* the title repeats inside the panel so the card still says what it is once
    its face is covered; aria-hidden because the real heading is underneath */
@@ -1717,11 +1729,6 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    would be unreachable without a mouse */
 .emp-learn-card:focus-visible, .emp-outcome:focus-visible {
   outline: 3px solid var(--emp-deep-blue); outline-offset: 3px; }
-/* yellow cards flip to navy text — white on #FCCC00 is nowhere near AA */
-.emp-learn-card:nth-child(4n+3) .emp-learn-back,
-.emp-learn-card:nth-child(4n+3) .emp-learn-back p,
-.emp-outcome:nth-child(3) .emp-outcome-back,
-.emp-outcome:nth-child(3) .emp-outcome-back p { color: var(--emp-navy); }
 @media (prefers-reduced-motion: reduce) {
   .emp-learn-back, .emp-outcome-back { transform: none; transition: opacity .15s linear; } }
 @media (hover: none) {
@@ -1729,7 +1736,6 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
      gesture that does not exist, the panel unwinds back into the card. */
   .emp-learn-back, .emp-outcome-back { position: static; display: block; opacity: 1;
     transform: none; background: none; padding: 0; pointer-events: auto; }
-  .emp-learn-back::before, .emp-outcome-back::before { display: none; }
   .emp-back-title { display: none; }
   .emp-learn-back p { color: var(--slate); font-size: 13.5px; margin-top: 7px; }
   .emp-outcome-back p { color: var(--slate); font-size: 15.5px; margin-top: 12px; max-width: 44ch; }
@@ -1841,7 +1847,7 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 
 /* --- "Are you ready to be EMPOWERED?" ---
    The one moment on the page that talks to the child rather than the adult,
-   so it earns the playful treatment: drifting bubbles in the badge colours,
+   so it earns the playful treatment: kit drifting past in the badge colours,
    an oversized headline and a gradient-filled word. Everything above stays
    measured, because parents and schools are who decide. */
 .emp-ready { position: relative; overflow: hidden; text-align: center;
@@ -1854,24 +1860,52 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-ready p { font-family: var(--font); font-size: clamp(16px, 2vw, 20px);
   color: #dbe9f5; margin: 18px auto 30px; max-width: 40ch; }
 .emp-ready-cta { font-size: 16px; padding: 16px 34px; }
-/* drifting bubbles, kept behind the copy and out of the accessibility tree */
-.emp-ready-bubble { position: absolute; border-radius: 50%; z-index: 1;
-  pointer-events: none; filter: blur(2px); opacity: .5;
-  animation: empFloat 9s ease-in-out infinite alternate; }
-.emp-ready-b1 { width: 120px; height: 120px; left: 6%; top: 18%;
-  background: radial-gradient(circle at 34% 32%, rgba(255,61,130,.85), rgba(240,0,96,.12) 68%); }
-.emp-ready-b2 { width: 78px; height: 78px; right: 10%; top: 24%;
-  background: radial-gradient(circle at 34% 32%, rgba(70,200,255,.85), rgba(12,168,240,.12) 68%);
-  animation-duration: 11s; animation-delay: -3s; }
-.emp-ready-b3 { width: 54px; height: 54px; left: 18%; bottom: 14%;
-  background: radial-gradient(circle at 34% 32%, rgba(252,204,0,.8), rgba(252,204,0,.1) 68%);
-  animation-duration: 13s; animation-delay: -6s; }
-@keyframes empFloat {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to   { transform: translate3d(14px, -26px, 0) scale(1.12); }
+/* Floating kit, drawn from the sprite at the top of the page and kept behind
+   the copy and out of the accessibility tree. Positions hug the edges so
+   nothing drifts across the headline. */
+.emp-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.emp-floaters { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.emp-float { position: absolute; display: block;
+  animation: empDrift 11s ease-in-out infinite alternate; }
+.emp-float svg { width: 100%; height: 100%; display: block; }
+/* rocking as well as rising — a straight vertical drift reads mechanical on
+   objects with an obvious upright, which a bottle or kettlebell has */
+@keyframes empDrift {
+  from { transform: translate3d(0, 0, 0) rotate(-9deg); }
+  to   { transform: translate3d(14px, -30px, 0) rotate(9deg); }
 }
-@media (prefers-reduced-motion: reduce) { .emp-ready-bubble { animation: none; } }
-@media (max-width: 640px) { .emp-ready-b2, .emp-ready-b3 { display: none; } }
+.emp-float.f1 { width: 78px; height: 78px; left: 4%; top: 15%;
+  animation-duration: 12s; animation-delay: -1s; }
+.emp-float.f2 { width: 60px; height: 60px; right: 6%; top: 12%;
+  animation-duration: 9s; animation-delay: -4s; }
+.emp-float.f3 { width: 66px; height: 66px; left: 11%; bottom: 11%;
+  animation-duration: 14s; animation-delay: -7s; }
+.emp-float.f4 { width: 84px; height: 84px; right: 8%; bottom: 13%;
+  animation-duration: 10.5s; animation-delay: -2.5s; }
+.emp-float.f5 { width: 46px; height: 46px; left: 29%; top: 7%;
+  animation-duration: 13s; animation-delay: -5s; }
+.emp-float.f6 { width: 50px; height: 50px; right: 27%; bottom: 7%;
+  animation-duration: 11.5s; animation-delay: -8.5s; }
+/* each piece takes a body colour and an accent, both from the EMPOWER set */
+.emp-ready .emp-float { opacity: .62; }
+.emp-ready .emp-float svg { filter: drop-shadow(0 8px 18px rgba(0,0,0,.28)); }
+.emp-ready .f1 { color: var(--emp-hot); --eq-acc: var(--emp-yellow); }
+.emp-ready .f2 { color: var(--emp-sky); --eq-acc: var(--emp-navy); }
+.emp-ready .f3 { color: var(--emp-yellow); --eq-acc: var(--emp-deep-pink); }
+.emp-ready .f4 { color: var(--emp-blue); --eq-acc: var(--emp-light-blue); }
+.emp-ready .f5 { color: var(--emp-soft-pink); --eq-acc: var(--emp-deep-blue); }
+.emp-ready .f6 { color: var(--emp-light-blue); --eq-acc: var(--emp-pink); }
+/* on the bright band the coloured kit would fight the gradient, so it goes
+   white with a navy accent instead */
+.emp-ready.is-top .emp-float { opacity: .52; color: #fff; --eq-acc: rgba(0,24,72,.4); }
+.emp-ready.is-top .emp-float svg { filter: drop-shadow(0 6px 14px rgba(0,24,72,.2)); }
+@media (prefers-reduced-motion: reduce) { .emp-float { animation: none; } }
+@media (max-width: 1000px) { .emp-float.f5, .emp-float.f6 { display: none; } }
+@media (max-width: 700px) {
+  .emp-float.f2, .emp-float.f3 { display: none; }
+  .emp-float.f1 { width: 54px; height: 54px; left: 2%; top: 8%; }
+  .emp-float.f4 { width: 58px; height: 58px; right: 2%; bottom: 8%; }
+}
 
 /* The same call to action runs twice on this page, near the top and again
    before the form. Running the top one bright and the lower one dark keeps
@@ -1882,8 +1916,6 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-ready.is-top .emp-ready-word { background: none; color: #fff;
   -webkit-text-fill-color: #fff; text-shadow: 0 3px 14px rgba(0,24,72,.28); }
 .emp-ready.is-top p { color: rgba(0,24,72,.82); }
-.emp-ready.is-top .emp-ready-bubble {
-  background: radial-gradient(circle at 34% 32%, rgba(255,255,255,.85), rgba(255,255,255,.1) 68%); }
 /* white pill on the bright band — the dark button would sit heavy on it */
 .emp-ready.is-top .emp-ready-cta { background: #fff; color: var(--emp-deep-pink);
   border-color: #fff; }
