@@ -106,31 +106,58 @@
           <h2>Twelve things every kid <span class="emp-pop">should know</span></h2>
           <p>Practical, age-appropriate learning woven through every session.</p>
         </div>
+        <!-- Each card carries a hover/focus panel holding its description. The
+             panel is always in the DOM, so the copy is never hidden from
+             assistive tech, and it unwinds to inline text on touch. -->
         <ul class="emp-learn r-stagger">
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-run" aria-hidden="true"></i></span>
-            <h3>Movement confidence</h3><p>Having a go, and backing yourself while you do it.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
-            <h3>Safe movement habits</h3><p>How to move well so your body stays happy.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-yoga" aria-hidden="true"></i></span>
-            <h3>Balance &amp; coordination</h3><p>Control, agility and staying steady on your feet.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-barbell" aria-hidden="true"></i></span>
-            <h3>Strength foundations</h3><p>Getting stronger with your own body weight first.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-mood-heart" aria-hidden="true"></i></span>
-            <h3>Emotional awareness</h3><p>Naming how you feel, and knowing that is normal.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-wind" aria-hidden="true"></i></span>
-            <h3>Breathing &amp; calming down</h3><p>Simple ways to settle yourself when things feel big.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-apple" aria-hidden="true"></i></span>
-            <h3>Food that fuels you</h3><p>What food does for your body, energy and mood.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-droplet" aria-hidden="true"></i></span>
-            <h3>Hydration</h3><p>Why water matters more than kids expect.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-mood-smile" aria-hidden="true"></i></span>
-            <h3>Body confidence</h3><p>Respecting what your body can do, not how it looks.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></span>
-            <h3>Looking after yourself</h3><p>Warming up, resting and speaking up when something hurts.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-users-group" aria-hidden="true"></i></span>
-            <h3>Teamwork</h3><p>Including everyone and cheering each other on.</p></li>
-          <li class="emp-learn-card reveal"><span class="emp-learn-icon"><i class="ti ti-message-2" aria-hidden="true"></i></span>
-            <h3>Communication</h3><p>Listening, asking questions and speaking up.</p></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-run" aria-hidden="true"></i></span>
+            <h3>Movement confidence</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Movement confidence</span>
+              <p>Having a go, and backing yourself while you do it.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
+            <h3>Safe movement habits</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Safe movement habits</span>
+              <p>How to move well so your body stays happy.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-yoga" aria-hidden="true"></i></span>
+            <h3>Balance &amp; coordination</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Balance &amp; coordination</span>
+              <p>Control, agility and staying steady on your feet.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-barbell" aria-hidden="true"></i></span>
+            <h3>Strength foundations</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Strength foundations</span>
+              <p>Getting stronger with your own body weight first.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-mood-heart" aria-hidden="true"></i></span>
+            <h3>Emotional awareness</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Emotional awareness</span>
+              <p>Naming how you feel, and knowing that is normal.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-wind" aria-hidden="true"></i></span>
+            <h3>Breathing &amp; calming down</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Breathing &amp; calming down</span>
+              <p>Simple ways to settle yourself when things feel big.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-apple" aria-hidden="true"></i></span>
+            <h3>Food that fuels you</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Food that fuels you</span>
+              <p>What food does for your body, energy and mood.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-droplet" aria-hidden="true"></i></span>
+            <h3>Hydration</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Hydration</span>
+              <p>Why water matters more than kids expect.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-mood-smile" aria-hidden="true"></i></span>
+            <h3>Body confidence</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Body confidence</span>
+              <p>Respecting what your body can do, not how it looks.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-first-aid-kit" aria-hidden="true"></i></span>
+            <h3>Looking after yourself</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Looking after yourself</span>
+              <p>Warming up, resting and speaking up when something hurts.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-users-group" aria-hidden="true"></i></span>
+            <h3>Teamwork</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Teamwork</span>
+              <p>Including everyone and cheering each other on.</p></div></li>
+          <li class="emp-learn-card reveal" tabindex="0"><span class="emp-learn-icon"><i class="ti ti-message-2" aria-hidden="true"></i></span>
+            <h3>Communication</h3>
+            <div class="emp-learn-back"><span class="emp-back-title" aria-hidden="true">Communication</span>
+              <p>Listening, asking questions and speaking up.</p></div></li>
         </ul>
       </div>
     </section>
@@ -144,14 +171,22 @@
           <p>What we help children build through structured, supported delivery.</p>
         </div>
         <div class="emp-outcomes r-stagger">
-          <div class="emp-outcome reveal" data-n="01"><span class="emp-outcome-icon"><i class="ti ti-run" aria-hidden="true"></i></span>
-            <h3>Physical confidence</h3><p>Children build movement skills, coordination, balance and confidence participating in physical activity.</p></div>
-          <div class="emp-outcome reveal" data-n="02"><span class="emp-outcome-icon"><i class="ti ti-heartbeat" aria-hidden="true"></i></span>
-            <h3>Wellbeing awareness</h3><p>Children learn how movement, hydration, nutrition, breathing and recovery support how they feel and function.</p></div>
-          <div class="emp-outcome reveal" data-n="03"><span class="emp-outcome-icon"><i class="ti ti-users-group" aria-hidden="true"></i></span>
-            <h3>Social development</h3><p>Children practise teamwork, communication, encouragement, leadership and respect for others.</p></div>
-          <div class="emp-outcome reveal" data-n="04"><span class="emp-outcome-icon"><i class="ti ti-refresh" aria-hidden="true"></i></span>
-            <h3>Lifelong habits</h3><p>Children begin building positive associations with exercise, health and personal responsibility.</p></div>
+          <div class="emp-outcome reveal" data-n="01" tabindex="0"><span class="emp-outcome-icon"><i class="ti ti-run" aria-hidden="true"></i></span>
+            <h3>Physical confidence</h3>
+            <div class="emp-outcome-back"><span class="emp-back-title" aria-hidden="true">Physical confidence</span>
+              <p>Children build movement skills, coordination, balance and confidence participating in physical activity.</p></div></div>
+          <div class="emp-outcome reveal" data-n="02" tabindex="0"><span class="emp-outcome-icon"><i class="ti ti-heartbeat" aria-hidden="true"></i></span>
+            <h3>Wellbeing awareness</h3>
+            <div class="emp-outcome-back"><span class="emp-back-title" aria-hidden="true">Wellbeing awareness</span>
+              <p>Children learn how movement, hydration, nutrition, breathing and recovery support how they feel and function.</p></div></div>
+          <div class="emp-outcome reveal" data-n="03" tabindex="0"><span class="emp-outcome-icon"><i class="ti ti-users-group" aria-hidden="true"></i></span>
+            <h3>Social development</h3>
+            <div class="emp-outcome-back"><span class="emp-back-title" aria-hidden="true">Social development</span>
+              <p>Children practise teamwork, communication, encouragement, leadership and respect for others.</p></div></div>
+          <div class="emp-outcome reveal" data-n="04" tabindex="0"><span class="emp-outcome-icon"><i class="ti ti-refresh" aria-hidden="true"></i></span>
+            <h3>Lifelong habits</h3>
+            <div class="emp-outcome-back"><span class="emp-back-title" aria-hidden="true">Lifelong habits</span>
+              <p>Children begin building positive associations with exercise, health and personal responsibility.</p></div></div>
         </div>
       </div>
     </section>
