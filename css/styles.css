@@ -1688,6 +1688,40 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .emp-track li i { color: var(--emp-blue); font-size: 19px; flex: 0 0 auto; }
 @media (max-width: 620px) { .emp-track { grid-template-columns: 1fr; } }
 
+/* --- "Are you ready to be EMPOWERED?" ---
+   The one moment on the page that talks to the child rather than the adult,
+   so it earns the playful treatment: drifting bubbles in the badge colours,
+   an oversized headline and a gradient-filled word. Everything above stays
+   measured, because parents and schools are who decide. */
+.emp-ready { position: relative; overflow: hidden; text-align: center;
+  background: var(--emp-dark); color: #fff; padding: clamp(64px, 11vh, 120px) 0; }
+.emp-ready .rail { position: relative; z-index: 2; }
+.emp-ready h2 { font-size: clamp(30px, 5.6vw, 66px); font-weight: 700;
+  text-transform: uppercase; line-height: 1.02; margin: 0; letter-spacing: -.01em; }
+.emp-ready-word { background: var(--emp-youth); -webkit-background-clip: text;
+  background-clip: text; color: transparent; }
+.emp-ready p { font-family: var(--font); font-size: clamp(16px, 2vw, 20px);
+  color: #dbe9f5; margin: 18px auto 30px; max-width: 40ch; }
+.emp-ready-cta { font-size: 16px; padding: 16px 34px; }
+/* drifting bubbles, kept behind the copy and out of the accessibility tree */
+.emp-ready-bubble { position: absolute; border-radius: 50%; z-index: 1;
+  pointer-events: none; filter: blur(2px); opacity: .5;
+  animation: empFloat 9s ease-in-out infinite alternate; }
+.emp-ready-b1 { width: 120px; height: 120px; left: 6%; top: 18%;
+  background: radial-gradient(circle at 34% 32%, rgba(255,61,130,.85), rgba(240,0,96,.12) 68%); }
+.emp-ready-b2 { width: 78px; height: 78px; right: 10%; top: 24%;
+  background: radial-gradient(circle at 34% 32%, rgba(70,200,255,.85), rgba(12,168,240,.12) 68%);
+  animation-duration: 11s; animation-delay: -3s; }
+.emp-ready-b3 { width: 54px; height: 54px; left: 18%; bottom: 14%;
+  background: radial-gradient(circle at 34% 32%, rgba(252,204,0,.8), rgba(252,204,0,.1) 68%);
+  animation-duration: 13s; animation-delay: -6s; }
+@keyframes empFloat {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(14px, -26px, 0) scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) { .emp-ready-bubble { animation: none; } }
+@media (max-width: 640px) { .emp-ready-b2, .emp-ready-b3 { display: none; } }
+
 /* --- EMPOWER enquiry form --- */
 .emp-form-band { background: var(--cloud); }
 .emp-form { background: #fff; border: 1px solid rgba(0,0,0,.05); border-radius: 20px;
