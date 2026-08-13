@@ -715,7 +715,10 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 
 /* the climber — keyframe percentages match .trail-climb so the dot stays
    at the head of the drawn line */
-.ascent .climber { offset-path: path("M0,748 L150,706 L300,716 L455,612 L605,626 L760,512 L905,528 L1050,392 L1150,414 L1245,256 L1290,274 L1320,120");
+/* This path must stay byte-identical to the two <path d> values in the page
+   markup. It is the same route scaled to 94% on x so the summit clears the
+   right edge with room for the CTA to sit over the end of it. */
+.ascent .climber { offset-path: path("M0,748 L141,706 L282,716 L427,612 L568,626 L714,512 L850,528 L986,392 L1080,414 L1170,256 L1212,274 L1240,176");
   offset-rotate: 0deg; offset-distance: 0%; opacity: 0;
   animation: climb 7s ease-in-out 1.6s infinite; }
 /* the kettlebell itself. Drawn centred on 0,0 so the motion path positions it
@@ -2034,17 +2037,24 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    and lands on the summit marker, so that is where the ask goes.
 
    Position is derived, not guessed. The svg is inset left:-2% at width:104%
-   with preserveAspectRatio="none", so viewBox x=1320/1400 maps to
-   -2% + 0.942857 * 104% = 96.06% across the hero, and cy=120/800 maps to 15%
-   down. The pill's right edge sits on that exact x with its top just under
-   the marker, so the route terminates into the button.
+   with preserveAspectRatio="none", so viewBox x=1240/1400 maps to
+   -2% + 0.885714 * 104% = 90.11% across the hero, and cy=176/800 maps to 22%
+   down. Offsetting the right edge by -30px from that puts the summit exactly
+   30px inside the pill at any viewport width, so the kettlebell climbs and
+   disappears into the button rather than stopping beside it.
+
+   Two coordinates moved to make this work. The route was scaled to 94% on x:
+   the summit used to sit at 96%, leaving no room for a button to extend past
+   it, so it could only ever sit alongside the end of the line. And the summit
+   dropped from y=120 to y=176 — at 15% of a 92svh hero on a 1366x768 laptop
+   the pill landed at 66px, underneath the fixed header. 22% clears it on
+   every viewport height without breaking the alignment.
 
    It is a sibling of .ascent, never a child: that div is aria-hidden, and a
    focusable link inside it would be reachable by keyboard while invisible to
    a screen reader. */
-.summit-cta { position: absolute; z-index: 3; top: 15%; right: 3.943%;
-  transform: translateY(11px); display: inline-flex; flex-direction: column;
-  align-items: flex-end; gap: 7px; text-decoration: none;
+.summit-cta { position: absolute; z-index: 3; top: 22%; right: calc(9.886% - 30px);
+  transform: translateY(-50%); display: block; text-decoration: none;
   animation: summitCtaIn .6s cubic-bezier(.2,.8,.3,1) 2.4s both; }
 .summit-cta-pill { display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .06em;
@@ -2054,14 +2064,19 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   /* the ring pulses on the same 7s cycle as the climb, so it flares at the
      moment the kettlebell tops out and the eye is already there */
   animation: summitPulse 7s ease-in-out 1.6s infinite; }
-.summit-cta-sub { font-family: var(--font); font-size: 12.5px; letter-spacing: .02em;
-  color: var(--ink-on-dark); }
+/* The caption hangs off the pill rather than sitting in flow. The block is
+   centred on the summit with translateY(-50%), and that has to centre the
+   PILL — if the caption added to the block height the pill would ride up by
+   half the caption and the line would miss it. */
+.summit-cta-sub { position: absolute; top: calc(100% + 7px); right: 0;
+  font-family: var(--font); font-size: 12.5px; letter-spacing: .02em;
+  white-space: nowrap; color: var(--ink-on-dark); }
 .summit-cta:hover .summit-cta-pill { transform: translateY(-2px); background: #fff; }
 .summit-cta:focus-visible { outline: 3px solid var(--teal-accent); outline-offset: 4px;
   border-radius: 8px; }
 @keyframes summitCtaIn {
-  from { opacity: 0; transform: translateY(23px); }
-  to   { opacity: 1; transform: translateY(11px); }
+  from { opacity: 0; transform: translateY(calc(-50% + 12px)); }
+  to   { opacity: 1; transform: translateY(-50%); }
 }
 @keyframes summitPulse {
   0%, 62%  { box-shadow: 0 0 0 0 rgba(20,164,184,0); }
@@ -2076,13 +2091,17 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 /* Narrow screens keep it, but stripped back. The hero is bottom-aligned so the
    upper area is empty; a compact pill sits there cleanly as long as it loses
    the caption and stays clear of both the fixed header and the headline. */
+/* top stays at 22% at every width — it is tied to the summit's y and moving
+   it would break the alignment this whole block exists to hold. Only the
+   horizontal inset changes, because the pill is shorter here and 30px would
+   push the summit past its flat middle into the rounded cap. */
 @media (max-width: 900px) {
-  .summit-cta { top: 17%; right: 4%; transform: translateY(9px); }
+  .summit-cta { right: calc(9.886% - 20px); }
   .summit-cta-sub { display: none; }
   .summit-cta-pill { font-size: 13px; padding: 11px 17px; gap: 7px; letter-spacing: .05em; }
 }
 @media (max-width: 560px) {
-  .summit-cta { top: 18%; }
+  .summit-cta { right: calc(9.886% - 17px); }
   .summit-cta-pill { font-size: 12px; padding: 10px 15px; }
 }
 /* Under ~380px the hero headline runs long enough to reach the pill, and a
