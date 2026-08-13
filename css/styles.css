@@ -2036,19 +2036,16 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    Position is derived, not guessed. The svg is inset left:-2% at width:104%
    with preserveAspectRatio="none", so viewBox x=1320/1400 maps to
    -2% + 0.942857 * 104% = 96.06% across the hero, and cy=120/800 maps to 15%
-   down. The pill is shifted 22px right of its own edge so the hairline that
-   drops from the marker meets it, rather than landing on a rounded corner.
+   down. The pill's right edge sits on that exact x with its top just under
+   the marker, so the route terminates into the button.
 
    It is a sibling of .ascent, never a child: that div is aria-hidden, and a
    focusable link inside it would be reachable by keyboard while invisible to
    a screen reader. */
-.summit-cta { position: absolute; z-index: 3; top: 15%; right: calc(3.943% - 22px);
-  transform: translateY(30px); display: inline-flex; flex-direction: column;
+.summit-cta { position: absolute; z-index: 3; top: 15%; right: 3.943%;
+  transform: translateY(11px); display: inline-flex; flex-direction: column;
   align-items: flex-end; gap: 7px; text-decoration: none;
   animation: summitCtaIn .6s cubic-bezier(.2,.8,.3,1) 2.4s both; }
-.summit-cta::before { content: ''; position: absolute; right: 22px; top: -30px;
-  width: 1px; height: 30px;
-  background: linear-gradient(to bottom, var(--teal-accent), rgba(20,164,184,.12)); }
 .summit-cta-pill { display: inline-flex; align-items: center; gap: 9px;
   font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .06em;
   text-transform: uppercase; color: var(--black); background: var(--teal-accent);
@@ -2063,8 +2060,8 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .summit-cta:focus-visible { outline: 3px solid var(--teal-accent); outline-offset: 4px;
   border-radius: 8px; }
 @keyframes summitCtaIn {
-  from { opacity: 0; transform: translateY(42px); }
-  to   { opacity: 1; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(23px); }
+  to   { opacity: 1; transform: translateY(11px); }
 }
 @keyframes summitPulse {
   0%, 62%  { box-shadow: 0 0 0 0 rgba(20,164,184,0); }
@@ -2076,6 +2073,53 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   .summit-cta { animation: none; opacity: 1; }
   .summit-cta-pill { animation: none; }
 }
-/* Below this width the hero is too tight to carry it, and the hero's own
-   buttons already sit on the right doing the same job. */
-@media (max-width: 900px) { .summit-cta { display: none; } }
+/* Narrow screens keep it, but stripped back. The hero is bottom-aligned so the
+   upper area is empty; a compact pill sits there cleanly as long as it loses
+   the caption and stays clear of both the fixed header and the headline. */
+@media (max-width: 900px) {
+  .summit-cta { top: 17%; right: 4%; transform: translateY(9px); }
+  .summit-cta-sub { display: none; }
+  .summit-cta-pill { font-size: 13px; padding: 11px 17px; gap: 7px; letter-spacing: .05em; }
+}
+@media (max-width: 560px) {
+  .summit-cta { top: 18%; }
+  .summit-cta-pill { font-size: 12px; padding: 10px 15px; }
+}
+/* Under ~380px the hero headline runs long enough to reach the pill, and a
+   collision looks worse than an absence. The hero's own buttons still cover
+   the same conversion path. */
+@media (max-width: 380px) { .summit-cta { display: none; } }
+/* ============================================================
+   Mobile polish
+   ============================================================ */
+/* 92vh is measured against the LARGEST viewport on iOS Safari and Android
+   Chrome - the one with the toolbar retracted. With the toolbar showing, a
+   92vh hero is taller than the screen, so the bottom-aligned hero copy and
+   buttons start below the fold on first paint. svh measures the small
+   viewport instead, which is the one the visitor actually has. On desktop
+   svh and vh are identical, so this is safe everywhere. */
+@supports (height: 1svh) { :root { --hero-h: 92svh; } }
+
+/* 150px of top padding exists to clear the fixed header. The header is
+   shorter on a phone and the space was reading as dead air above the
+   headline. */
+@media (max-width: 760px) {
+  .cine-hero .rail, .subhero .rail { padding-top: 112px; padding-bottom: 6vh; }
+  .page-hero .wrap { padding-top: 112px; padding-bottom: 76px; }
+}
+@media (max-width: 560px) {
+  .section { padding: 48px 0; }
+  /* card padding scaled with the viewport - 34px inner padding on a 375px
+     screen left barely 250px of usable line length */
+  .mv-card { padding: 24px 22px 22px; }
+  .mv-read { padding-left: 16px; }
+  .case-col { padding-top: 18px; }
+  .case-limit { padding: 20px 18px; }
+  .emp-outcome { padding: 24px 20px 22px; }
+}
+/* two curriculum cards across stops working once the column is narrower than
+   the longest label - "Breathing & calming down" was wrapping to four lines */
+@media (max-width: 400px) {
+  .emp-learn { grid-template-columns: 1fr; }
+  .emp-learn-card { min-height: 0; }
+}
