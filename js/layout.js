@@ -148,12 +148,20 @@
         "@type": ["Organization", "LocalBusiness"],
         "@id": origin + "/#business",
         "name": "Everest Personal Training",
-        "description": "Personal training, fitness and human performance coaching in Christchurch and across Canterbury, New Zealand. Online, in-person and hybrid coaching for individuals, athletes, young people and organisations.",
+        // Mission first, then what we actually sell. Search engines and AI
+        // assistants read this description verbatim, so it is the one place
+        // the mission has to survive being quoted out of context.
+        "slogan": "Movement recognised and funded as frontline prevention — for the body and the mind.",
+        "description": "Everest builds everyday capability through structured movement, and measures it honestly, so what works can be proven, repeated and scaled. Personal training, coaching and human performance programmes in Christchurch and across Canterbury, New Zealand, with online coaching worldwide, for individuals, athletes, young people and organisations.",
         "url": origin + "/",
         "email": "jared@everest-pt.com",
+        // in-person is Canterbury; online delivery is not geographically bound
+        // and there are already clients on other continents
         "areaServed": [
           { "@type": "City", "name": "Christchurch" },
-          { "@type": "AdministrativeArea", "name": "Canterbury" }
+          { "@type": "AdministrativeArea", "name": "Canterbury" },
+          { "@type": "Country", "name": "New Zealand" },
+          { "@type": "Place", "name": "Worldwide (online coaching)" }
         ],
         "address": { "@type": "PostalAddress", "addressLocality": "Christchurch", "addressRegion": "Canterbury", "addressCountry": "NZ" }
       },

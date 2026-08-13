@@ -64,6 +64,13 @@
           </g>
         </svg>
       </div>
+      <!-- Planted at the end of the ascent line. Sibling of .ascent, not a
+           child: that div is aria-hidden and a link inside it would be
+           keyboard-focusable but invisible to a screen reader. -->
+      <a class="summit-cta" href="/programs/#quiz">
+        <span class="summit-cta-pill">Get some <i class="ti ti-arrow-right" aria-hidden="true"></i></span>
+        <span class="summit-cta-sub">60-second program finder</span>
+      </a>
       <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Performance</nav>
         <h1>Built for the demands ahead.</h1>
