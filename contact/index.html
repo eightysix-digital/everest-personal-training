@@ -54,13 +54,26 @@
       <div class="rail">
         <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> Contact</nav>
         <h1>Tell us your goal.</h1>
-        <p class="sub">Whether you're starting out, chasing performance, or representing an organisation, we'll point you to the right program, coach or partnership pathway.</p>
+        <p class="sub">One message. We read every one, and you hear back from a person within one working day.</p>
         <div class="cine-actions">
           <a class="btn btn-accent" href="#enquire">Send an enquiry <i class="ti ti-arrow-down" aria-hidden="true"></i></a>
         </div>
       </div>
     </section>
 
+    <!-- What happens after they press send. Uncertainty about what a form does
+         to you is one of the biggest reasons people do not fill one in, so it
+         is answered before the form rather than after it. -->
+    <section class="section next-band" aria-labelledby="next-h">
+      <div class="wrap">
+        <h2 id="next-h" class="visually-hidden">What happens next</h2>
+        <ol class="next-steps">
+          <li><span class="ns-num">1</span><div><h3>You send a message</h3><p>Two fields and a sentence about what you are after. No forms to download, no obligation.</p></div></li>
+          <li><span class="ns-num">2</span><div><h3>We reply within one working day</h3><p>From Jared or one of the team, not an autoresponder, with a straight answer about whether we can help.</p></div></li>
+          <li><span class="ns-num">3</span><div><h3>A free call if it looks like a fit</h3><p>Fifteen minutes to talk through where you are and what would actually work. You are under no pressure to book anything.</p></div></li>
+        </ol>
+      </div>
+    </section>
 
     <section class="section" id="enquire">
       <div class="wrap">
@@ -89,20 +102,37 @@
               <input id="org" name="organisation" type="text" autocomplete="organization" />
             </div>
             <div class="form-field">
-              <label for="message">How can we help?</label>
-              <textarea id="message" name="message" required></textarea>
+              <!-- optional on purpose: a required free-text box is the single
+                   biggest drop-off point on a short form, and a name and an
+                   email is already enough for us to start the conversation -->
+              <label for="message">What are you after? <span class="opt">Optional</span></label>
+              <textarea id="message" name="message" placeholder="A sentence is plenty. Where you are now, and what you would like to change."></textarea>
             </div>
             <button class="btn btn-deep" type="submit">Send enquiry <i class="ti ti-send" aria-hidden="true"></i></button>
             <p id="form-status" role="status" style="margin-top:14px;font-size:14px"></p>
+            <p class="form-privacy"><i class="ti ti-lock" aria-hidden="true"></i> Your details come to us and nowhere else. No list, no newsletter unless you ask, no sharing with anyone.</p>
           </form>
 
           <aside class="contact-aside">
+            <!-- Real figure, verified against the Google Business Profile on
+                 4 Aug 2026. Keep in step with data/testimonials.json. -->
+            <a class="contact-rating" href="https://www.google.com/maps/search/Everest+Personal+Training+Rolleston" target="_blank" rel="noopener">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span><strong>5.0</strong> from 26 Google reviews</span></a>
             <h3>Prefer to talk?</h3>
             <ul class="contact-methods">
-              <li class="contact-method"><i class="ti ti-mail" aria-hidden="true"></i><span><a href="mailto:jared@everest-pt.com">jared@everest-pt.com</a><br /><span class="sub">We'll get back to you quickly.</span></span></li>
-              <li class="contact-method"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Christchurch, New Zealand<br /><span class="sub">In person locally, online across the country.</span></span></li>
+              <li class="contact-method"><i class="ti ti-phone" aria-hidden="true"></i><span><a href="tel:+64221398969">022 139 8969</a><br /><span class="sub">Call or text, whichever is easier.</span></span></li>
+              <li class="contact-method"><i class="ti ti-mail" aria-hidden="true"></i><span><a href="mailto:jared@everest-pt.com">jared@everest-pt.com</a><br /><span class="sub">Replies within one working day.</span></span></li>
+              <li class="contact-method"><i class="ti ti-map-pin" aria-hidden="true"></i><span>Christchurch, New Zealand<br /><span class="sub">In person locally, online worldwide &mdash; we already coach clients on three continents.</span></span></li>
               <li class="contact-method"><i class="ti ti-building-community" aria-hidden="true"></i><span>Organisations &amp; health sector<br /><span class="sub">Choose "An organisation" and we'll respond with capability information.</span></span></li>
             </ul>
+            <!-- Lower-commitment alternative for anyone not ready to talk to a
+                 human yet. Without it they simply leave. -->
+            <div class="contact-alt">
+              <h3>Not ready to talk?</h3>
+              <p>Answer six questions and we'll show you which program fits, with the price. No email required.</p>
+              <a class="btn btn-outline" href="/programs/#quiz">Try the 60-second finder <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+            </div>
           </aside>
         </div>
       </div>
