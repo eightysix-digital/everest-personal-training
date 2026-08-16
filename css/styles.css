@@ -2374,3 +2374,51 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .post-figure { margin: 0 0 34px; }
 .post-figure img { display: block; width: 100%; height: auto; border-radius: 16px;
   border: 1px solid var(--mist-line); box-shadow: 0 18px 44px rgba(17,17,17,.10); }
+/* ============================================================
+   Hero glow, everywhere
+   ============================================================ */
+/* The homepage hero got a teal wash when its photograph came out. Every other
+   hero was left flat black, so moving between pages felt like moving between
+   two sites. Same treatment now, with the wash entering from the left where
+   the ascent line starts, so it lifts the beginning of the climb. */
+.subhero .cine-bg, .post-hero .post-hero-bg:not([style]) {
+  background-image:
+    radial-gradient(80% 70% at 8% 22%, rgba(6,96,108,.42), transparent 68%),
+    linear-gradient(180deg, rgba(10,10,10,0) 40%, rgba(0,0,0,.55) 100%);
+  background-color: #0a0a0a; }
+/* EMPOWER keeps its own pink and blue wings; overriding it here would flatten
+   the one page that is deliberately a different colour. */
+.empower-scope .emp-hero .wing-glow { }
+
+/* ============================================================
+   Organisations: a more corporate register
+   ============================================================
+   Same typefaces, same palette, same components. What changes is the setting:
+   tighter tracking, a slightly smaller heading scale, more line-height and a
+   hairline rule under each section opener. Institutional buyers read pages
+   like documents, and a document is set tighter and calmer than a landing
+   page. It stays recognisably the same brand because nothing but the metrics
+   move. */
+.org-scope .intro h2,
+.org-scope .split-body h2,
+.org-scope .assurance h2,
+.org-scope .faq-aside h2 {
+  font-size: clamp(24px, 2.9vw, 36px);
+  letter-spacing: -0.015em;
+  line-height: 1.12;
+}
+.org-scope .intro { max-width: 720px; }
+.org-scope .intro h2 { position: relative; padding-bottom: 16px; }
+/* the hairline is the whole trick: it reads as a document rule, not decoration */
+.org-scope .intro h2::after { content: ''; position: absolute; left: 0; bottom: 0;
+  width: 56px; height: 2px; background: var(--teal-deep); }
+.org-scope .eyebrow-2 { font-size: 11.5px; letter-spacing: 2.4px; font-weight: 600;
+  color: var(--teal-deep); }
+.org-scope p { line-height: 1.78; }
+.org-scope .split-body p, .org-scope .intro p { max-width: 62ch; }
+.org-scope .check-list li { font-size: 15.5px; line-height: 1.6; }
+.org-scope .subhero h1 { letter-spacing: -0.025em; }
+.org-scope .subhero .sub { color: #dfe6e8; }
+/* numbers are the argument on this page, so they are set with more authority */
+.org-scope .stat-band .num, .org-scope .assurance .num {
+  letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
