@@ -12,7 +12,7 @@
       { label: 'Personal Training', href: '/personal-training/', desc: 'App programs, personalised coaching and 1-on-1 sessions' },
       { label: 'Programs &amp; pricing', href: '/programs/', desc: 'The full catalogue, with the 60-second finder' }
     ] },
-    { label: 'Performance', href: '/performance/' },
+    { label: 'Everest Elite', short: 'Elite', href: '/elite/' },
     { label: 'EMPOWER', href: '/empower/' },
     { label: 'Organisations', href: '/organisations/' },
     { label: 'Impact', href: '/impact/' },
@@ -87,7 +87,7 @@
               '<h3>Train</h3>' +
               '<a href="/personal-training/">Personal Training</a>' +
               '<a href="/programs/">Programs &amp; pricing</a>' +
-              '<a href="/performance/">Performance</a>' +
+              '<a href="/elite/">Everest Elite</a>' +
               '<a href="/empower/">EMPOWER</a>' +
             '</div>' +
             '<div class="footer-col">' +

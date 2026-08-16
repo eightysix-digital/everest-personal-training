@@ -2249,3 +2249,45 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   .rung-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; gap: 26px; }
   .rung.is-best { transform: none; }
 }
+/* --- Everest Elite: the two arms --- */
+.arms-band { background: var(--cloud); }
+.arms-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.arm { position: relative; overflow: hidden; display: flex; flex-direction: column;
+  background: #fff; border: 1px solid var(--mist-line); border-radius: 24px;
+  padding: 34px 32px 32px; transition: transform .2s ease, box-shadow .2s ease; }
+/* full-bleed colour edge, teal for sport and the darker brand teal for the
+   executive arm, so the two read as siblings rather than tiers */
+.arm::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 6px;
+  background: var(--teal-accent); }
+.arm.is-exec::before { background: var(--teal-darkest); }
+.arm:hover { transform: translateY(-5px); box-shadow: 0 22px 46px rgba(6,96,108,.16); }
+.arm-icon { display: inline-flex; align-items: center; justify-content: center;
+  width: 58px; height: 58px; border-radius: 18px; font-size: 28px; color: #fff;
+  background: linear-gradient(135deg, var(--teal-deep), var(--teal-accent));
+  box-shadow: 0 12px 26px rgba(6,96,108,.28); }
+.arm.is-exec .arm-icon { background: linear-gradient(135deg, var(--teal-darkest), var(--teal-deep)); }
+.arm-kicker { display: block; font-family: var(--font); font-size: 12px; font-weight: 600;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--teal-deep); margin: 20px 0 2px; }
+.arm h3 { font-family: var(--display); font-weight: 700; font-size: clamp(30px, 3.4vw, 42px);
+  text-transform: uppercase; letter-spacing: -.02em; line-height: 1; color: var(--teal-darkest);
+  margin: 0 0 12px; }
+.arm-lede { font-family: var(--font); font-size: 16px; line-height: 1.6; color: var(--slate);
+  margin: 0 0 22px; min-height: 3.2em; }
+.arm-list { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 11px; }
+.arm-list li { display: flex; align-items: flex-start; gap: 11px; font-family: var(--font);
+  font-size: 15px; line-height: 1.5; color: #2c2f31; }
+.arm-list li i { color: var(--teal-deep); font-size: 18px; flex: 0 0 auto; margin-top: 1px; }
+.arm-cta { margin-top: auto; justify-content: center; }
+/* the Executive / Organisations distinction, stated rather than left to a
+   sales call to untangle */
+.arms-foot { display: flex; align-items: flex-start; gap: 10px; margin: 26px 0 0;
+  font-family: var(--font); font-size: 15px; line-height: 1.6; color: var(--slate); }
+.arms-foot i { color: var(--teal-deep); font-size: 19px; flex: 0 0 auto; margin-top: 1px; }
+.arms-foot strong { color: var(--teal-darkest); font-weight: 600; }
+.arms-foot a { color: var(--teal-deep); border-bottom: 1px solid rgba(6,96,108,.35); }
+.arms-foot a:hover { color: var(--teal-accent); border-bottom-color: var(--teal-accent); }
+@media (max-width: 900px) {
+  .arms-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+  .arm { padding: 28px 24px 26px; }
+  .arm-lede { min-height: 0; }
+}

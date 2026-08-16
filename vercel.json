@@ -14,6 +14,16 @@
       "source": "/coaching/:path*",
       "destination": "/personal-training/",
       "permanent": true
+    },
+    {
+      "source": "/performance",
+      "destination": "/elite/",
+      "permanent": true
+    },
+    {
+      "source": "/performance/:path*",
+      "destination": "/elite/",
+      "permanent": true
     }
   ],
   "headers": [
