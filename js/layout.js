@@ -3,46 +3,68 @@
 (function () {
   'use strict';
 
-  /* Everest Group is the parent brand. Everest Personal Training is the
-     division that coaching and programs sit under, so they are grouped
-     rather than listed flat — eight top-level items had outgrown the header.
-     An item with `children` renders as a submenu. */
+  /* Everest Group is the parent brand and the nav is its four business units,
+     in that order, with everything about the company itself collapsed behind
+     a fifth item. Seven flat top-level links had stopped reading as a
+     structure — a visitor could not tell which of them were things to buy and
+     which were things to read about us.
+
+     An item with `children` renders as a submenu. `href` on the parent is
+     what decides the current-section highlight; the trigger itself does not
+     navigate. */
   var NAV = [
     { label: 'Everest Personal Training', short: 'Personal Training', href: '/personal-training/', children: [
       { label: 'Personal Training', href: '/personal-training/', desc: 'App programs, personalised coaching and 1-on-1 sessions' },
       { label: 'Programs &amp; pricing', href: '/programs/', desc: 'The full catalogue, with the 60-second finder' }
     ] },
-    { label: 'Everest Elite', short: 'Elite', href: '/elite/' },
-    { label: 'EMPOWER', href: '/empower/' },
+    { label: 'Everest Elite', short: 'Elite', href: '/elite/', children: [
+      { label: 'Everest Athlete', href: '/elite/#athlete', desc: 'Sport-specific strength and conditioning for athletes and squads' },
+      { label: 'Everest Executive', href: '/elite/#executive', desc: 'Performance coaching for executives and high performers' }
+    ] },
     { label: 'Organisations', href: '/organisations/' },
-    { label: 'Impact', href: '/impact/' },
-    { label: 'About', href: '/about/' },
-    { label: 'Team', href: '/team/' }
+    { label: 'EMPOWER', href: '/empower/' },
+    { label: 'Company', href: '/about/', children: [
+      { label: 'About', href: '/about/', desc: 'Our mission, our vision and the Everest story' },
+      { label: 'Impact', href: '/impact/', desc: 'The evidence behind what we claim' },
+      { label: 'Team', href: '/team/', desc: 'The people who deliver it' },
+      { label: 'Resources', href: '/resources/', desc: 'Recipes, guides and educational pieces' }
+    ] }
   ];
 
   var path = location.pathname.replace(/index\.html$/, '');
   if (path.length > 1) path = path.replace(/\/?$/, '/');
 
+  /* Two different questions, and conflating them broke the Elite group.
+     isActive asks "are we anywhere in this section", which is what decides
+     whether a submenu shows as the current one — so it ignores any #anchor.
+     isCurrentPage asks "is this link the page we are on", which is what
+     aria-current means; an anchor into a section is never that, or both
+     Elite children would announce themselves as the current page at once. */
   function isActive(href) {
-    if (href === '/') return path === '/';
-    return path.indexOf(href) === 0;
+    var clean = href.split('#')[0];
+    if (clean === '/') return path === '/';
+    return path.indexOf(clean) === 0;
+  }
+
+  function isCurrentPage(href) {
+    return href.indexOf('#') === -1 && isActive(href);
   }
 
   function headerHTML() {
     var links = NAV.map(function (n, i) {
       if (!n.children) {
         return '<a href="' + n.href + '"' +
-          (isActive(n.href) ? ' aria-current="page"' : '') +
+          (isCurrentPage(n.href) ? ' aria-current="page"' : '') +
           '>' + n.label + '</a>';
       }
       /* Grouped item. The trigger is a button rather than a link: it opens a
          menu, it does not navigate, and announcing it as a link would be a
          lie to anyone using a screen reader. Every child is reachable from
          the menu, so nothing is lost by not linking the parent. */
-      var open = n.children.some(function (c) { return isActive(c.href); });
+      var open = isActive(n.href) || n.children.some(function (c) { return isActive(c.href); });
       var id = 'navsub-' + i;
       var kids = n.children.map(function (c) {
-        return '<a href="' + c.href + '"' + (isActive(c.href) ? ' aria-current="page"' : '') + '>' +
+        return '<a href="' + c.href + '"' + (isCurrentPage(c.href) ? ' aria-current="page"' : '') + '>' +
           '<span class="ns-label">' + c.label + '</span>' +
           (c.desc ? '<span class="ns-desc">' + c.desc + '</span>' : '') +
           '</a>';
@@ -52,6 +74,11 @@
             (n.short || n.label) +
             '<i class="ti ti-chevron-down" aria-hidden="true"></i>' +
           '</button>' +
+          /* The trigger is hidden in the mobile dropdown, where submenus are
+             always open. Without this the five groups collapse into ten
+             unlabelled links. Decorative only — the links below it carry the
+             meaning, so it stays out of the accessibility tree. */
+          '<span class="nav-group-label" aria-hidden="true">' + (n.short || n.label) + '</span>' +
           '<div class="nav-sub" id="' + id + '">' + kids + '</div>' +
         '</div>';
     }).join('');
