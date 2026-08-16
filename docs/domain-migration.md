@@ -1,5 +1,10 @@
 # Migrating everestpersonaltraining.com
 
+> **Status: not configured.** The redirect rules described below were added to
+> `vercel.json` and then removed at Jared's request. Nothing in this document
+> is live. It is kept as reference for whenever the migration does happen, and
+> because the findings at the bottom are true either way.
+
 The old WordPress site is the only real ranking history Everest has. Switching
 it off without redirects throws that away and the new pages start from zero.
 Redirect it properly and the new site inherits it.
@@ -22,9 +27,9 @@ an empty product sitemap despite WooCommerce being installed.
 | `/my-account/` | `/contact/` | Account holders will have questions; send them to a human |
 | `/partners/` | `/organisations/` | Closest match |
 
-Every row except `/` is already live in `vercel.json`. Those paths do not exist
-on the new site, so the rules are harmless on this domain and correct on the
-old one.
+None of these are currently configured. Every row except `/` can be added to
+`redirects` in `vercel.json` as a plain path rule: those paths do not exist on
+the new site, so the rules are inert on this domain and correct on the old one.
 
 ## What still needs doing, and why it is not in this repo
 
