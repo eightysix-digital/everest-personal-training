@@ -1,5 +1,5 @@
 {
-  "featured": ["everest365", "everest365-premium", "run-strong", "everest-elite"],
+  "featured": ["everest365", "everest365-premium", "run-strong", "everest-athlete"],
   "programs": [
     {
       "slug": "everest365",
@@ -18,6 +18,7 @@
       "support": "self-guided",
       "audience": "adult",
       "best": true,
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -36,6 +37,7 @@
       "frequency": "4",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -54,6 +56,7 @@
       "frequency": "3",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -72,6 +75,7 @@
       "frequency": "4",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -90,6 +94,7 @@
       "frequency": "4",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -108,6 +113,7 @@
       "frequency": "3",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -126,6 +132,7 @@
       "frequency": "1",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -144,6 +151,7 @@
       "frequency": "1",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
@@ -162,24 +170,45 @@
       "frequency": "1",
       "support": "coached",
       "audience": "adult",
+      "category": "personal-training",
       "status": "active"
     },
     {
-      "slug": "everest-elite",
-      "name": "Everest Elite",
-      "label": "Premium · proposal",
-      "headline": "Sport-specific strength and conditioning, testing and progression.",
+      "slug": "everest-athlete",
+      "name": "Everest Athlete",
+      "label": "Sport performance · proposal",
+      "headline": "Sport-specific strength and conditioning, testing and periodised programming for athletes, teams and squads.",
       "price": "By proposal",
       "billing": "",
       "theme": "mist",
-      "cta": "Enquire",
-      "checkoutUrl": "/contact/?type=performance",
+      "cta": "Request a proposal",
+      "checkoutUrl": "/elite/#athlete",
       "goal": "sport performance",
       "level": "experienced",
       "location": "mixed",
       "frequency": "5",
       "support": "premium",
       "audience": "athlete",
+      "category": "elite",
+      "status": "active"
+    },
+    {
+      "slug": "everest-executive",
+      "name": "Everest Executive",
+      "label": "Executive performance · proposal",
+      "headline": "Physical and mental performance coaching for executives, founders and leaders whose output depends on holding up under load.",
+      "price": "By proposal",
+      "billing": "",
+      "theme": "mist",
+      "cta": "Request a proposal",
+      "checkoutUrl": "/elite/#executive",
+      "goal": "general health",
+      "level": "intermediate",
+      "location": "mixed",
+      "frequency": "3",
+      "support": "premium",
+      "audience": "adult",
+      "category": "elite",
       "status": "active"
     },
     {
@@ -198,6 +227,7 @@
       "frequency": "2",
       "support": "coached",
       "audience": "youth",
+      "category": "empower",
       "status": "active"
     },
     {
@@ -216,6 +246,7 @@
       "frequency": "2",
       "support": "coached",
       "audience": "organisation",
+      "category": "organisations",
       "status": "active"
     },
     {
@@ -234,6 +265,7 @@
       "frequency": "2",
       "support": "premium",
       "audience": "organisation",
+      "category": "organisations",
       "status": "active"
     }
   ]

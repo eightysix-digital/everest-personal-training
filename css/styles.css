@@ -2297,3 +2297,18 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   .arm { padding: 28px 24px 26px; }
   .arm-lede { min-height: 0; }
 }
+/* --- Catalogue grouped by business unit --- */
+.cat-unit { margin-bottom: 56px; }
+.cat-unit:last-child { margin-bottom: 0; }
+.unit-head { border-top: 2px solid var(--teal-deep); padding-top: 18px; margin-bottom: 26px; }
+.unit-head h3 { font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.6vw, 30px);
+  text-transform: uppercase; letter-spacing: -.01em; color: var(--teal-darkest); margin: 0; }
+.unit-head p { font-family: var(--font); font-size: 15px; color: var(--slate); margin: 8px 0 0; }
+.unit-head a { display: inline-flex; align-items: center; gap: 6px; color: var(--teal-deep);
+  border-bottom: 1px solid rgba(6,96,108,.35); margin-left: 4px; white-space: nowrap; }
+.unit-head a:hover { color: var(--teal-accent); border-bottom-color: var(--teal-accent); }
+.unit-head a i { font-size: 15px; }
+/* charge-type headings sit a level down inside a unit, so they step back */
+.cat-unit .cat-head h4 { font-family: var(--display); font-weight: 700; font-size: 16px;
+  text-transform: uppercase; letter-spacing: 1px; color: var(--teal-deep); margin: 0; }
+.cat-unit .cat-head p { font-size: 14px; }

@@ -31,6 +31,21 @@
     { key: 'proposal', title: 'By proposal', note: 'Scoped and quoted around your situation.' }
   ];
 
+  /* The four business units, in the order they appear in the nav. This is the
+     primary grouping on the full catalogue: what someone is shopping for is a
+     bigger distinction than how it happens to be billed, and charge type
+     still groups within each unit below. */
+  var CATEGORIES = [
+    { key: 'personal-training', title: 'Everest Personal Training',
+      note: 'App programs, personalised coaching and 1-on-1 sessions.', href: '/personal-training/' },
+    { key: 'elite', title: 'Everest Elite',
+      note: 'Performance coaching for athletes and executives.', href: '/elite/' },
+    { key: 'organisations', title: 'Everest Organisations',
+      note: 'Workforce programmes and preventative performance.', href: '/organisations/' },
+    { key: 'empower', title: 'EMPOWER',
+      note: 'Youth development through movement.', href: '/empower/' }
+  ];
+
   function cardHTML(p, i) {
     var href = p.checkoutUrl || '/contact/';
     var external = /^https?:\/\//.test(href);
@@ -65,28 +80,59 @@
     return DATA.programs.filter(function (p) { return p.status === 'active'; });
   }
 
+  /* charge-type grid for one unit's products */
+  function chargeGroupsHTML(list, headingLevel) {
+    var h = headingLevel || 'h3';
+    return GROUPS.map(function (g) {
+      var items = list.filter(function (p) { return groupOf(p) === g.key; });
+      if (!items.length) return '';
+      return '<section class="cat-group">' +
+        '<div class="cat-head"><' + h + '>' + g.title + '</' + h + '><p>' + g.note + '</p></div>' +
+        '<div class="product-grid">' + items.map(cardHTML).join('') + '</div>' +
+        '</section>';
+    }).join('');
+  }
+
   function render() {
     var grid = document.getElementById('catalogue');
     var empty = document.getElementById('catalogue-empty');
     if (!grid) return;
+
+    /* A page can scope the catalogue to its own unit with
+       data-category="elite" on #catalogue, and gets just that unit's
+       products with no category headings. Without the attribute — the full
+       /programs/ catalogue — everything renders, grouped by unit. */
+    var scope = grid.getAttribute('data-category') || '';
+
     var f = {
       goal: val('f-goal'), level: val('f-level'),
-      support: val('f-support'), audience: val('f-audience')
+      support: val('f-support'), audience: val('f-audience'),
+      category: scope || val('f-category')
     };
     var list = activePrograms().filter(function (p) {
       return (!f.goal || p.goal === f.goal) &&
         (!f.level || p.level === f.level) &&
         (!f.support || p.support === f.support) &&
-        (!f.audience || p.audience === f.audience);
+        (!f.audience || p.audience === f.audience) &&
+        (!f.category || p.category === f.category);
     });
-    grid.innerHTML = GROUPS.map(function (g) {
-      var items = list.filter(function (p) { return groupOf(p) === g.key; });
-      if (!items.length) return '';
-      return '<section class="cat-group">' +
-        '<div class="cat-head"><h3>' + g.title + '</h3><p>' + g.note + '</p></div>' +
-        '<div class="product-grid">' + items.map(cardHTML).join('') + '</div>' +
-        '</section>';
-    }).join('');
+
+    if (f.category) {
+      grid.innerHTML = chargeGroupsHTML(list, 'h3');
+    } else {
+      grid.innerHTML = CATEGORIES.map(function (c) {
+        var items = list.filter(function (p) { return p.category === c.key; });
+        if (!items.length) return '';
+        return '<section class="cat-unit">' +
+          '<div class="unit-head">' +
+            '<h3>' + c.title + '</h3>' +
+            '<p>' + c.note + ' <a href="' + c.href + '">More about ' + c.title +
+              ' <i class="ti ti-arrow-right" aria-hidden="true"></i></a></p>' +
+          '</div>' +
+          chargeGroupsHTML(items, 'h4') +
+          '</section>';
+      }).join('');
+    }
     if (empty) empty.style.display = list.length ? 'none' : 'block';
   }
 
@@ -206,13 +252,13 @@
     .then(function (data) {
       DATA = data;
       render();
-      ['f-goal', 'f-level', 'f-support', 'f-audience'].forEach(function (id) {
+      ['f-category', 'f-goal', 'f-level', 'f-support', 'f-audience'].forEach(function (id) {
         var e = document.getElementById(id);
         if (e) e.addEventListener('change', render);
       });
       var reset = document.getElementById('reset-filters');
       if (reset) reset.addEventListener('click', function () {
-        ['f-goal', 'f-level', 'f-support', 'f-audience'].forEach(function (id) {
+        ['f-category', 'f-goal', 'f-level', 'f-support', 'f-audience'].forEach(function (id) {
           var e = document.getElementById(id); if (e) e.value = '';
         });
         render();
