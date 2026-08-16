@@ -9,8 +9,8 @@ node_modules/
 sitemap.xml
 llms.txt
 
-# Generated blog output (built by tools/build_blog.py at deploy). Source = blog/*.md
-/resources/index.html
-/resources/rss.xml
-/resources/*/
+# Generated blog output (built by tools/build_blog.py at deploy).
+# Source markdown lives in content/blog/ and IS committed; everything the
+# generator writes under /blog/ is not.
+/blog/
 /.pydeps/

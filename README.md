@@ -28,7 +28,8 @@ about/                 Origin story and values
 team/                  Coach profiles (from data/team.json)
 contact/               Segmented enquiry form (?type= preselects)
 legal/                 Privacy, terms, health disclaimer, cookies (#anchors)
-resources/             Insights hub (placeholder, phase 2)
+content/blog/          Blog source markdown (edit these)
+blog/                  Blog output, generated at deploy — do not edit or commit
 
 css/styles.css         Brand styles (palette + shared page components)
 js/layout.js           Shared header, footer, sticky CTA, mobile nav (injected on every page)

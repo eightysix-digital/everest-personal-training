@@ -24,6 +24,16 @@
       "source": "/performance/:path*",
       "destination": "/elite/",
       "permanent": true
+    },
+    {
+      "source": "/resources",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/resources/:path*",
+      "destination": "/blog/:path*",
+      "permanent": true
     }
   ],
   "headers": [

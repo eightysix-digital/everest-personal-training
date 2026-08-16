@@ -50,7 +50,7 @@ function priority(p) {
   return '0.6';
 }
 
-const order = ['/', '/personal-training/', '/programs/', '/elite/', '/empower/', '/organisations/', '/impact/', '/about/', '/team/', '/contact/', '/resources/', '/legal/'];
+const order = ['/', '/personal-training/', '/programs/', '/elite/', '/empower/', '/organisations/', '/impact/', '/about/', '/team/', '/contact/', '/blog/', '/legal/'];
 const pages = findPages(ROOT, 0)
   .map(meta)
   .sort((a, b) => {

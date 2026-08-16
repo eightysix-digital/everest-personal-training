@@ -27,7 +27,7 @@
       { label: 'About', href: '/about/', desc: 'Our mission, our vision and the Everest story' },
       { label: 'Impact', href: '/impact/', desc: 'The evidence behind what we claim' },
       { label: 'Team', href: '/team/', desc: 'The people who deliver it' },
-      { label: 'Resources', href: '/resources/', desc: 'Recipes, guides and educational pieces' }
+      { label: 'Blog', href: '/blog/', desc: 'Recipes, training guides and educational pieces' }
     ] }
   ];
 
@@ -128,7 +128,7 @@
               '<h3>Company</h3>' +
               '<a href="/about/">About</a>' +
               '<a href="/team/">Team</a>' +
-              '<a href="/resources/">Resources</a>' +
+              '<a href="/blog/">Blog</a>' +
               '<a href="/contact/">Contact</a>' +
             '</div>' +
             '<div class="footer-col">' +

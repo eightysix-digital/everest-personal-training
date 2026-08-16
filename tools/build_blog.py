@@ -2,10 +2,15 @@
 """
 Blog static-site generator for Everest.
 
-Builds the blog from markdown files in blog/, in the Everest design. The archive
-IS the Resources page (/resources/); individual posts live at /resources/<slug>/.
-The rest of the site is hand-built static HTML and is left untouched; this script
-only writes under resources/.
+Builds the blog from markdown files in content/blog/, in the Everest design.
+The archive is /blog/ and individual posts live at /blog/<slug>/.
+
+Sources live under content/ and output under blog/ so the two never collide:
+when both shared the blog/ directory the markdown originals would have been
+deployed alongside the pages built from them.
+
+The rest of the site is hand-built static HTML and is left untouched; this
+script only writes under blog/.
 
 Future-dated posts (NZ time) and drafts are excluded from all output, which is
 the scheduling mechanism: a post dated in the future sits dormant until a rebuild
@@ -75,8 +80,18 @@ def parse_post(path):
         if q and a:
             faq.append({"q": q, "a": a})
 
+    # Optional recipe block. Normalised here so the schema builder can assume
+    # lists rather than re-checking YAML shapes.
+    recipe = meta.get("recipe") or {}
+    if recipe:
+        recipe = dict(recipe)
+        for key in ("ingredients", "method"):
+            val = recipe.get(key)
+            recipe[key] = [str(x).strip() for x in val if str(x).strip()] if isinstance(val, list) else []
+
     slug = slugify(meta["slug"])
     return {
+        "recipe": recipe,
         "title": meta["title"],
         "date": date.isoformat(),
         "date_obj": date,
@@ -92,7 +107,7 @@ def parse_post(path):
         "published": meta.get("published", None),
         "read_time": max(1, round(words / 200)),
         "body_html": body_html,
-        "url": f"/resources/{slug}/",
+        "url": f"/blog/{slug}/",
         "og_image": (meta.get("featured_image") or "").strip() or DEFAULT_OG,
     }
 
@@ -109,10 +124,11 @@ def is_live(post):
 
 def load_posts():
     posts = []
-    blog_dir = ROOT / "blog"
+    blog_dir = ROOT / "content" / "blog"
     if blog_dir.exists():
         for p in sorted(blog_dir.glob("*.md")):
-            if p.name.lower() == "readme.md":
+            # skip the readme and any _underscore-prefixed template
+            if p.name.lower() == "readme.md" or p.name.startswith("_"):
                 continue
             posts.append(parse_post(p))
     live = [p for p in posts if is_live(p)]
@@ -151,7 +167,7 @@ def post_jsonld(post):
         blogposting,
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
-            {"@type": "ListItem", "position": 2, "name": "Resources", "item": SITE + "/resources/"},
+            {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + "/blog/"},
             {"@type": "ListItem", "position": 3, "name": post["title"], "item": SITE + post["url"]},
         ]},
     ]
@@ -164,6 +180,46 @@ def post_jsonld(post):
                 for f in post["faq"]
             ],
         })
+
+    # Recipe posts get Recipe schema on top of the BlogPosting. This is the
+    # one content type search engines still give rich results to, and an
+    # assistant asked "high protein breakfast" can quote ingredients and
+    # method straight out of it. Only emitted when the frontmatter carries
+    # both ingredients and method, since a partial Recipe is worse than none.
+    r = post["recipe"]
+    if r and r.get("ingredients") and r.get("method"):
+        recipe = {
+            "@type": "Recipe",
+            "name": r.get("name") or post["title"],
+            "description": r.get("description") or post["excerpt"],
+            "author": {"@type": "Person", "name": post["author"]},
+            "datePublished": post["date"],
+            "image": og_abs(post["og_image"]),
+            "recipeIngredient": list(r["ingredients"]),
+            "recipeInstructions": [
+                {"@type": "HowToStep", "position": i + 1, "text": step}
+                for i, step in enumerate(r["method"])
+            ],
+            "inLanguage": "en-NZ",
+        }
+        for key, field in (("yield", "recipeYield"), ("category", "recipeCategory"),
+                           ("cuisine", "recipeCuisine")):
+            if r.get(key):
+                recipe[field] = r[key]
+        # ISO 8601 durations, e.g. prep_time: PT15M
+        for key, field in (("prep_time", "prepTime"), ("cook_time", "cookTime"),
+                           ("total_time", "totalTime")):
+            if r.get(key):
+                recipe[field] = r[key]
+        if r.get("nutrition"):
+            n = {"@type": "NutritionInformation"}
+            for key, field in (("calories", "calories"), ("protein", "proteinContent"),
+                               ("carbs", "carbohydrateContent"), ("fat", "fatContent")):
+                if r["nutrition"].get(key):
+                    n[field] = r["nutrition"][key]
+            recipe["nutrition"] = n
+        graph.append(recipe)
+
     return json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False)
 
 
@@ -172,7 +228,7 @@ def build_posts(posts):
     tmpl = env.get_template("templates/blog_post.html")
     for i, post in enumerate(posts):
         related = [p for p in posts if p["slug"] != post["slug"]][:3]
-        write(f"resources/{post['slug']}/index.html", tmpl.render(
+        write(f"blog/{post['slug']}/index.html", tmpl.render(
             post=post, related=related,
             page_title=f"{post['title']} | {BRAND}",
             page_description=post["excerpt"],
@@ -184,11 +240,11 @@ def build_posts(posts):
 
 def build_archive(posts):
     tmpl = env.get_template("templates/blog_archive.html")
-    write("resources/index.html", tmpl.render(
+    write("blog/index.html", tmpl.render(
         posts=posts,
-        page_title="Resources & Insights | Everest Personal Training Christchurch",
-        page_description="Evidence-led articles and insights on training, strength, fitness and human performance from Everest's Christchurch coaching team.",
-        canonical=SITE + "/resources/", og_image=DEFAULT_OG,
+        page_title="Blog | Recipes, Training Guides &amp; Insights | Everest Christchurch",
+        page_description="Recipes, training guides and evidence-led articles on strength, movement and human performance from Everest's Christchurch coaching team.",
+        canonical=SITE + "/blog/", og_image=DEFAULT_OG,
         heading="Practical, evidence-led insights.",
         heading_lead="Articles answering the real questions we hear from the people and organisations we work with across Christchurch and Canterbury.",
         active_tag=None,
@@ -203,11 +259,11 @@ def build_tags(posts):
             tags.setdefault(t, []).append(post)
     for tag, tag_posts in tags.items():
         s = slugify(tag)
-        write(f"resources/tag/{s}/index.html", tmpl.render(
+        write(f"blog/tag/{s}/index.html", tmpl.render(
             posts=tag_posts, active_tag=tag,
-            page_title=f"{tag} | Resources | {BRAND}",
+            page_title=f"{tag} | Blog | {BRAND}",
             page_description=f"Everest articles and insights tagged {tag}.",
-            canonical=SITE + f"/resources/tag/{s}/", og_image=DEFAULT_OG,
+            canonical=SITE + f"/blog/tag/{s}/", og_image=DEFAULT_OG,
             heading=f"Tagged: {tag}.",
             heading_lead=f"Every Everest article tagged {tag}.",
             noindex=True,
@@ -227,12 +283,12 @@ def build_rss(posts):
       <description>{html.escape(post['excerpt'])}</description>
 {cats}    </item>""")
     now = datetime.datetime.now(NZ).strftime('%a, %d %b %Y %H:%M:%S %z')
-    write("resources/rss.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
+    write("blog/rss.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Everest Personal Training Blog</title>
-    <link>{SITE}/resources/</link>
-    <atom:link href="{SITE}/resources/rss.xml" rel="self" type="application/rss+xml" />
+    <link>{SITE}/blog/</link>
+    <atom:link href="{SITE}/blog/rss.xml" rel="self" type="application/rss+xml" />
     <description>Evidence-led training, strength, fitness and human performance insights from Everest, Christchurch.</description>
     <language>en-nz</language>
     <lastBuildDate>{now}</lastBuildDate>

@@ -30,8 +30,8 @@
       <header class="post-hero">
         <div class="post-hero-bg" aria-hidden="true"{% if post.featured_image %} style="background-image:linear-gradient(rgba(10,10,10,.5),rgba(4,52,44,.82)),url('{{ post.featured_image }}')"{% endif %}></div>
         <div class="rail">
-          <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <a href="/resources/">Resources</a></nav>
-          {% if post.tags %}<div class="post-tags">{% for t in post.tags %}<a class="post-tag" href="/resources/tag/{{ t | slugify }}/">{{ t }}</a>{% endfor %}</div>{% endif %}
+          <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <a href="/blog/">Blog</a></nav>
+          {% if post.tags %}<div class="post-tags">{% for t in post.tags %}<a class="post-tag" href="/blog/tag/{{ t | slugify }}/">{{ t }}</a>{% endfor %}</div>{% endif %}
           <h1>{{ post.title }}</h1>
           <p class="post-meta"><i class="ti ti-calendar" aria-hidden="true"></i> {{ post.date_display }} <span class="dot">·</span> <i class="ti ti-clock" aria-hidden="true"></i> {{ post.read_time }} min read <span class="dot">·</span> {{ post.author }}</p>
         </div>
