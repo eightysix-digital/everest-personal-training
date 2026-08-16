@@ -2435,7 +2435,19 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
    100vw is the viewport and cannot be dragged wider by content, so the cap
    holds. On desktop it also includes the scrollbar, which is why the 48px
    gutter is subtracted from it rather than from 100%. */
-.site-header { width: 100%; max-width: min(1092px, calc(100vw - 48px)); }
+/* Position as well as width has to come from the viewport. margin: 0 auto
+   centres inside the initial containing block, and that block stays inflated
+   once anything has overflowed - which left the header at a 47px gutter on
+   one side and 1px on the other. Deriving left from 100vw pins it regardless:
+   it collapses to the 24px gutter on a phone and to a true centre once the
+   viewport is wider than the 1092px cap. */
+.site-header {
+  width: min(1092px, calc(100vw - 48px));
+  max-width: none;
+  left: max(24px, calc((100vw - 1092px) / 2));
+  right: auto;
+  margin: 0;
+}
 
 /* Belt and braces for the same class of bug elsewhere. overflow-x: clip is
    deliberate rather than hidden: hidden creates a scroll container and would
