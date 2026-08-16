@@ -1,6 +1,6 @@
 ---
 title: "Hip Flexors, Core and Balance: The Missing Link in Better Movement"
-date: "2026-09-14"
+date: "2026-08-12"
 slug: "hip-flexors-core-and-balance"
 excerpt: "Tight hips are the most stretched and least trained part of most people's bodies. Stretching is rarely the answer, and here is the anatomy that explains why."
 featured_image: "/assets/img/blog/hip-flexors-v1.jpg"

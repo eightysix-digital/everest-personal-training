@@ -1,6 +1,6 @@
 ---
 title: "Time Under Tension: Why Slower, Controlled Reps Can Build Better Results"
-date: "2026-09-07"
+date: "2026-08-13"
 slug: "time-under-tension"
 excerpt: "Most people train the lowering half of a lift as though it does not count. It is the half where a great deal of the adaptation actually lives."
 featured_image: "/assets/img/blog/time-under-tension-v1.jpg"
