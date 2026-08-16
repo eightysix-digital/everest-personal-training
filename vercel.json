@@ -34,7 +34,26 @@
       "source": "/resources/:path*",
       "destination": "/blog/:path*",
       "permanent": true
-    }
+    },
+
+    { "source": "/about-us", "destination": "/about/", "permanent": true },
+    { "source": "/about-us/:path*", "destination": "/about/", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact/", "permanent": true },
+    { "source": "/contact-us/:path*", "destination": "/contact/", "permanent": true },
+    { "source": "/services", "destination": "/personal-training/", "permanent": true },
+    { "source": "/services/:path*", "destination": "/personal-training/", "permanent": true },
+    { "source": "/packages", "destination": "/programs/", "permanent": true },
+    { "source": "/packages/:path*", "destination": "/programs/", "permanent": true },
+    { "source": "/shop", "destination": "/programs/", "permanent": true },
+    { "source": "/shop/:path*", "destination": "/programs/", "permanent": true },
+    { "source": "/basket", "destination": "/programs/", "permanent": true },
+    { "source": "/basket/:path*", "destination": "/programs/", "permanent": true },
+    { "source": "/checkout", "destination": "/programs/", "permanent": true },
+    { "source": "/checkout/:path*", "destination": "/programs/", "permanent": true },
+    { "source": "/my-account", "destination": "/contact/", "permanent": true },
+    { "source": "/my-account/:path*", "destination": "/contact/", "permanent": true },
+    { "source": "/partners", "destination": "/organisations/", "permanent": true },
+    { "source": "/partners/:path*", "destination": "/organisations/", "permanent": true }
   ],
   "headers": [
     {
