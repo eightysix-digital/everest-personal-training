@@ -2422,3 +2422,51 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 /* numbers are the argument on this page, so they are set with more authority */
 .org-scope .stat-band .num, .org-scope .assurance .num {
   letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+/* ============================================================
+   Mobile: overflow, hero collision, and card stacking
+   ============================================================ */
+
+/* The header sized itself with width: calc(100% - 48px) while position:fixed.
+   For a fixed element that 100% is the initial containing block, which grows
+   when the document overflows horizontally - so the header widened the page,
+   which widened the header, and so on. On a 375px phone it settled at 403px
+   and left the whole site scrolling sideways.
+
+   100vw is the viewport and cannot be dragged wider by content, so the cap
+   holds. On desktop it also includes the scrollbar, which is why the 48px
+   gutter is subtracted from it rather than from 100%. */
+.site-header { width: 100%; max-width: min(1092px, calc(100vw - 48px)); }
+
+/* Belt and braces for the same class of bug elsewhere. overflow-x: clip is
+   deliberate rather than hidden: hidden creates a scroll container and would
+   break the sticky story cards on About, clip does not. */
+html, body { overflow-x: clip; }
+
+/* The trail is created behind a (hover: hover) and (pointer: fine) check in
+   layout.js, but that is evaluated once at load and a device can report
+   otherwise later. Hiding it on coarse pointers costs nothing and closes the
+   gap; it is decorative and there is no cursor to trail on a phone. */
+@media (pointer: coarse) { .cursor-trail { display: none; } }
+
+/* The summit marker sits at 90% across and 22% down. On a phone that is
+   exactly where the eyebrow and headline are, so the pill landed on top of
+   "HUMAN PERFORMANCE & CAPABILITY". The hero already carries two buttons at
+   this width, so the flourish goes rather than the copy. */
+@media (max-width: 700px) { .summit-cta { display: none; } }
+
+/* Card stacking on mobile. It was switched off under 720px; the effect is
+   the best thing on that page and it works on a phone provided the offsets
+   are tightened - the mobile header is shorter, and five cards each stepping
+   18px would consume most of a small screen. 10px steps from 78px instead. */
+@media (max-width: 720px) {
+  .story-item { position: sticky; box-shadow: 0 -10px 34px rgba(17,17,17,.14); }
+  .story-item:nth-child(1) { top: 78px; }
+  .story-item:nth-child(2) { top: 88px; }
+  .story-item:nth-child(3) { top: 98px; }
+  .story-item:nth-child(4) { top: 108px; }
+  .story-item:nth-child(5) { top: 118px; }
+}
+/* Reduced motion still gets the flat, non-pinned version. */
+@media (prefers-reduced-motion: reduce) {
+  .story-item { position: static; box-shadow: 0 12px 30px rgba(17,17,17,.06); }
+}
