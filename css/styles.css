@@ -2312,3 +2312,29 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
 .cat-unit .cat-head h4 { font-family: var(--display); font-weight: 700; font-size: 16px;
   text-transform: uppercase; letter-spacing: 1px; color: var(--teal-deep); margin: 0; }
 .cat-unit .cat-head p { font-size: 14px; }
+/* --- HIIT For Hope (About) --- */
+.hfh { background: var(--black); color: #fff; position: relative; overflow: hidden; }
+.hfh::before { content: ''; position: absolute; width: 55vw; height: 55vw; left: -16%; top: -24%;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(20,164,184,.18), transparent 66%); }
+.hfh .wrap { position: relative; z-index: 2; }
+/* the event poster is portrait 4:5, so the copy takes the wider column */
+.hfh-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+.hfh-body h2 { color: #fff; font-size: clamp(26px, 3.6vw, 44px); font-weight: 700;
+  line-height: 1.05; margin: 10px 0 0; }
+.hfh-body .eyebrow-2 { display: inline-block; font-family: var(--font); font-size: 12px;
+  font-weight: 600; letter-spacing: 2px; color: var(--teal-accent); }
+.hfh-body p { font-family: var(--font); font-size: 16px; line-height: 1.75;
+  color: var(--ink-on-dark); margin: 18px 0 0; max-width: 54ch; }
+/* the closing thought is the point of the section, so it is set apart */
+.hfh-line { border-left: 3px solid var(--teal-accent); padding-left: 20px; color: #fff !important;
+  font-size: 17px !important; }
+.hfh-figure { margin: 0; }
+.hfh-figure img { width: 100%; max-width: 460px; height: auto; display: block; border-radius: 20px;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+.hfh-figure figcaption { font-family: var(--font); font-size: 13px; color: var(--grey-muted);
+  margin-top: 12px; }
+@media (max-width: 900px) {
+  .hfh-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hfh-figure { order: -1; }
+}
