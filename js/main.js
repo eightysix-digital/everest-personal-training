@@ -36,7 +36,7 @@
       return '' +
         '<article class="product">' +
           '<div class="pic pic-brand">' +
-            '<img class="pic-logo" src="/assets/img/everest-logo-v3.svg" alt="" aria-hidden="true" ' +
+            '<img class="pic-logo" src="/assets/img/everest-logo-v4.svg" alt="" aria-hidden="true" ' +
               'width="750" height="750" loading="lazy" />' +
             '<span class="plabel">' + esc(p.label) + '</span>' +
           '</div>' +
