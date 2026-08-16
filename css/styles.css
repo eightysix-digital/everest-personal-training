@@ -2365,3 +2365,12 @@ h1, h2, h3, .display { font-family: var(--display); letter-spacing: -0.01em; }
   font-family: var(--font); font-size: 13.5px; line-height: 1.6; color: var(--slate); }
 .amb-note i { color: var(--teal-deep); font-size: 17px; flex: 0 0 auto; margin-top: 1px; }
 @media (max-width: 760px) { .amb-grid { grid-template-columns: 1fr; } }
+/* --- Blog: infographic-friendly image handling ---
+   Posters and diagrams crop from the top rather than the centre, so the card
+   thumbnail shows the branded header and title instead of a meaningless band
+   of body text sliced out of the middle. */
+.fcard .fpic.is-poster { background-position: top center; background-color: #fff; }
+/* the featured image, shown full and readable in the article body */
+.post-figure { margin: 0 0 34px; }
+.post-figure img { display: block; width: 100%; height: auto; border-radius: 16px;
+  border: 1px solid var(--mist-line); box-shadow: 0 18px 44px rgba(17,17,17,.10); }

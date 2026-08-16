@@ -28,7 +28,7 @@
   <main>
     <article class="post">
       <header class="post-hero">
-        <div class="post-hero-bg" aria-hidden="true"{% if post.featured_image %} style="background-image:linear-gradient(rgba(10,10,10,.5),rgba(4,52,44,.82)),url('{{ post.featured_image }}')"{% endif %}></div>
+        <div class="post-hero-bg" aria-hidden="true"{% if post.featured_image and post.image_style == 'hero' %} style="background-image:linear-gradient(rgba(10,10,10,.5),rgba(4,52,44,.82)),url('{{ post.featured_image }}')"{% endif %}></div>
         <div class="rail">
           <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>/</span> <a href="/blog/">Blog</a></nav>
           {% if post.tags %}<div class="post-tags">{% for t in post.tags %}<a class="post-tag" href="/blog/tag/{{ t | slugify }}/">{{ t }}</a>{% endfor %}</div>{% endif %}
@@ -44,6 +44,13 @@
             <span class="post-summary-label"><i class="ti ti-sparkles" aria-hidden="true"></i> In short</span>
             <p>{{ post.summary }}</p>
           </div>
+          {% endif %}
+          {# Diagrams and infographics render full width and legible here rather
+             than being buried under a dark gradient in the header. #}
+          {% if post.featured_image and post.image_style != 'hero' %}
+          <figure class="post-figure">
+            <img src="{{ post.featured_image }}" alt="{{ post.title }}" loading="lazy" />
+          </figure>
           {% endif %}
           {{ post.body_html | safe }}
         </div>
@@ -72,7 +79,7 @@
           <div class="fgrid">
             {% for r in related %}
             <a class="fcard" href="{{ r.url }}">
-              <div class="fpic" style="background-image:url('{{ r.featured_image or '/assets/img/placeholder-horizontal.jpg' }}')">{% if r.tags %}<span class="fchip">{{ r.tags[0] }}</span>{% endif %}</div>
+              <div class="fpic{% if r.image_style != 'hero' %} is-poster{% endif %}" style="background-image:url('{{ r.featured_image or '/assets/img/placeholder-horizontal.jpg' }}')">{% if r.tags %}<span class="fchip">{{ r.tags[0] }}</span>{% endif %}</div>
               <div class="fbody">
                 <p class="fmeta">{{ r.date_display }} · {{ r.read_time }} min read</p>
                 <h3>{{ r.title }}</h3>

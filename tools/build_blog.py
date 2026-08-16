@@ -89,9 +89,18 @@ def parse_post(path):
             val = recipe.get(key)
             recipe[key] = [str(x).strip() for x in val if str(x).strip()] if isinstance(val, list) else []
 
+    # How the featured image is used. "figure" renders it full and legible in
+    # the article body; "hero" burns it into the darkened header behind the
+    # title. Default is figure because hero destroys anything containing text,
+    # and most of what Everest publishes is diagrams and infographics.
+    image_style = (meta.get("image_style") or "figure").strip().lower()
+    if image_style not in ("figure", "hero"):
+        image_style = "figure"
+
     slug = slugify(meta["slug"])
     return {
         "recipe": recipe,
+        "image_style": image_style,
         "title": meta["title"],
         "date": date.isoformat(),
         "date_obj": date,
