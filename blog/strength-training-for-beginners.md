@@ -50,7 +50,7 @@ You do not need to chase big jumps. Small, steady progress that you can repeat i
 
 The single biggest thing that stalls beginners is not a lack of effort. It is doing **random workouts that never build on each other**. Without a plan, each session starts from scratch, progress is impossible to measure, and motivation quietly fades.
 
-This is exactly what a structured program fixes. At Everest, every program is built to be followed, tracked and progressed, so you always know what to do next and why. Our [app-based programs](/programs/) give you that structure from as little as five dollars a week, and if you want a plan built specifically around you with a coach in your corner, that is what our [personalised coaching](/coaching/) is for.
+This is exactly what a structured program fixes. At Everest, every program is built to be followed, tracked and progressed, so you always know what to do next and why. Our [app-based programs](/programs/) give you that structure from as little as five dollars a week, and if you want a plan built specifically around you with a coach in your corner, that is what our [personalised coaching](/personal-training/) is for.
 
 ## The takeaway
 

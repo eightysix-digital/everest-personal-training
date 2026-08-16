@@ -1,5 +1,7 @@
-/* Everest PT - Coaching page: tabbed delivery options, single-open FAQ,
-   and client testimonials rendered from data/testimonials.json. */
+/* Everest PT - testimonials and tabbed delivery options.
+   Named for the old /coaching/ page, which now 301s to /personal-training/;
+   that page uses the testimonials block. Both features guard on their host
+   element, so this is safe to include anywhere. */
 (function () {
   'use strict';
 

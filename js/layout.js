@@ -8,9 +8,9 @@
      rather than listed flat — eight top-level items had outgrown the header.
      An item with `children` renders as a submenu. */
   var NAV = [
-    { label: 'Everest Personal Training', short: 'Personal Training', href: '/programs/', children: [
-      { label: 'Programs', href: '/programs/', desc: 'App plans, coached programs and one-off services' },
-      { label: 'Coaching', href: '/coaching/', desc: 'Personalised coaching, in person or online worldwide' }
+    { label: 'Everest Personal Training', short: 'Personal Training', href: '/personal-training/', children: [
+      { label: 'Personal Training', href: '/personal-training/', desc: 'App programs, personalised coaching and 1-on-1 sessions' },
+      { label: 'Programs &amp; pricing', href: '/programs/', desc: 'The full catalogue, with the 60-second finder' }
     ] },
     { label: 'Performance', href: '/performance/' },
     { label: 'EMPOWER', href: '/empower/' },
@@ -85,8 +85,8 @@
           '<div class="footer-cols">' +
             '<div class="footer-col">' +
               '<h3>Train</h3>' +
-              '<a href="/programs/">Programs</a>' +
-              '<a href="/coaching/">Coaching</a>' +
+              '<a href="/personal-training/">Personal Training</a>' +
+              '<a href="/programs/">Programs &amp; pricing</a>' +
               '<a href="/performance/">Performance</a>' +
               '<a href="/empower/">EMPOWER</a>' +
             '</div>' +

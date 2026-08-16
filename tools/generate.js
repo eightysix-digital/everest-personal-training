@@ -43,12 +43,14 @@ function meta(file) {
 
 function priority(p) {
   if (p === '/') return '1.0';
-  if (['/programs/', '/coaching/', '/performance/', '/empower/', '/organisations/'].includes(p)) return '0.9';
+  // /personal-training/ is the landing page for the head term, so it ranks
+  // alongside the other division pages. /coaching/ 301s here and is gone.
+  if (['/personal-training/', '/programs/', '/performance/', '/empower/', '/organisations/'].includes(p)) return '0.9';
   if (['/impact/', '/about/', '/contact/'].includes(p)) return '0.8';
   return '0.6';
 }
 
-const order = ['/', '/programs/', '/coaching/', '/performance/', '/empower/', '/organisations/', '/impact/', '/about/', '/team/', '/contact/', '/resources/', '/legal/'];
+const order = ['/', '/personal-training/', '/programs/', '/performance/', '/empower/', '/organisations/', '/impact/', '/about/', '/team/', '/contact/', '/resources/', '/legal/'];
 const pages = findPages(ROOT, 0)
   .map(meta)
   .sort((a, b) => {
