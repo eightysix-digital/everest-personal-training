@@ -2513,3 +2513,7 @@ html, body { overflow-x: clip; }
   /* the inline "go" links on the division panels, 31px before */
   .division .go { padding: 7px 0; }
 }
+/* The breadcrumb links were the last targets under the 24px minimum, at 21px.
+   Padding only, and vertical only, so the crumb trail keeps its position and
+   the separators stay put. */
+@media (max-width: 920px) { .crumbs a { padding: 4px 0; } }
