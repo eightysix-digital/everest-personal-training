@@ -2517,3 +2517,13 @@ html, body { overflow-x: clip; }
    Padding only, and vertical only, so the crumb trail keeps its position and
    the separators stay put. */
 @media (max-width: 920px) { .crumbs a { padding: 4px 0; } }
+/* The Organisations panels swap to simplified square variants on mobile. The
+   desktop art is 1600 wide and renders at 327 on a phone - a scale of 0.20
+   that turned its 25px labels into 5px. The mobile files are drawn on an 800
+   canvas so the scale is 0.41, carry less (weekdays only, no sub-labels) and
+   set everything larger. Nothing in them renders below 11px.
+
+   The tile goes square to match, which is what gives the pathway the height
+   to stack vertically. Breakpoint matches the <source> media in the markup;
+   change one and change the other. */
+@media (max-width: 820px) { .org-scope .split-media { aspect-ratio: 1/1; } }
