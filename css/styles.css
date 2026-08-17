@@ -2482,3 +2482,34 @@ html, body { overflow-x: clip; }
 @media (prefers-reduced-motion: reduce) {
   .story-item { position: static; box-shadow: 0 12px 30px rgba(17,17,17,.06); }
 }
+/* ============================================================
+   Touch target sizes
+   ============================================================
+   Audited across all 13 pages at 375px. Layout came back clean everywhere -
+   no sideways scroll, nothing overflowing unclipped, header gutters even.
+   What did come back was tap targets: the footer links measured 21 to 22px
+   tall and the menu button 30px.
+
+   WCAG 2.2 sets 24x24 CSS pixels as the minimum at AA. The platform
+   guidelines ask for more like 44px on anything you tap often. The footer is
+   on every page and the menu button is the entire navigation on a phone, so
+   both are worth the space. */
+
+/* The menu button is the whole nav on mobile and was the smallest control on
+   the page. Sized to 44px, which is the iOS and Android guideline, with the
+   icon still visually 24px. */
+.nav-toggle { width: 44px; height: 44px; display: none; align-items: center;
+  justify-content: center; padding: 0; }
+@media (max-width: 920px) { .nav-toggle { display: inline-flex; } }
+
+@media (max-width: 920px) {
+  /* Padding rather than a taller line-height, so the text keeps its rhythm
+     and only the hit area grows. The column gap drops to compensate, leaving
+     the visual spacing close to where it was. */
+  .footer-col { gap: 2px; }
+  .footer-col a { padding: 9px 0; }
+  .footer-legal { gap: 8px; row-gap: 0; flex-wrap: wrap; }
+  .footer-legal a { padding: 10px 10px 10px 0; }
+  /* the inline "go" links on the division panels, 31px before */
+  .division .go { padding: 7px 0; }
+}
